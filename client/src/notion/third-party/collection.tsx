@@ -184,7 +184,7 @@ const CollectionViewBlock: React.FC<{
   }
 
   const router = useRouter();
-  const isProjectPage = router.pathname.startsWith("/2022/works/[courseName]");
+  const isProjectPage = router.pathname.startsWith("/works/[courseName]");
 
   return (
     <>

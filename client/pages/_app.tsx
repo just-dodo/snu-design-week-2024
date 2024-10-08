@@ -36,8 +36,8 @@ type AppPropsWithLayout = AppProps & {
 }
 
 function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
-  const isBasePath = router.pathname === '/2022'
-  const isStartsWithBasePath = router.pathname.startsWith('/2022')
+  const isBasePath = router.pathname === '/'
+  const isStartsWithBasePath = router.pathname.startsWith('/')
   function defaultGetLayout(page: ReactElement) {
     return <Layout>{page}</Layout>
   }

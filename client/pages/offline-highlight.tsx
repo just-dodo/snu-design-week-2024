@@ -278,7 +278,7 @@ export default function WorkPage(props: PageProps) {
         <div className="w-full h-20" />
         <div className="w-full  justify-center items-center flex">
           {pageProperties["다른 작품 링크"]?.startsWith(
-            "https://snudesignweek.com/2022/"
+            "https://snudesignweek.com/"
           ) && (
             <Link
               className="w-fit px-2 h-[33px] rounded-full border-[1px] border-primary 

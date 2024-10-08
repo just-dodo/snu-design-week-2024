@@ -7,15 +7,14 @@ import { getPageProperty, parsePageId } from "notion-utils";
 import { domain, isDev } from "@/lib/config";
 import backButtonImg from "assets/back-button.png";
 import { PageProps, Params } from "@/lib/types";
-import courseList from 'wordings/course'
+import courseList from "wordings/course";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-
-const DATABASE_ID = "9ef7308ccb9a497faa98df8561eab643";
+import CONFIGS from "configs";
+const DATABASE_ID = CONFIGS.databaseId;
 export const getStaticProps = async () => {
   try {
-
     const props: PageProps = await resolveNotionPage(domain, DATABASE_ID);
     return { props, revalidate: 10 };
   } catch (err) {
@@ -58,13 +57,15 @@ export default function CoursePage(props: PageProps) {
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
   const collection = recordMap.collection;
-  const block = recordMap.block
+  const block = recordMap.block;
   // block to array
   const blockArray = Object.keys(block).map((key) => block[key].value);
   // filter out the collection view
   const pages = blockArray.filter(
-    (block) => block?.type === "page" && block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
-  )
+    (block) =>
+      block?.type === "page" &&
+      block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
+  );
 
   // get a item from collection that item.value.parent_id is equal to the dbId
   const pageData = Object.values(collection).find((item: any) => {
@@ -130,18 +131,24 @@ export default function CoursePage(props: PageProps) {
                 />
               </div>
               <div className="flex flex-col relative ml-[0.3rem] ">
-                <h1 className="font-bold text-[1.2rem] leading-6 ">{courseData?.korean_text}</h1>
-                <h1 className="mt-[4px] font-bold text-[1.2rem] leading-6  ">{courseData?.english_text}</h1>
+                <h1 className="font-bold text-[1.2rem] leading-6 ">
+                  {courseData?.korean_text}
+                </h1>
+                <h1 className="mt-[4px] font-bold text-[1.2rem] leading-6  ">
+                  {courseData?.english_text}
+                </h1>
 
-                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px] mt-5">지도교수 | {courseData?.advisor}</h2>
-                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px]">Advisor | {courseData?.advisor_eng}</h2>
+                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px] mt-5">
+                  지도교수 | {courseData?.advisor}
+                </h2>
+                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px]">
+                  Advisor | {courseData?.advisor_eng}
+                </h2>
               </div>
             </div>
           </div>
           <div className="flex flex-col justify-start items-start h-full flex-1 mytext-2 pr-4 py-6 md:py-0">
-            <p className=" ">
-              {courseData?.description}
-            </p>
+            <p className=" ">{courseData?.description}</p>
           </div>
         </XWrapper>
       </div>

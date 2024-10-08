@@ -230,7 +230,7 @@ export const WorkCard: React.FC<CollectionCardProps & {
       >
         <components.PageLink
           className={cs(className, " flex-0 flex w-full")}
-          href={('/2022/works/' + groupName + "/" + block.id)}
+          href={('/works/' + groupName + "/" + block.id)}
           {...rest}
         >
           {innerCard}

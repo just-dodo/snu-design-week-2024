@@ -14,8 +14,8 @@ export default function Navbar(): ReactElement {
   const router = useRouter();
   const windowSize = useWindowSize();
   const isMobileView = windowSize.width < 768;
-  const pathList = ["home", "about", "works", "program", "partners", "offline-highlight"];
-  const basePath = "/2022";
+  const pathList = ["home", "about", "works", "people", "program", "partners"];
+  const basePath = "/";
   const isHome = router.pathname === basePath;
   const isAnimationFinished = useAnimationDataStore(
     (state: AnimationData) => state.isAnimationFinished
@@ -25,81 +25,81 @@ export default function Navbar(): ReactElement {
     ? "translate-y-[60px]"
     : "translate-y-0";
 
-  const isUnknownPath = !(pathList.includes(router.pathname.split("/")[2]) || isHome)
+  const isUnknownPath = !(
+    pathList.includes(router.pathname.split("/")[2]) || isHome
+  );
 
-  const navList = pathList.filter((path) => isMobileView ? true : path !== "offline-highlight" )
-  .map((path) => {
-    const isActive =
-      router.pathname.startsWith(`${basePath}/${path}`) ||
-      (router.pathname === basePath && path === "home");
-    let navPosition;
-    if (isActive && isShown) {
-      navPosition = "translate-y-0";
-    } else if (!isActive && isShown) {
-      navPosition = "translate-y-4";
-    } else {
-      navPosition = "translate-y-12";
-    }
+  const navList = pathList
+    .filter((path) => (isMobileView ? true : path !== "home"))
+    .map((path) => {
+      const isActive =
+        router.pathname.startsWith(`${basePath}/${path}`) ||
+        (router.pathname === basePath && path === "home");
+      let navPosition;
+      if (isActive && isShown) {
+        navPosition = "translate-y-0";
+      } else if (!isActive && isShown) {
+        navPosition = "translate-y-4";
+      } else {
+        navPosition = "translate-y-12";
+      }
 
-    const activeNavColor = isActive ? "bg-secondary" : "bg-white";
-    const navWidth = windowSize.width > 1240 ? "240px" : "152px";
-    return (
-      <>
-        {isMobileView? (
-          <Link
-            href={path != "home" ? basePath + "/" + path : basePath + "/"}
-            key={"nav-component-" + path}
-            className="z-50 w-full"
-            onClick={() => {
-              setIsMobileMenuShown(false);
-            }}
-          >
-            <div
-              className={`align-center-left px-3 w-full md:my-0 md:w-60 h-11 cut-topright ${activeNavColor}`}
-            >
-              <p className="text-xl text-primary articulat ">
-                {path.toUpperCase().replace("-", " ")}
-              </p>
-            </div>
-          </Link>
-        ) : (
-          <Link
-            href={path != "home" ? basePath + "/" + path : basePath + "/"}
-            key={"nav-component-" + path}
-            className="z-50 "
-          >
-            <div
-              className={`align-center-left px-3 mb-5 md:my-0 h-11 cut-topright transition hover:translate-y-0 ${navPosition} ${activeNavColor}`}
-              style={{
-                width: navWidth,
+      const activeNavColor = isActive ? "bg-secondary" : "bg-white";
+      return (
+        <>
+          {isMobileView ? (
+            <Link
+              href={path != "home" ? basePath + "/" + path : basePath + "/"}
+              key={"nav-component-" + path}
+              className="z-50 w-full"
+              onClick={() => {
+                setIsMobileMenuShown(false);
               }}
             >
-              <p className="text-xl text-primary articulat ">
+              <div
+                className={`align-center-left px-3 w-full md:my-0 md:w-60 h-11 cut-topright ${activeNavColor}`}
+              >
+                <p className="text-xl text-primary  ">
+                  {path.toUpperCase().replace("-", " ")}
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href={path != "home" ? basePath + "/" + path : basePath + "/"}
+              key={"nav-component-" + path}
+              className="z-50 h-full flex flex-row items-center justify-center"
+            >
+              <p className="text-xl text-secondary font-semibold ">
                 {path.toUpperCase()}
               </p>
-            </div>
-          </Link>
-        )}
-      </>
-    );
-  });
+            </Link>
+          )}
+        </>
+      );
+    });
 
   const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
   /// set MobileNavColor to white when home, else to primary
-  const mobileNavBackgroundColor = isHome ? "bg-white" : "bg-primary";
+  const mobileNavBackgroundColor = "bg-primary";
 
   if (!isMobileView) {
     return (
       <>
         <nav
-          className={`fixed z-50 bg-white h-[60px] min-h-[60px] w-screen flex flex-row flex-0 justify-center overflow-y-hidden items-end ${
-            router.pathname != "/2022" ? "border-b-primary border-b" : null
+          className={`fixed z-50 bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 justify-between items-center px-10 py-6 ${
+            router.pathname != "/" ? "border-b-primary border-b" : null
           }`}
         >
-          <div
-            className={`absolute bg-primary h-[60px] w-full top-[-60px] transition-all duration-500 ${navBackgroundPosition}`}
-          />
-          {navList}
+          <Link href="/">
+            <p className="text-secondary z-30 font-bold text-[35px] leading-[42px]">
+              SNU DESIGN WEEK 2024
+            </p>
+          </Link>
+          <div className="flex flex-row items-center justify-center gap-10">
+            {navList}
+          </div>
+          <div className="absolute bottom-1 h-0.5 bg-secondary w-full max-w-[calc(100%-80px)]" />
         </nav>
       </>
     );
@@ -108,14 +108,15 @@ export default function Navbar(): ReactElement {
       <>
         <nav
           className={`fixed top-0 ${mobileNavBackgroundColor} md:bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 z-40 justify-between items-center ${
-            router.pathname != "/2022" ? "border-b-primary border-b" : null
+            router.pathname != "/" ? "border-b-primary border-b" : null
           }`}
         >
           {navList.map((nav, index) => {
             if (
               nav.props.children.props.children.props.className.includes(
                 "bg-secondary"
-              ) || isUnknownPath
+              ) ||
+              isUnknownPath
             ) {
               return (
                 <div
@@ -123,12 +124,12 @@ export default function Navbar(): ReactElement {
                   className={`w-60 h-full flex items-end`}
                 >
                   {nav.props.children.props.children.props.children.props
-                    .children != "HOME" && !isUnknownPath ? (
-                    nav
-                  ) : null}
+                    .children != "HOME" && !isUnknownPath
+                    ? nav
+                    : null}
                 </div>
               );
-            } 
+            }
           })}
           <Image
             src={isHome ? mobileNavButtonBlue : mobileNavButtonWhite}

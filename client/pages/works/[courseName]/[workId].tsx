@@ -15,17 +15,15 @@ import { useRouter } from "next/router";
 import { Loading } from "@/components/Loading";
 import Link from "next/link";
 import { BsArrowRight } from "@react-icons/all-files/bs/BsArrowRight";
-const dbId = "9ef7308ccb9a497faa98df8561eab643";
+import CONFIGS from "configs";
+const DATABASE_ID = CONFIGS.databaseId;
 export const getStaticProps = async (context: {
   params: { courseName: any; workId: any };
 }) => {
-  // const { workId } = context.params;
+  const { courseName, workId } = context.params;
   try {
-    const url ="https://dodo4114.notion.site/f5ce83a0ea8248c58ded144f62b8ec57"
-    //dodo4114.notion.site/9ef7308ccb9a497faa98df8561eab643?v=e2a5c5167a554f8c855bc19215137f1a
-
     // parse pageId from url
-    const pageId = parsePageId(url);
+    const pageId = parsePageId(workId);
 
     const props: PageProps = await resolveNotionPage(domain, pageId);
     return { props, revalidate: 10 };
@@ -38,60 +36,64 @@ export const getStaticProps = async (context: {
   }
 };
 
-// export async function getStaticPaths() {
-//   // if (isDev) {
-//   //   return {
-//   //     paths: [],
-//   //     fallback: true
-//   //   }
-//   // }
+export async function getStaticPaths() {
+  // if (isDev) {
+  //   return {
+  //     paths: [],
+  //     fallback: true
+  //   }
+  // }
 
-//   const siteMap = await getSiteMap();
-//   console.log("SITE MAP", siteMap.canonicalPageMap)
+  const siteMap = await getSiteMap();
+  const nowDomain = isDev ? "localhost:3000" : domain;
+  const props: PageProps = await resolveNotionPage(nowDomain, DATABASE_ID);
+  const block = props?.recordMap?.block;
+  // block to array
+  const blockArray = Object.keys(block).map((key) => block[key].value);
+  // filter out the collection view
+  const pages = blockArray.filter(
+    (block) =>
+      block?.type === "page" &&
+      block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
+  );
+  const courseNameList = courseList.map((course) => course.path);
+  interface Path {
+    params: { courseName: string; workId: string };
+  }
+  const paths: Path[] = [];
+  courseNameList.map((courseName) => {
+    const newPaths: Path[] = pages
+      .map((page) => {
+        if (!page?.properties) return;
+        const title = page.properties.title?.[0][0] as string;
+        const pageCourseName = page.properties?.vABH?.[0][0];
 
-//   const dbId = "9ef7308ccb9a497faa98df8561eab643";
-//   const props: PageProps = await resolveNotionPage("localhost:3000", dbId);
-//   const block = props?.recordMap?.block;
-//   // block to array
-//   const blockArray = Object.keys(block).map((key) => block[key].value);
-//   // filter out the collection view
-//   const pages = blockArray.filter(
-//     (block) =>
-//       block?.type === "page" &&
-//       block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
-//   );
-//   const courseNameList = courseList.map((course) => course.path);
-//   interface Path { params: { courseName: string; workId: string } }
-//   const paths: Path[] = [];
-//   courseNameList.map((courseName) => {
-//     const newPaths: Path[] = pages.map((page) => {
-//       if (!page?.properties) return
-//       const title = page.properties.title[0][0] as string
-//       // const pageCourseName = page.properties.vABH[0][0]
+        const pageId = page.id;
+        const cannonicalPageId = Object.keys(siteMap.canonicalPageMap).find(
+          (key) => siteMap.canonicalPageMap[key] === pageId
+        );
 
-//       const pageId = page.id
-//       const cannonicalPageId = Object.keys(siteMap.canonicalPageMap).find((key) => siteMap.canonicalPageMap[key] === pageId)
+        if (pageCourseName === courseName) {
+          return {
+            params: {
+              courseName: courseName,
 
-//       // if (pageCourseName === courseName) {
-//       //   return {
-//       //     params: {
-//       //       courseName: courseName,
+              workId: cannonicalPageId,
+            },
+          };
+        }
+      })
+      .filter((path) => path !== undefined) as Path[];
+    paths.push(...newPaths);
+  });
 
-//       //       workId: cannonicalPageId,
-//       //     },
-//       //   };
-//       // }
-//     }).filter((path) => path !== undefined) as Path[]
-//     paths.push(...newPaths);
-//   });
+  const staticPaths = {
+    paths: paths,
+    fallback: true,
+  };
 
-//   const staticPaths = {
-//     paths: paths,
-//     fallback: true,
-//   };
-
-//   return staticPaths;
-// }
+  return staticPaths;
+}
 
 export default function WorkPage(props: PageProps) {
   const pageId = parsePageId(props.pageId);
@@ -112,7 +114,7 @@ export default function WorkPage(props: PageProps) {
     // if item has value and value has parent_id
     if (item && item.value && item.value.parent_id) {
       // if item.value.parent_id without - is equal to dbId
-      if (item.value.parent_id.replace(/-/g, "") === dbId) {
+      if (item.value.parent_id.replace(/-/g, "") === DATABASE_ID) {
         return item;
       }
     }
@@ -281,7 +283,7 @@ export default function WorkPage(props: PageProps) {
         <div className="w-full h-20" />
         <div className="w-full  justify-center items-center flex">
           {pageProperties["다른 작품 링크"]?.startsWith(
-            "https://snudesignweek.com/2022/"
+            "https://snudesignweek.com/"
           ) && (
             <Link
               className="w-fit px-2 h-[33px] rounded-full border-[1px] border-primary 

@@ -7,13 +7,12 @@ const GlobalStyle = createGlobalStyle`
 @tailwind components;
 @tailwind utilities;
 @import url('https://use.typekit.net/drm0xbi.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     width: 100%;
     height: 100%; 
 }
@@ -28,15 +27,15 @@ a {
     box-sizing: border-box;
   }
 
-  @font-face {
+@font-face {
   
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Pretendard', sans-serif;
   unicode-range: U+AC00-D7A3;
 
 }
 @font-face {
   
-  font-family: articulat-cf, sans-serif ;
+  font-family: 'Pretendard', sans-serif ;
          unicode-range: U+AC00-D7A3;
          unicode-range: U+26;
 
@@ -47,7 +46,7 @@ a {
   box-sizing: border-box;
   font-weight: 400;
   font-style: normal;
-  font-family: articulat-cf,  'Noto Sans KR';
+  font-family: 'Pretendard';
 }
 
 

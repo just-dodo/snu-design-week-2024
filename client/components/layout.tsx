@@ -26,7 +26,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
   // scroll to top when router's path is changed
 
   useEffect(() => {
-    const handleRouteChange = (url : any) => {
+    const handleRouteChange = (url: any) => {
       scrollTop();
     };
 
@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
       <Navbar />
       <main
         ref={topRef}
-        className="flex flex-1 flex-col w-full align-center-top items-center contents-center bg-white  pt-[60px] relative "
+        className="flex flex-1 flex-col w-full align-center-top items-center contents-center bg-primary  pt-[60px] relative "
       >
         {children}
       </main>

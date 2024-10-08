@@ -19,29 +19,67 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@components": ["src/components"],
-      "@public/*": ["public/*"],
-      "@public": ["public"],
-      "@definitions/*": ["src/definitions/*"],
-      "@definitions": ["src/definitions"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@interfaces": ["src/interfaces"],
-      "@styles/*": ["src/styles/*"],
-      "@styles": ["src/styles"],
-      "@components/icons/*": ["src/components/icons/*"],
-      "@components/icons": ["src/components/icons"],
-      "@i18n": ["./i18n"],
-      "@/components/*": ["src/notion/components/*"],
-      "@/lib/*": ["src/notion/lib/*"],
-      "@/styles/*": ["src/notion/styles/*"]
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@components": [
+        "src/components"
+      ],
+      "@public/*": [
+        "public/*"
+      ],
+      "@public": [
+        "public"
+      ],
+      "@definitions/*": [
+        "src/definitions/*"
+      ],
+      "@definitions": [
+        "src/definitions"
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@interfaces": [
+        "src/interfaces"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@styles": [
+        "src/styles"
+      ],
+      "@components/icons/*": [
+        "src/components/icons/*"
+      ],
+      "@components/icons": [
+        "src/components/icons"
+      ],
+      "@i18n": [
+        "./i18n"
+      ],
+      "@/components/*": [
+        "src/notion/components/*"
+      ],
+      "@/lib/*": [
+        "src/notion/lib/*"
+      ],
+      "@/styles/*": [
+        "src/notion/styles/*"
+      ]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

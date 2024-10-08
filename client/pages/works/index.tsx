@@ -76,7 +76,7 @@ const MobileClassList = () => {
           if (course.type == "ID") {
             return (
               <Link className='flex items-center' key={index}
-                href={`/2022/works/${coursePath}`}
+                href={`/works/${coursePath}`}
               >
                 <div className='bg-white w-full h-[88px] flex flex-col justify-center items-start border-t border-primary'>
                   <p className='text-xl  text-primary ml-6 font-bold pb-2'>
@@ -133,7 +133,7 @@ function Course({
   }
   const isVD = course.type == "VD"
   return <Link className='relative pt-4 pl-8 border-t border-l border-primary bg-transparent z-10 overflow-hidden w-full h-full ' key={index}
-    href={`/2022/works/${coursePath}`}
+    href={`/works/${coursePath}`}
     onPointerEnter={() => {
       playWithDirection(1)
     }}
@@ -168,7 +168,7 @@ function MobileCourse({
 
 
   return <Link className='flex items-center' key={index}
-    href={`/2022/works/${coursePath}`}
+    href={`/works/${coursePath}`}
   >
     <div className='bg-white w-full h-[88px] flex flex-col justify-center items-start border-t border-primary'>
       <p className='text-xl  text-primary ml-6 font-bold pb-2'>

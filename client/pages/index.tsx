@@ -71,22 +71,22 @@ const Landing: NextPage = () => {
   return (
     <>
       <div
-        className="bg-white overflow-hidden touch-none"
+        className="bg-primary overflow-hidden touch-none"
         style={{
           width: isMobileView ? ratio.width * 393 : ratio.width * 1600,
         }}
       >
-        <div className="absolute flex flex-col mx-6 md:m-10 z-30">
+        {/* <div className="absolute flex flex-col mx-6 md:m-10 z-30">
           <div className="flex flex-col md:flex-row ">
             <div>
-              <p className="whitespace-pre-wrap break-keep text-2xl md:text-3xl text-primary pb-3 md:pr-8 font-medium articulat">
+              <p className="whitespace-pre-wrap break-keep text-2xl md:text-3xl text-secondary pb-3 md:pr-8 font-medium articulat">
                 {
                   "SNU DESIGN WEEK 2022\nDOCUMEN:\nTRACKING THE DOCS\n22.12.08-11"
                 }
               </p>
             </div>
             <div>
-              <p className="whitespace-pre-wrap break-keep text-2xl md:text-3xl text-primary font-medium articulat">
+              <p className="whitespace-pre-wrap break-keep text-2xl md:text-3xl text-secondary font-medium articulat">
                 {
                   "Seoul National University\nCollege Of Fine Arts\nDepartment of Design\nDegreeshow"
                 }
@@ -96,15 +96,15 @@ const Landing: NextPage = () => {
           {isMobileView ? null : (
             <div className="mt-0">
               <Link
-                className="whitespace-pre-wrap break-keep text-xl text-white md:text-primary font-medium articulat border-white md:border-primary border-b-2"
-                href={"/2022/offline-highlight"}
+                className="whitespace-pre-wrap break-keep text-xl text-secondary md:text-secondary  border-secondary md:border-secondary border-b-2"
+                href={"/offline-highlight"}
               >
                 Offline Exhibition Highlight
                 <BsArrowRight className="inline-block ml-2" />
               </Link>
             </div>
           )}
-        </div>
+        </div> */}
         <div
           className={`absolute bottom-0 overflow-hidden flex flex-row justify-center items-center`}
           style={{

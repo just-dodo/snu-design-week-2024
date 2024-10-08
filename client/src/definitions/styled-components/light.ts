@@ -13,6 +13,7 @@ const light: DefaultTheme = {
     cardsBg: '#FFFFFF',
     textColor: '#000000',
     dodgerBlue: '#007BFF',
+    primary: '#E22613',
   },
 }
 
