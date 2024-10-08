@@ -1,0 +1,55 @@
+{
+  "name": "snu-design-week",
+  "plugins": [
+    {
+      "name": "TailwindCSS",
+      "description": "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+      "url": "https://tailwindcss.com/docs"
+    },
+    {
+      "name": "Styled Components",
+      "description": "Utilising tagged template literals (a recent addition to JavaScript) and the power of CSS, styled-components allows you to write actual CSS code to style your components.",
+      "url": "https://styled-components.com/docs"
+    },
+    {
+      "name": "Styled System",
+      "description": "Styled System is a collection of utility functions that add style props to your React components and allows you to control styles based on a global theme object with typographic scales, colors, and layout properties.",
+      "url": "https://styled-system.com/getting-started"
+    },
+    {
+      "name": "Axios",
+      "description": "Promise based HTTP client for the browser and node.js.",
+      "url": "https://github.com/axios/axios"
+    },
+    {
+      "name": "Storybook",
+      "description": "Storybook is an open source tool for developing UI components in isolation for React, Vue, Angular, and more. It makes building stunning UIs organized and efficient.",
+      "url": "https://storybook.js.org/docs/react/get-started/introduction"
+    },
+    {
+      "name": "SVGR",
+      "description": "Transform SVGs into React components.",
+      "url": "https://react-svgr.com/docs/getting-started/"
+    },
+    {
+      "name": "Environment Variables",
+      "description": "Use environment variables in your next.js project for server side, client or both.",
+      "url": "https://github.com/vercel/next.js/tree/canary/examples/environment-variables"
+    },
+    {
+      "name": "SWR",
+      "description": "React Hooks library for data fetching from Vercel",
+      "url": "https://swr.vercel.app/"
+    },
+    {
+      "name": "react-use",
+      "description": "A Collection of useful React hooks.",
+      "url": "https://github.com/streamich/react-use"
+    },
+    {
+      "name": "next-i18next",
+      "description": "next-i18next is a plugin for Next.js projects that allows you to get translations up and running quickly and easily, while fully supporting SSR, multiple namespaces with codesplitting, etc.",
+      "url": "https://github.com/isaachinman/next-i18next"
+    }
+  ]
+}
