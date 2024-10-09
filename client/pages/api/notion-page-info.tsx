@@ -15,7 +15,10 @@ import { mapImageUrl } from "@/lib/map-image-url";
 import { notion } from "@/lib/notion-api";
 import { NotionPageInfo } from "@/lib/types";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
     return res.status(405).send({ error: "method not allowed" });
   }
@@ -121,7 +124,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     "public, s-maxage=3600, max-age=3600, stale-while-revalidate=3600"
   );
   res.status(200).json(pageInfo);
-};
+}
 
 async function isUrlReachable(url: string | null): Promise<boolean> {
   if (!url) {

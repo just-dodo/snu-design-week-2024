@@ -21,7 +21,7 @@ export default function XBar({
   onClick,
 }: Props): React.ReactElement {
 
-  const windowSize = useWindowSize();
+  const {windowSize} = useWindowSize();
   const isMobile = windowSize.width < 768;
 
   return (

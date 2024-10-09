@@ -1,10 +1,12 @@
+"use client";
 // Next Page : About
 
 import XBar from "components/x-bar";
 import XWrapper from "components/x-wrapper";
 import { NextPage } from "next";
 import Image from "next/image";
-import { useRouter } from "next/router";
+
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import aboutTextPairList from "wordings/about";
 import aboutImageFile from "assets/about-web-background.png";
@@ -17,7 +19,7 @@ const About: NextPage = () => {
   const barTextPairList = aboutTextPairList;
   const [selectedBarIndex, setSelectedBarIndex] = useState(-1);
   const prevHistoryLength = useRef(0);
-  const windowSize = useWindowSize();
+  const {windowSize} = useWindowSize();
   const isMobile = windowSize.width < 768;
   const ratio = useRatio();
 

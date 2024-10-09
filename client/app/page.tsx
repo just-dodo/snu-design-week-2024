@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import { AnimationDirection } from "lottie-web";
@@ -10,12 +12,10 @@ import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import { useRatio } from "utils/useRatio";
 import Image from "next/image";
 import partnersLogo from "assets/landing-partners-logo.png";
-import Link from "next/link";
-import { BsArrowRight } from "@react-icons/all-files/bs/BsArrowRight";
 
 const Landing: NextPage = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
-  const windowSize = useWindowSize();
+  const {windowSize} = useWindowSize();
   const [direction, setDirection] = useState<AnimationDirection>(1);
   const [isAnimationFinished, setIsAnimationFinished] = useAnimationDataStore(
     (state: AnimationData) => [

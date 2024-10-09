@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,54 +15,22 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@components": [
-        "src/components"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@public": [
-        "public"
-      ],
-      "@definitions/*": [
-        "src/definitions/*"
-      ],
-      "@definitions": [
-        "src/definitions"
-      ],
-      "@interfaces/*": [
-        "src/interfaces/*"
-      ],
-      "@interfaces": [
-        "src/interfaces"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@components/icons/*": [
-        "src/components/icons/*"
-      ],
-      "@components/icons": [
-        "src/components/icons"
-      ],
-      "@i18n": [
-        "./i18n"
-      ],
-      "@/components/*": [
-        "src/notion/components/*"
-      ],
-      "@/lib/*": [
-        "src/notion/lib/*"
-      ],
-      "@/styles/*": [
-        "src/notion/styles/*"
-      ]
+      "@components/*": ["src/components/*"],
+      "@components": ["src/components"],
+      "@public/*": ["public/*"],
+      "@public": ["public"],
+      "@definitions/*": ["src/definitions/*"],
+      "@definitions": ["src/definitions"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@interfaces": ["src/interfaces"],
+      "@styles/*": ["src/styles/*"],
+      "@styles": ["src/styles"],
+      "@components/icons/*": ["src/components/icons/*"],
+      "@components/icons": ["src/components/icons"],
+      "@i18n": ["./i18n"],
+      "@/components/*": ["src/notion/components/*"],
+      "@/lib/*": ["src/notion/lib/*"],
+      "@/styles/*": ["src/notion/styles/*"]
     },
     "incremental": true,
     "plugins": [
@@ -79,10 +43,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "**/*.css"
   ],
-  "exclude": [
-    "node_modules",
-    "src/notion/third-party/**/*"
-  ]
+  "exclude": ["node_modules", "src/notion/third-party/**/*"],
+  "use": ["css-loader"]
 }

@@ -8,7 +8,7 @@ import { domain, isDev } from "@/lib/config";
 import backButtonImg from "assets/back-button.png";
 import { PageProps, Params } from "@/lib/types";
 import courseList from "wordings/course";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 import CONFIGS from "configs";
@@ -53,7 +53,8 @@ export function getStaticPaths(): {
 
 export default function CoursePage(props: PageProps) {
   const router = useRouter();
-  const courseName = router.query.courseName as string;
+  const searchParams = useSearchParams();
+  const courseName = searchParams?.get("courseName") as string;
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
   const collection = recordMap.collection;

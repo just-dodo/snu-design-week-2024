@@ -3,14 +3,9 @@ import * as React from "react";
 import { PageBlock } from "notion-types";
 
 import { useNotionContext } from "../context";
-import { EmptyIcon } from "../icons/empty-icon";
 import { CollectionViewProps } from "../types";
-import { cs } from "../utils";
 import { WorkCard } from "./work-card";
-import { CollectionGroup } from "./collection-group";
-import { getCollectionGroups } from "./collection-utils";
-import { Property } from "./property";
-import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
   collection,
@@ -30,12 +25,9 @@ export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
 
 function Board({ collectionView, collectionData, collection, padding }) {
   const { recordMap } = useNotionContext();
-  const {
-    board_cover = { type: "none" },
-    board_cover_size = "medium",
-  } = collectionView?.format || {};
-  const
-    board_cover_aspect = "cover";
+  const { board_cover = { type: "none" }, board_cover_size = "medium" } =
+    collectionView?.format || {};
+  const board_cover_aspect = "cover";
   const boardGroups =
     collectionView?.format?.board_columns ||
     collectionView?.format?.board_groups2 ||
@@ -48,11 +40,13 @@ function Board({ collectionView, collectionData, collection, padding }) {
     [padding]
   );
 
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const groupName = router.query.courseName;
+  const groupName = searchParams?.get("courseName");
 
-  const groupProperty = boardGroups.find((group) => group.value.value === groupName);
+  const groupProperty = boardGroups.find(
+    (group) => group.value.value === groupName
+  );
   const boardResults = (collectionData as any).board_columns?.results;
 
   const CollectionCards = () => {
@@ -61,7 +55,8 @@ function Board({ collectionView, collectionData, collection, padding }) {
 
     const schema = collection.schema[groupProperty.property];
     const group = (collectionData as any)[
-      `results:${groupProperty?.value?.type}:${groupProperty?.value?.value || "uncategorized"
+      `results:${groupProperty?.value?.type}:${
+        groupProperty?.value?.value || "uncategorized"
       }`
     ];
 
@@ -72,7 +67,6 @@ function Board({ collectionView, collectionData, collection, padding }) {
     return (
       <div className="w-full px-6 md:p-0  grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-7 justify-between">
         {group.blockIds?.map((blockId: string) => {
-
           const block = recordMap.block[blockId]?.value as PageBlock;
 
           if (!block) {

@@ -1,8 +1,9 @@
+"use client";
 // Next Component : Navbar
 //
 import React, { ReactElement, useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import Image from "next/image";
@@ -11,12 +12,12 @@ import mobileNavButtonWhite from "assets/mobile-nav-button-white.png";
 //
 
 export default function Navbar(): ReactElement {
-  const router = useRouter();
-  const windowSize = useWindowSize();
-  const isMobileView = windowSize.width < 768;
+  const { windowSize, isMobile } = useWindowSize();
   const pathList = ["home", "about", "works", "people", "program", "partners"];
   const basePath = "/";
-  const isHome = router.pathname === basePath;
+  const currentPath = usePathname() || basePath;
+
+  const isHome = currentPath === basePath;
   const isAnimationFinished = useAnimationDataStore(
     (state: AnimationData) => state.isAnimationFinished
   );
@@ -26,15 +27,15 @@ export default function Navbar(): ReactElement {
     : "translate-y-0";
 
   const isUnknownPath = !(
-    pathList.includes(router.pathname.split("/")[2]) || isHome
+    pathList.includes(currentPath.split("/")[2]) || isHome
   );
 
   const navList = pathList
-    .filter((path) => (isMobileView ? true : path !== "home"))
+    .filter((path) => (isMobile ? true : path !== "home"))
     .map((path) => {
       const isActive =
-        router.pathname.startsWith(`${basePath}/${path}`) ||
-        (router.pathname === basePath && path === "home");
+        currentPath.startsWith(`${basePath}/${path}`) ||
+        (currentPath === basePath && path === "home");
       let navPosition;
       if (isActive && isShown) {
         navPosition = "translate-y-0";
@@ -47,9 +48,9 @@ export default function Navbar(): ReactElement {
       const activeNavColor = isActive ? "bg-secondary" : "bg-white";
       return (
         <>
-          {isMobileView ? (
+          {isMobile ? (
             <Link
-              href={path != "home" ? basePath + "/" + path : basePath + "/"}
+              href={path != "home" ? "/" + path : "/"}
               key={"nav-component-" + path}
               className="z-50 w-full"
               onClick={() => {
@@ -66,7 +67,7 @@ export default function Navbar(): ReactElement {
             </Link>
           ) : (
             <Link
-              href={path != "home" ? basePath + "/" + path : basePath + "/"}
+              href={path != "home" ? "/" + path : "/"}
               key={"nav-component-" + path}
               className="z-50 h-full flex flex-row items-center justify-center"
             >
@@ -83,12 +84,12 @@ export default function Navbar(): ReactElement {
   /// set MobileNavColor to white when home, else to primary
   const mobileNavBackgroundColor = "bg-primary";
 
-  if (!isMobileView) {
+  if (!isMobile) {
     return (
       <>
         <nav
           className={`fixed z-50 bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 justify-between items-center px-10 py-6 ${
-            router.pathname != "/" ? "border-b-primary border-b" : null
+            currentPath != "/" ? "border-b-primary border-b" : null
           }`}
         >
           <Link href="/">
@@ -108,7 +109,7 @@ export default function Navbar(): ReactElement {
       <>
         <nav
           className={`fixed top-0 ${mobileNavBackgroundColor} md:bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 z-40 justify-between items-center ${
-            router.pathname != "/" ? "border-b-primary border-b" : null
+            currentPath != "/" ? "border-b-primary border-b" : null
           }`}
         >
           {navList.map((nav, index) => {

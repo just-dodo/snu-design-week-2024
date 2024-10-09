@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 import * as types from "notion-types";
@@ -19,7 +20,7 @@ import { cs } from "../utils";
 import { CollectionRow } from "./collection-row";
 import { CollectionView } from "./collection-view";
 import { PropertyImplMemo } from "./property";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const isServer = typeof window === "undefined";
 
@@ -111,7 +112,9 @@ const CollectionViewBlock: React.FC<{
     [collectionState, setCollectionState]
   );
 
-  let { width: windowWidth } = useWindowSize();
+  let {
+    windowSize: { width: windowWidth },
+  } = useWindowSize();
   if (isServer) {
     windowWidth = 1024;
   }
@@ -183,8 +186,8 @@ const CollectionViewBlock: React.FC<{
     };
   }
 
-  const router = useRouter();
-  const isProjectPage = router.pathname.startsWith("/works/[courseName]");
+  const pathname = usePathname();
+  const isProjectPage = pathname.startsWith("/works/[courseName]");
 
   return (
     <>

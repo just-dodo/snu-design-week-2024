@@ -12,7 +12,6 @@ import WorkCardDeco from "../assets/WorkCardDeco";
 
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from 'tailwind.config.js'
-import { useRouter } from "next/router";
 import useCourseType from "utils/useCourseType";
 
 

@@ -1,3 +1,4 @@
+"use client";
 // Next Page : Partners
 
 import { NextPage } from 'next'
@@ -48,7 +49,7 @@ const PartnerCard: React.FC<CardProps> = ({ text, image, logoImage }) => {
 }
 
 const PartnersPage: NextPage = () => {
-  const windowSize = useWindowSize()
+  const {windowSize} = useWindowSize()
   const isMobile = windowSize.width < 768
   const ratio = useRatio()
 

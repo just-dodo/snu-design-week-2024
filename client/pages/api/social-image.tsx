@@ -1,7 +1,6 @@
 import * as React from "react";
 import { NextRequest } from "next/server";
-
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from 'next/og'
 
 import { api, apiHost, isDev, rootNotionPageId } from "@/lib/config";
 import { NotionPageInfo } from "@/lib/types";
