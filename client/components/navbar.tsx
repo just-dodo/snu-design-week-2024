@@ -88,12 +88,12 @@ export default function Navbar(): ReactElement {
     return (
       <>
         <nav
-          className={`fixed z-50 bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 justify-between items-center px-10 py-6 ${
+          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
             currentPath != "/" ? "border-b-primary border-b" : null
           }`}
         >
           <Link href="/">
-            <p className="text-secondary z-30 font-bold text-[35px] leading-[42px]">
+            <p className="text-secondary font-bold text-[35px]">
               SNU DESIGN WEEK 2024
             </p>
           </Link>
