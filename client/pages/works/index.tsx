@@ -1,183 +1,101 @@
-// Next Page : Works
+import * as React from "react";
 
-import { NextPage } from 'next'
-import Link from 'next/link'
-import courseList from 'wordings/course'
-import useWindowSize from 'utils/useWindowSize'
+import { NotionPage } from "@/components/NotionPage";
+import { resolveNotionPage } from "@/lib/resolve-notion-page";
+import XWrapper from "components/x-wrapper";
+import { getPageProperty, parsePageId } from "notion-utils";
+import { domain, isDev } from "@/lib/config";
+import backButtonImg from "assets/back-button.png";
+import { PageProps, Params } from "@/lib/types";
+import courseList from "wordings/course";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { AnimationDirection } from 'lottie-web'
-import hoverBlueAnimation from 'assets/hover_b.json'
-import hoverYellowAnimation from 'assets/hover_y.json'
-import { useRef, useState } from 'react'
+import CONFIGS from "configs";
+const DATABASE_ID = CONFIGS.databaseId;
+export const getStaticProps = async () => {
+  try {
+    const props: PageProps = await resolveNotionPage(domain, DATABASE_ID);
+    return { props, revalidate: 10 };
+  } catch (err) {
+    console.error("page error", domain, err);
 
-const DesktopClassList = () => {
-
-  return (
-    <div className='bg-white w-full flex flex-col md:grid md:grid-cols-2 md:grid-rows-6 border-b border-r'>
-      <div className='border-l border-primary'>
-        <p className='mt-8 ml-8 text-4xl text-primary'>
-          VD
-        </p>
-      </div>
-      <div className='border-l border-primary'>
-        <p className='pt-8 pl-8 text-4xl text-primary'>
-          ID
-        </p>
-      </div>
-      {courseList.map((course, index) => {
-        // course.english_text to kebab case
-        const coursePath = course.path
-
-        return (
-          <Course key={`course-${coursePath}`} index={index} coursePath={coursePath} course={course} />
-        )
-      })}
-      <div className='border-t border-l border-primary' />
-      <div className='border-t border-l border-primary' />
-    </div>
-  );
-}
-
-const MobileClassList = () => {
-  return (
-    <div className='flex flex-col h-full w-full'>
-      <div className='flex flex-col'>
-        <div className='bg-secondary w-full h-[63px] flex items-center'>
-          <p className='text-2xl font-medium text-primary ml-6'>
-            VD
-          </p>
-        </div>
-        {courseList.map((course, index) => {
-          // course.english_text to kebab case
-          const coursePath = course.path
-          if (course.type == "VD") {
-            return (
-              < MobileCourse
-                key={`course-${coursePath}`}
-                index={index}
-                coursePath={coursePath}
-                course={course}
-                type="VD"
-              />
-            )
-          }
-        })}
-      </div>
-      <div className='flex flex-col'>
-        <div className='bg-primary w-full h-[63px] flex items-center'>
-          <p className='text-2xl font-medium text-white ml-6'>
-            ID
-          </p>
-        </div>
-        {courseList.map((course, index) => {
-          // course.english_text to kebab case
-          const coursePath = course.path
-          if (course.type == "ID") {
-            return (
-              <Link className='flex items-center' key={index}
-                href={`/works/${coursePath}`}
-              >
-                <div className='bg-white w-full h-[88px] flex flex-col justify-center items-start border-t border-primary'>
-                  <p className='text-xl  text-primary ml-6 font-bold pb-2'>
-                    {course.korean_text}
-                  </p>
-                  <p className='text-xl text-primary ml-6  font-bold'>
-                    {course.english_text}
-                  </p>
-                </div>
-              </Link>
-            )
-          }
-        })}
-      </div>
-    </div>
-  );
-}
-
-const WorksPage: NextPage = () => {
-  const windowSize = useWindowSize()
-  return (
-    <div className="bg-white w-full h-full flex flex-row">
-      <div className='hidden md:block bg-secondary w-1/12' />
-      {windowSize.width > 768 ? (
-        <DesktopClassList />
-      ) : (
-        <MobileClassList />
-      )}
-      <div className='hidden md:block bg-primary w-1/12' />
-    </div>
-  )
-}
-
-export default WorksPage
-
-function Course({
-  index,
-  coursePath,
-  course,
-
-}: { index: number, coursePath: string, course: { type: string; korean_text: string; english_text: string; path: string } }): JSX.Element {
-  const lottieRef = useRef<LottieRefCurrentProps>(null)
-  const windowSize = useWindowSize()
-  const [direction, setDirection] = useState<AnimationDirection>(1)
-  const [isMobileView, setIsMobileView] = useState(false)
-
-
-  function playWithDirection(direction: AnimationDirection) {
-    if (lottieRef.current) {
-      // lottieRef.current.stop()
-      lottieRef.current.setDirection(direction)
-      lottieRef.current.play()
-    }
+    // we don't want to publish the error version of this page, so
+    // let next.js know explicitly that incremental SSG failed
+    throw err;
   }
-  const isVD = course.type == "VD"
-  return <Link className='relative pt-4 pl-8 border-t border-l border-primary bg-transparent z-10 overflow-hidden w-full h-full ' key={index}
-    href={`/works/${coursePath}`}
-    onPointerEnter={() => {
-      playWithDirection(1)
-    }}
-    onPointerLeave={() => {
-      playWithDirection(-1)
-    }}
-  >
-    <p className='text-xl text-primary font-bold z-20'>
-      {course.korean_text}
-    </p>
-    <p className='text-xl text-primary font-bold z-20'>
-      {course.english_text}
-    </p>
+};
 
-    <Lottie
-      className='absolute bottom-0 left-0 -z-10 w-full aspect-[640/132]'
-      lottieRef={lottieRef}
-      animationData={isVD ? hoverYellowAnimation : hoverBlueAnimation}
-      loop={false}
-      autoplay={false}
-      initialSegment={[0, 12]}
-    />
-  </Link>
+export default function CoursePage(props: PageProps) {
+  const router = useRouter();
+  const courseName = "visual-design";
+  const pageId = parsePageId(props.pageId);
+  const recordMap = props.recordMap!;
+  const collection = recordMap.collection;
+
+  // get a item from collection that item.value.parent_id is equal to the dbId
+  const pageData = Object.values(collection).find((item: any) => {
+    // if item has value and value has parent_id
+    if (item && item.value && item.value.parent_id) {
+      // if item.value.parent_id without - is equal to dbId
+      if (item.value.parent_id.replace(/-/g, "") === DATABASE_ID) {
+        return item;
+      }
+    }
+  });
+
+  const schema = pageData?.value.schema || {};
+  // convert schema to array w/ name
+  const schemaArray = Object.values(schema).map((item) => {
+    return item.name;
+  });
+
+  const pageBlock = recordMap.block[pageId].value;
+
+  // get page properties object from pageBlock with schemaArray
+  const pageProperties: { [x: string]: string | undefined } = {};
+  schemaArray.map((item) => {
+    pageProperties[item] = getPageProperty<string>(item, pageBlock, recordMap);
+  });
+
+  //  <div className="flex-1 w-screen bg-white align-center-top">
+
+  const courseData = courseList.find((course) => course.path === courseName);
+  return (
+    <>
+      <div className="w-screen h-fit  flex justify-center items-center content-center text-primary text-2xl font-bold p-6">
+        <XWrapper className="flex flex-col md:flex-col justify-between ">
+          <div>
+            <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
+              <div className="flex flex-col relative ml-[0.3rem] ">
+                <h1 className="font-bold text-3xl leading-3xl ">
+                  {courseData?.korean_text}
+                </h1>
+                <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
+                  {courseData?.english_text}
+                </h1>
+                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px] mt-5">
+                  지도교수 | {courseData?.advisor}
+                </h2>
+                <h2 className="text-[1.1rem] leading-6 -tracking-[0.2px]">
+                  Advisor | {courseData?.advisor_eng}
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-between">
+            <div className="flex flex-col justify-start items-start h-full flex-1 mytext-2 pr-4 py-6 md:py-0">
+              <p className=" ">{courseData?.description}</p>
+            </div>
+            <div className="flex flex-col justify-start items-start h-full flex-1 mytext-2 pr-4 py-6 md:py-0">
+              <p className=" ">{courseData?.description_eng}</p>
+            </div>
+          </div>
+        </XWrapper>
+      </div>
+      <XWrapper>
+        <NotionPage {...props} />
+      </XWrapper>
+    </>
+  );
 }
-
-function MobileCourse({
-  index,
-  coursePath,
-  course,
-  type
-}: { index: number, coursePath: string, course: { type: string; korean_text: string; english_text: string; path: string }, type: "VD" | "ID" }): JSX.Element {
-
-
-  return <Link className='flex items-center' key={index}
-    href={`/works/${coursePath}`}
-  >
-    <div className='bg-white w-full h-[88px] flex flex-col justify-center items-start border-t border-primary'>
-      <p className='text-xl  text-primary ml-6 font-bold pb-2'>
-        {course.korean_text}
-      </p>
-      <p className='text-xl text-primary ml-6 font-bold '>
-        {course.english_text}
-      </p>
-    </div>
-  </Link>
-}
-

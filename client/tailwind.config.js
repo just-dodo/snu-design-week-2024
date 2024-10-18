@@ -32,6 +32,15 @@ module.exports = {
       regular: 300,
       light: 200,
     },
+    fontSize: {
+      "3xl": "32px",
+    },
+    lineHeight: {
+      "3xl": "38.2px",
+    },
+    letterSpacing: {
+      "3xl": "-0.01em",
+    },
   },
   variants: {
     extend: {},

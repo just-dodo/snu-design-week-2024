@@ -88,7 +88,7 @@ export default function Navbar(): ReactElement {
       <>
         <nav
           className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
-           router.pathname != "/" ? "border-b-primary border-b" : null
+            router.pathname != "/" ? "border-b-primary border-b" : null
           }`}
         >
           <Link href="/">
@@ -99,7 +99,10 @@ export default function Navbar(): ReactElement {
           <div className="flex flex-row items-center justify-center gap-10">
             {navList}
           </div>
-          <div className="absolute bottom-1 h-0.5 bg-secondary w-full max-w-[calc(100%-80px)]" />
+          {/* white line */}
+          {isHome && (
+            <div className="absolute bottom-1 h-0.5 bg-secondary w-full max-w-[calc(100%-80px)]" />
+          )}
         </nav>
       </>
     );

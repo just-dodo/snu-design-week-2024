@@ -38,12 +38,18 @@ export default function Layout({ children }: LayoutProps): ReactElement {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
   }, []);
+
+  const isHome = router.pathname === "/";
+  const bgColor = isHome ? "bg-primary" : "bg-secondary";
+
   return (
-    <div className="fixed flex flex-col w-screen h-full align-center-top bg-primary overflow-y-auto overflow-x-hidden">
+    <div
+      className={`fixed flex flex-col w-screen h-full align-center-top ${bgColor} overflow-y-auto overflow-x-hidden`}
+    >
       <Navbar />
       <main
         ref={topRef}
-        className="flex flex-1 flex-col w-full align-center-top items-center contents-center bg-primary  pt-[60px] relative "
+        className={`flex flex-1 flex-col w-full align-center-top items-center contents-center ${bgColor}  pt-[60px] relative `}
       >
         {children}
       </main>

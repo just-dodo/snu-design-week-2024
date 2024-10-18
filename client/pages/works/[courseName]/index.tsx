@@ -5,7 +5,6 @@ import { resolveNotionPage } from "@/lib/resolve-notion-page";
 import XWrapper from "components/x-wrapper";
 import { getPageProperty, parsePageId } from "notion-utils";
 import { domain, isDev } from "@/lib/config";
-import backButtonImg from "assets/back-button.png";
 import { PageProps, Params } from "@/lib/types";
 import courseList from "wordings/course";
 import { useRouter } from "next/router";
@@ -57,15 +56,6 @@ export default function CoursePage(props: PageProps) {
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
   const collection = recordMap.collection;
-  const block = recordMap.block;
-  // block to array
-  const blockArray = Object.keys(block).map((key) => block[key].value);
-  // filter out the collection view
-  const pages = blockArray.filter(
-    (block) =>
-      block?.type === "page" &&
-      block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
-  );
 
   // get a item from collection that item.value.parent_id is equal to the dbId
   const pageData = Object.values(collection).find((item: any) => {
@@ -100,36 +90,7 @@ export default function CoursePage(props: PageProps) {
       <div className="w-screen h-fit md:h-[215px] flex justify-center items-center content-center text-primary text-2xl font-bold p-6">
         <XWrapper className="justify-between md:mt-3 md:pb-12 border-b border-b-primary">
           <div className="flex flex-1 md:flex-row">
-            <div
-              className="mr-4 md:hidden"
-              onClick={() => {
-                router.back();
-              }}
-            >
-              <Image
-                src={backButtonImg}
-                alt="button"
-                width={14}
-                height={7}
-                className="mt-2"
-              />
-            </div>
             <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
-              <div
-                className="absolute -left-[74px] hidden md:block cursor-pointer"
-                onClick={() => {
-                  router.back();
-                }}
-              >
-                <Image
-                  src={backButtonImg}
-                  alt="button"
-                  layout="intrinsic"
-                  width={14}
-                  height={7}
-                  className="relative mt-2"
-                />
-              </div>
               <div className="flex flex-col relative ml-[0.3rem] ">
                 <h1 className="font-bold text-[1.2rem] leading-6 ">
                   {courseData?.korean_text}
