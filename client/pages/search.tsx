@@ -41,12 +41,24 @@ export default function CoursePage(props: PageProps) {
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
   const collection = recordMap.collection;
-  React.useLayoutEffect(() => {
-    setCourseName("brand-design");
-    return () => {
-      setCourseName("");
-    };
-  }, []);
+  // console.log("🚀 ~ CoursePage ~ collection:", collection);
+  // const collection_query = recordMap.collection_query;
+  // // console.log(
+  // //   "🚀 ~ CoursePage ~ collection_query:",
+  // //   collection_query["1192cfba-780a-8135-80b7-000b2aaefd43"][
+  // //     "1252cfba-780a-8059-8d85-000c2bd37aab"
+  // //   ].collection_group_results?.blockIds
+  // // );
+  // const blockIds =
+  //   collection_query["1192cfba-780a-8135-80b7-000b2aaefd43"][
+  //     "1252cfba-780a-8059-8d85-000c2bd37aab"
+  //   ].collection_group_results?.blockIds;
+  // console.log("🚀 ~ CoursePage ~ blockIds:", blockIds);
+
+  // const blockDatas = blockIds?.map((blockId: string) => {
+  //   return recordMap.block[blockId].value;
+  // });
+  // console.log("🚀 ~ blockDatas ~ blockDatas:", blockDatas);
 
   // get a item from collection that item.value.parent_id is equal to the dbId
   const pageData = Object.values(collection).find((item: any) => {

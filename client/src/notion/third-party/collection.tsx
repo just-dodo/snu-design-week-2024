@@ -110,7 +110,7 @@ const CollectionViewBlock: React.FC<{
     },
     [collectionState, setCollectionState]
   );
-
+ 
   let { width: windowWidth } = useWindowSize();
   if (isServer) {
     windowWidth = 1024;
@@ -198,7 +198,7 @@ const CollectionViewBlock: React.FC<{
             />
           )}
         </div>
-        {!isProjectPage && (
+        {isProjectPage && (
           <div className="notion-collection-header">
             {/*TODO: only show if no full DB*/}
             {title && (

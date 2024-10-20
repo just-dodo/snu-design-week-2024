@@ -11,6 +11,8 @@ import { CollectionGroup } from "./collection-group";
 import { getCollectionGroups } from "./collection-utils";
 import { Property } from "./property";
 import { useRouter } from "next/router";
+import useCourseStore from "store/courseStore";
+import useSearchStore from "store/searchStore";
 
 export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
   collection,
@@ -30,12 +32,9 @@ export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
 
 function Board({ collectionView, collectionData, collection, padding }) {
   const { recordMap } = useNotionContext();
-  const {
-    board_cover = { type: "none" },
-    board_cover_size = "medium",
-  } = collectionView?.format || {};
-  const
-    board_cover_aspect = "cover";
+  const { board_cover = { type: "none" }, board_cover_size = "medium" } =
+    collectionView?.format || {};
+  const board_cover_aspect = "cover";
   const boardGroups =
     collectionView?.format?.board_columns ||
     collectionView?.format?.board_groups2 ||
@@ -48,37 +47,84 @@ function Board({ collectionView, collectionData, collection, padding }) {
     [padding]
   );
 
-  const router = useRouter();
-
-  const groupName = router.query.courseName;
-
-  const groupProperty = boardGroups.find((group) => group.value.value === groupName);
+  const searchText = useSearchStore((state) => state.searchText);
+  const courseName = useCourseStore((state) => state.courseName);
+  const groupName = courseName;
+  const groupProperty = boardGroups.find(
+    (group) => group.value.value === groupName
+  );
   const boardResults = (collectionData as any).board_columns?.results;
+
+  // get all values its key starts with "results"
+  const _allBlockIds = Object.values(collectionData as any)
+    .filter((value) =>
+      Object.keys(value).some((key) => key.startsWith("results"))
+    )
+    .map((value) => value.blockIds);
+  console.log("🚀 ~ Board ~ _allBlockIds:", _allBlockIds)
+
+  // remove duplicate
+  const allBlockIds = _allBlockIds
+    .flat()
+    .filter((value, index, self) => self.indexOf(value) === index);
+  console.log("🚀 ~ allBlockIds:", allBlockIds);
 
   const CollectionCards = () => {
     if (!boardResults) return null;
-    if (!groupProperty?.value?.type) return null;
 
-    const schema = collection.schema[groupProperty.property];
-    const group = (collectionData as any)[
-      `results:${groupProperty?.value?.type}:${groupProperty?.value?.value || "uncategorized"
-      }`
-    ];
-
-    if (!group || !schema || groupProperty.hidden) {
-      return null;
+    let blockIds;
+    if (!groupProperty?.value?.type) {
+      blockIds = allBlockIds;
+    } else {
+      const schema = collection.schema[groupProperty.property];
+      const group = (collectionData as any)[
+        `results:${groupProperty?.value?.type}:${
+          groupProperty?.value?.value || "uncategorized"
+        }`
+      ];
+      if (!group || !schema || groupProperty.hidden) {
+        blockIds = allBlockIds;
+      } else {
+        blockIds = group.blockIds;
+      }
     }
 
     return (
-      <div className="w-full px-6 md:p-0  grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-7 justify-between">
-        {group.blockIds?.map((blockId: string) => {
-
+      <div className="w-full px-6 md:p-0  grid grid-cols-1 md:grid-cols-2 gap-3  justify-between">
+        {blockIds?.map((blockId: string) => {
           const block = recordMap.block[blockId]?.value as PageBlock;
 
           if (!block) {
             console.log("block is null");
             return null;
           }
+
+          const studentName = getPropertyValue(
+            block,
+            collectionView.format?.board_properties,
+            collection,
+            "학생이름"
+          );
+          const studentName_eng = getPropertyValue(
+            block,
+            collectionView.format?.board_properties,
+            collection,
+            "학생이름_영문"
+          );
+          const workName = getPropertyValue(
+            block,
+            collectionView.format?.board_properties,
+            collection,
+            "작품이름"
+          );
+          const workName_eng = getPropertyValue(
+            block,
+            collectionView.format?.board_properties,
+            collection,
+            "작품이름_영문"
+          );
+
+          const searchAbleString = `${studentName} ${studentName_eng} ${workName} ${workName_eng}`;
 
           return (
             <WorkCard
@@ -90,7 +136,7 @@ function Board({ collectionView, collectionData, collection, padding }) {
               coverAspect={board_cover_aspect}
               properties={collectionView.format?.board_properties}
               key={blockId}
-              groupName={groupName}
+              groupName={groupName ? groupName : ""}
             />
           );
         })}
@@ -103,4 +149,23 @@ function Board({ collectionView, collectionData, collection, padding }) {
       <CollectionCards />
     </div>
   );
+}
+
+function getPropertyValue(
+  block: PageBlock,
+  properties: any,
+  collection: any,
+  propertyName: string
+) {
+  const property = properties?.find((p) => {
+    return (
+      p.visible &&
+      collection.schema[p.property] &&
+      collection.schema[p.property].name === propertyName
+    );
+  });
+  if (property) {
+    return block?.properties?.[property?.property]?.[0]?.[0];
+  }
+  return null;
 }
