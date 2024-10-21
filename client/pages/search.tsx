@@ -12,6 +12,8 @@ import { useRouter } from "next/router";
 import CONFIGS from "configs";
 import { useState } from "react";
 import useCourseStore from "store/courseStore";
+import useSearchStore from "store/searchStore";
+import { SearchIcon } from "icons/Search";
 const DATABASE_ID = CONFIGS.databaseId;
 
 export const getStaticProps = async () => {
@@ -30,36 +32,20 @@ export const getStaticProps = async () => {
 export default function CoursePage(props: PageProps) {
   const router = useRouter();
 
-  const courseName = useCourseStore((state) => state.courseName);
-  const setCourseName = useCourseStore((state) => state.setCourseName);
+  const searchParams = router.query.search;
 
-  const courseData = courseList.find((course) => course.path === courseName);
-  const courseTitle = courseData?.title;
-  const path = courseData?.path;
-  const titleList = courseList.map((value) => value.title);
+  const searchText = useSearchStore((state) => state.searchText);
+  const setSearchText = useSearchStore((state) => state.setSearchText);
+
+  React.useLayoutEffect(() => {
+    if (searchParams) {
+      setSearchText(searchParams as string);
+    }
+  }, [searchParams, setSearchText]);
 
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
   const collection = recordMap.collection;
-  // console.log("🚀 ~ CoursePage ~ collection:", collection);
-  // const collection_query = recordMap.collection_query;
-  // // console.log(
-  // //   "🚀 ~ CoursePage ~ collection_query:",
-  // //   collection_query["1192cfba-780a-8135-80b7-000b2aaefd43"][
-  // //     "1252cfba-780a-8059-8d85-000c2bd37aab"
-  // //   ].collection_group_results?.blockIds
-  // // );
-  // const blockIds =
-  //   collection_query["1192cfba-780a-8135-80b7-000b2aaefd43"][
-  //     "1252cfba-780a-8059-8d85-000c2bd37aab"
-  //   ].collection_group_results?.blockIds;
-  // console.log("🚀 ~ CoursePage ~ blockIds:", blockIds);
-
-  // const blockDatas = blockIds?.map((blockId: string) => {
-  //   return recordMap.block[blockId].value;
-  // });
-  // console.log("🚀 ~ blockDatas ~ blockDatas:", blockDatas);
-
   // get a item from collection that item.value.parent_id is equal to the dbId
   const pageData = Object.values(collection).find((item: any) => {
     // if item has value and value has parent_id
@@ -85,61 +71,22 @@ export default function CoursePage(props: PageProps) {
     pageProperties[item] = getPageProperty<string>(item, pageBlock, recordMap);
   });
 
-  //  <div className="flex-1 w-screen bg-white align-center-top">
   return (
     <>
       <div className="w-screen h-fit flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px]">
-        <XWrapper className="flex justify-between">
-          {courseList.map((value, index) => {
-            const isSelected = courseTitle === value.title;
-            const opacityClassName = isSelected ? "" : "opacity-20";
-            return (
-              <div
-                key={`titlebutton-${index}`}
-                className={
-                  "h-fit rounded-full  outline-2 border-primary py-[10px] px-[22px] text-center shadow-inner cursor-pointer " +
-                  opacityClassName +
-                  " hover:opacity-100"
-                }
-                onClick={() => {
-                  setCourseName(value.path);
-                }}
-              >
-                <p className="font-semibold text-[16px] leading-[19px]">
-                  {value.title}
-                </p>
-              </div>
-            );
-          })}
+        <XWrapper className="flex justify-between relative">
+          <input
+            type="text"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="w-full h-[61px] text-xl border-2 border-primary bg-transparent rounded-full px-[30px] !focus:border-transparent !focus:ring-0 ring-0 focus:outline-none"
+          />
+          <SearchIcon
+            color={"#E22613"}
+            className="absolute right-[15px] top-[6px]"
+          />
         </XWrapper>
-        <XWrapper className="flex flex-col md:flex-col justify-between gap-6">
-          <div>
-            <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
-              <div className="flex flex-col relative ">
-                <h1 className="font-bold text-3xl leading-3xl ">
-                  {courseData?.korean_text}
-                </h1>
-                <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
-                  {courseData?.english_text}
-                </h1>
-                <h2 className="text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
-                  지도교수 | {courseData?.advisor}
-                </h2>
-                <h2 className="text-[16px]] leading-6 -tracking-[0.2px]">
-                  Advisor | {courseData?.advisor_eng}
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row justify-between gap-8 text-[15px] leading-[160%]">
-            <div className="flex flex-col justify-start items-start h-full flex-1">
-              <p className=" ">{courseData?.description}</p>
-            </div>
-            <div className="flex flex-col justify-start items-start h-full flex-1 ">
-              <p className=" ">{courseData?.description_eng}</p>
-            </div>
-          </div>
-        </XWrapper>
+
         <XWrapper>
           <NotionPage {...props} />
         </XWrapper>
