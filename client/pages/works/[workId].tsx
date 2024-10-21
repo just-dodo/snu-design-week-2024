@@ -3,7 +3,7 @@ import * as React from "react";
 import { NotionPage } from "@/components/NotionPage";
 import { domain, isDev } from "@/lib/config";
 import { resolveNotionPage } from "@/lib/resolve-notion-page";
-import { PageProps } from "@/lib/types";
+import { PageBlock, PageProps } from "@/lib/types";
 import XWrapper from "components/x-wrapper";
 import { getPageProperty, parsePageId } from "notion-utils";
 import { FiInstagram } from "@react-icons/all-files/fi/FiInstagram";
@@ -16,6 +16,7 @@ import { Loading } from "@/components/Loading";
 import Link from "next/link";
 import { BsArrowRight } from "@react-icons/all-files/bs/BsArrowRight";
 import CONFIGS from "configs";
+import { mapImageUrl } from "@/lib/map-image-url";
 const DATABASE_ID = CONFIGS.databaseId;
 export const getStaticProps = async (context: {
   params: { courseName: any; workId: any };
@@ -127,6 +128,7 @@ export default function WorkPage(props: PageProps) {
   });
 
   const pageBlock = recordMap.block[pageId].value;
+  console.log("🚀 ~ WorkPage ~ pageBlock:", pageBlock);
   // get blocks without pageBlock
   const blocks = Object.values(recordMap.block).filter(
     (block) => block.value?.id !== pageId
@@ -142,6 +144,15 @@ export default function WorkPage(props: PageProps) {
   schemaArray.map((item) => {
     pageProperties[item] = getPageProperty<string>(item, pageBlock, recordMap);
   });
+
+  const socialImage = mapImageUrl(
+    getPageProperty<string>("Social Image", pageBlock, recordMap) ||
+      (pageBlock as PageBlock).format?.page_cover ||
+      "",
+    pageBlock
+  );
+  const coverPosition = (pageBlock as PageBlock).format?.page_cover_position;
+
   const allowedTypes = [
     "text",
     "image",
@@ -201,7 +212,8 @@ export default function WorkPage(props: PageProps) {
   return (
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
-      <div className="relative md:fixed md:top-[60px] w-screen z-30 h-fit md:h-[80px] flex justify-center items-center content-center bg-secondary text-primary text-2xl font-bold p-6 pl-3 md:p-0">
+      {/* top bar */}
+      <div className="relative md:fixed md:top-[60px] w-screen z-30 h-fit md:h-[80px] flex justify-center items-center content-center text-primary text-2xl font-bold p-6 pl-3 md:p-0">
         <div
           className="w-fit h-full mr-[1.2rem] md:hidden"
           onClick={() => {
@@ -272,12 +284,28 @@ export default function WorkPage(props: PageProps) {
         </XWrapper>
       </div>
 
-      <XWrapper>
-        <div className="w-full  p-6 md:p-0">
-          <div className="w-full h-0 md:h-20" />
-          <NotionPage {...newProps} />
+      {/* content */}
+      <div className="w-full justify-center items-center flex ">
+        <div
+          className="w-full aspect-video absolute top-0 left-0"
+          style={{
+            backgroundSize: "cover",
+            backgroundPosition: coverPosition,
+            // no-repeat
+            backgroundRepeat: "no-repeat",
+            // gradient image from top to bottom
+            backgroundImage: `url(${socialImage})`,
+          }}
+        >
+          <div className="w-full h-full bg-gradient-to-b from-transparent to-secondary"></div>
         </div>
-      </XWrapper>
+        <XWrapper>
+          <div className="w-full  p-6 md:p-0">
+            <div className="w-full h-0 md:h-20" />
+            <NotionPage {...newProps} />
+          </div>
+        </XWrapper>
+      </div>
 
       <XWrapper className="flex md:flex-col justify-center items-center h-full">
         <div className="w-full h-20" />

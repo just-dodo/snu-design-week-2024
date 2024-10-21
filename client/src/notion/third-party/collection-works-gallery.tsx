@@ -56,18 +56,14 @@ function Board({ collectionView, collectionData, collection, padding }) {
   const boardResults = (collectionData as any).board_columns?.results;
 
   // get all values its key starts with "results"
-  const _allBlockIds = Object.values(collectionData as any)
-    .filter((value) =>
-      Object.keys(value).some((key) => key.startsWith("results"))
-    )
-    .map((value) => value.blockIds);
-  console.log("🚀 ~ Board ~ _allBlockIds:", _allBlockIds)
+  const _allBlockIds = Object.keys(collectionData as any).filter((key) =>
+    key.startsWith("results")
+  ).map((key) => (collectionData as any)[key].blockIds);
 
   // remove duplicate
   const allBlockIds = _allBlockIds
     .flat()
     .filter((value, index, self) => self.indexOf(value) === index);
-  console.log("🚀 ~ allBlockIds:", allBlockIds);
 
   const CollectionCards = () => {
     if (!boardResults) return null;
@@ -124,7 +120,11 @@ function Board({ collectionView, collectionData, collection, padding }) {
             "작품이름_영문"
           );
 
-          const searchAbleString = `${studentName} ${studentName_eng} ${workName} ${workName_eng}`;
+          const searchAbleString = `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
+
+          if (searchText && !searchAbleString.includes(searchText.toLowerCase())) {
+            return null;
+          }
 
           return (
             <WorkCard

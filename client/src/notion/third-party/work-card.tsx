@@ -241,7 +241,7 @@ export const WorkCard: React.FC<
     >
       <components.PageLink
         className={cs(className, " flex-0 flex w-full")}
-        href={"/works/" + groupName + "/" + block.id}
+        href={`/works/${block.id}`}
         {...rest}
       >
         {innerCard}
