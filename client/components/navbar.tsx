@@ -65,7 +65,7 @@ export default function Navbar(): ReactElement {
             </Link>
           ) : (
             <Link
-              href={path != "home" ? basePath + "/" + path : basePath + "/"}
+              href={path != "home" ? basePath + path : basePath}
               key={"nav-component-" + path}
               className="z-50 h-full flex flex-row items-center justify-center"
             >

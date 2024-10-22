@@ -23,6 +23,9 @@ const VIEW_ID = "1192cfba780a8116a18d000c0625e864";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "tailwind.config.js";
 import { useWindowScroll } from "react-use";
+import { ArrowRight } from "icons/ArrowRight";
+import { ArrowLeft } from "icons/ArrowLeft";
+import Image from "next/image";
 
 export const getStaticProps = async (context: {
   params: { courseName: any; workId: any };
@@ -249,20 +252,119 @@ export default function WorkPage(
     return group;
   }, [entireRecordMap]);
 
-  const blockIds: string[] = group?.blockIds;
+  const groupBlockIds: string[] = group?.blockIds;
 
-  const pageIndex = blockIds.findIndex((id) => id === pageId);
+  const pageIndex = groupBlockIds.findIndex((id) => id === pageId);
 
   const prevId =
-    pageIndex > 0 ? blockIds[pageIndex - 1] : blockIds[blockIds.length - 1];
+    pageIndex > 0
+      ? groupBlockIds[pageIndex - 1]
+      : groupBlockIds[groupBlockIds.length - 1];
   const nextId =
-    pageIndex < blockIds.length - 1 ? blockIds[pageIndex + 1] : blockIds[0];
+    pageIndex < groupBlockIds.length - 1
+      ? groupBlockIds[pageIndex + 1]
+      : groupBlockIds[0];
 
   const { theme } = resolveConfig(tailwindConfig);
 
-  const { x, y } = useWindowScroll();
-  console.log("🚀 ~ y:", y);
+  const { y } = useWindowScroll();
+
+  function getOtherWorkId() {
+    const propertyName = "다른 작품";
+    const property = Object.values(schema).find((p) => {
+      return p.property && p.name === propertyName;
+    });
+    if (property) {
+      return pageBlock?.properties?.[property?.property][0][1][0][1];
+    }
+    return null;
+  }
+  function getPropertyFromProperties(propertyName: string, properties: any) {
+    const property = Object.keys(schema).find((key) => {
+      const p = schema[key];
+      return p.name === propertyName;
+    });
+    if (property) {
+      return properties?.[property][0][0];
+    }
+    return null;
+  }
+
   const isScrollStarted = y > 10;
+
+  const getBlockWithId = (id: string) => {
+    return entireRecordMap?.block[id]?.value;
+  };
+
+  const otherWorkBlock = getBlockWithId(getOtherWorkId());
+
+  const otherId = getOtherWorkId();
+
+  const getInfoById = (_id: string) => {
+    const block = getBlockWithId(_id);
+    if (!block) return;
+    const properties = block?.properties;
+    const studentName = getPropertyFromProperties("학생이름", properties);
+    const studentNameEn = getPropertyFromProperties(
+      "학생이름_영문",
+      properties
+    );
+    const cover = mapImageUrl(block?.format?.page_cover, block);
+    const coverPosition = block?.format?.page_cover_position;
+    return {
+      id: _id,
+      cover,
+      coverPosition,
+      studentName,
+      studentNameEn,
+    };
+  };
+
+  const { cover: otherCover, coverPosition: otherCoverPosition } =
+    getInfoById(otherId);
+
+  const randomOtherWork = React.useMemo(() => {
+    // get random 3 indeces from groupBlockIds
+    const randomIndexes: number[] = [];
+
+    const workNumber = Math.min(3, groupBlockIds.length - 1);
+
+    while (randomIndexes.length < workNumber) {
+      const randomIndex = Math.floor(Math.random() * groupBlockIds.length);
+      if (
+        !randomIndexes.includes(randomIndex) &&
+        pageId !== groupBlockIds[randomIndex]
+      ) {
+        randomIndexes.push(randomIndex);
+      }
+    }
+
+    return randomIndexes.map((value) => getInfoById(groupBlockIds[value]));
+  }, [groupBlockIds, pageId]);
+  console.log("🚀 ~ randomOtherWork ~ randomOtherWork:", randomOtherWork);
+
+  const randomWorkCards = randomOtherWork.map((data) => {
+    if (!data) return;
+
+    const { id, cover, coverPosition, studentName, studentNameEn } = data;
+    return (
+      <Link
+        href={`/works/${id}`}
+        key={id}
+        className="w-[292px] h-[150px] overflow-hidden min-w-[292px] min-h-[150px] rounded-2xl hover:opacity-80"
+        style={{
+          backgroundImage: `url(${cover})`,
+          backgroundSize: "cover",
+          backgroundPosition: coverPosition,
+        }}
+      >
+        <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start p-4">
+          <p className="font-bold text-[20px]">{studentName}</p>
+          <p className="font-regular text-[16px]">{studentNameEn}</p>
+        </div>
+      </Link>
+    );
+  });
 
   return (
     <>
@@ -373,40 +475,67 @@ export default function WorkPage(
         </XWrapper>
       </div>
 
-      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px]">
-        <div className="w-full h-20" />
-        <div className="w-full  justify-center items-center flex">
-          {pageProperties["다른 작품"]?.startsWith(
-            "https://snudesignweek.com/"
-          ) && (
-            <Link
-              className="w-fit px-2 h-[33px] rounded-full border-[1px] border-primary 
-              flex justify-center items-center text-primary text-sm font-bold cursor-pointer
-              hover:bg-primary hover:text-white
-              "
-              href={anotherWorkPath || "/"}
-              // onClick={(e) => {
-              //   scrollTop();
-              // }}
-            >
-              <p className="text-[15px] pt-1 px-[1rem] pb-[0.1rem] h-full flex justfy-center items-center content-center align-bottom ">
-                이 학생의 다른 작품 보기
-                <HiArrowNarrowLeft className="inline-block ml-2 mb-[0.1rem]" />
-              </p>
-            </Link>
-          )}
+      <XWrapper className="flex flex-row justify-center items-center h-full py-20 ">
+        <div className="w-full h-fit transition-all duration-300 ease-in-out ">
+          <p className="text-primary text-3xl font-bold mb-5">
+            {pageProperties["작품이름"]}
+          </p>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-start">
+              <div className="w-[205px]">
+                <p className="font-bold text-primary text-[20px]">EMAIL</p>
+                <p className="font-regular text-primary text-[15px]">
+                  {pageProperties["Email"]}
+                </p>
+              </div>
+              <div>
+                <p className="font-bold text-primary text-[20px]">INSTAGRAM</p>
+                <p className="font-regular text-primary text-[15px]">
+                  {"@" + pageProperties["인스타 아이디"]}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-full h-[120px]" />
+        {otherWorkBlock ? (
+          <Link
+            className="w-[292px] h-[150px] overflow-hidden min-w-[292px] min-h-[150px] rounded-2xl hover:opacity-80"
+            href={"/works/" + otherId}
+            style={{
+              backgroundImage: `url(${otherCover})`,
+              backgroundSize: "cover",
+              backgroundPosition: otherCoverPosition,
+            }}
+          >
+            <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-end p-4">
+              <p>다른 작품</p>
+              <p>OTHER WORK</p>
+            </div>
+          </Link>
+        ) : null}
+      </XWrapper>
+      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-20">
+        <div>
+          <div className="mb-[30px]">
+            <h1 className="text-primary text-3xl leading-[130%] font-bold">
+              다른 작품 보기
+            </h1>
+            <h1 className="text-primary text-3xl leading-[130%] font-bold">
+              OTHER WORKS
+            </h1>
+          </div>
+          <div className="grid grid-cols-3 gap-4 mb-5">{randomWorkCards}</div>
+        </div>
         <div className="w-full flex flex-row justify-between items-center text-primary">
           <Link href={`/works/${prevId}`}>
-            <HiArrowNarrowLeft color={theme.colors.primary} size={48} />
+            <ArrowLeft color={theme.colors.primary} size={48} />
             <p>Previous</p>
           </Link>
           <Link
             href={`/works/${nextId}`}
             className="flex flex-col  items-center "
           >
-            <HiArrowNarrowRight color={theme.colors.primary} size={48} />
+            <ArrowRight color={theme.colors.primary} size={48} />
             <p>Next</p>
           </Link>
         </div>
