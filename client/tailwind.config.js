@@ -46,6 +46,9 @@ module.exports = {
       regular: 300,
       light: 200,
     },
+    screens : {
+      'md' : '1194px'
+    }
   },
   variants: {
     extend: {},

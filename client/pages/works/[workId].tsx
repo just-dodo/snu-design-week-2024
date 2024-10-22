@@ -5,19 +5,25 @@ import { domain, isDev } from "@/lib/config";
 import { resolveNotionPage } from "@/lib/resolve-notion-page";
 import { PageBlock, PageProps } from "@/lib/types";
 import XWrapper from "components/x-wrapper";
-import { getPageProperty, parsePageId } from "notion-utils";
+import { getPageProperty, idToUuid, parsePageId } from "notion-utils";
 import { FiInstagram } from "@react-icons/all-files/fi/FiInstagram";
 import { getSiteMap } from "@/lib/get-site-map";
 import courseList from "wordings/course";
-import Image from "next/image";
-import backButtonImg from "assets/back-button.png";
 import { useRouter } from "next/router";
 import { Loading } from "@/components/Loading";
 import Link from "next/link";
-import { BsArrowRight } from "@react-icons/all-files/bs/BsArrowRight";
+import { HiArrowNarrowLeft } from "@react-icons/all-files/hi/HiArrowNarrowLeft";
+import { HiArrowNarrowRight } from "@react-icons/all-files/hi/HiArrowNarrowRight";
 import CONFIGS from "configs";
 import { mapImageUrl } from "@/lib/map-image-url";
+import getGroup from "utils/getGroup";
 const DATABASE_ID = CONFIGS.databaseId;
+const VIEW_ID = "1192cfba780a8116a18d000c0625e864";
+
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "tailwind.config.js";
+import { useWindowScroll } from "react-use";
+
 export const getStaticProps = async (context: {
   params: { courseName: any; workId: any };
 }) => {
@@ -27,7 +33,18 @@ export const getStaticProps = async (context: {
     const pageId = parsePageId(workId);
 
     const props: PageProps = await resolveNotionPage(domain, pageId);
-    return { props, revalidate: 10 };
+
+    const entireDatabaseProps: PageProps = await resolveNotionPage(
+      domain,
+      DATABASE_ID
+    );
+    return {
+      props: {
+        ...props,
+        entireDatabaseProps,
+      },
+      revalidate: 10,
+    };
   } catch (err) {
     console.error("page error", domain, err);
 
@@ -54,8 +71,7 @@ export async function getStaticPaths() {
   // filter out the collection view
   const pages = blockArray.filter(
     (block) =>
-      block?.type === "page" &&
-      block?.parent_id === "989f931c-a428-4d70-8094-879dbffedfe2"
+      block?.type === "page" && block?.parent_id === idToUuid(DATABASE_ID)
   );
   const courseNameList = courseList.map((course) => course.path);
   interface Path {
@@ -96,9 +112,16 @@ export async function getStaticPaths() {
   return staticPaths;
 }
 
-export default function WorkPage(props: PageProps) {
+export default function WorkPage(
+  props: PageProps & {
+    entireDatabaseProps: PageProps;
+  }
+) {
   const pageId = parsePageId(props.pageId);
   const recordMap = props.recordMap!;
+
+  const entireDatabaseProps = props.entireDatabaseProps!;
+
   const router = useRouter();
   if (!props.recordMap) {
     return (
@@ -128,7 +151,6 @@ export default function WorkPage(props: PageProps) {
   });
 
   const pageBlock = recordMap.block[pageId].value;
-  console.log("🚀 ~ WorkPage ~ pageBlock:", pageBlock);
   // get blocks without pageBlock
   const blocks = Object.values(recordMap.block).filter(
     (block) => block.value?.id !== pageId
@@ -144,7 +166,6 @@ export default function WorkPage(props: PageProps) {
   schemaArray.map((item) => {
     pageProperties[item] = getPageProperty<string>(item, pageBlock, recordMap);
   });
-
   const socialImage = mapImageUrl(
     getPageProperty<string>("Social Image", pageBlock, recordMap) ||
       (pageBlock as PageBlock).format?.page_cover ||
@@ -209,85 +230,101 @@ export default function WorkPage(props: PageProps) {
     scrollTop();
   }, [pageId]);
 
+  const entireRecordMap = entireDatabaseProps.recordMap;
+
+  const group = React.useMemo(() => {
+    if (!entireRecordMap) return;
+
+    const collectionId = "1192cfba-780a-8135-80b7-000b2aaefd43";
+
+    const collectionViewId = idToUuid(VIEW_ID);
+    const collectionData =
+      entireRecordMap?.collection_query[collectionId]?.[collectionViewId];
+
+    const collectionView =
+      entireRecordMap?.collection_view[collectionViewId]?.value;
+    const courseName = getPageProperty<string>("수업", pageBlock, recordMap)[0];
+
+    const group = getGroup({ collectionView, collectionData, courseName });
+    return group;
+  }, [entireRecordMap]);
+
+  const blockIds: string[] = group?.blockIds;
+
+  const pageIndex = blockIds.findIndex((id) => id === pageId);
+
+  const prevId =
+    pageIndex > 0 ? blockIds[pageIndex - 1] : blockIds[blockIds.length - 1];
+  const nextId =
+    pageIndex < blockIds.length - 1 ? blockIds[pageIndex + 1] : blockIds[0];
+
+  const { theme } = resolveConfig(tailwindConfig);
+
+  const { x, y } = useWindowScroll();
+  console.log("🚀 ~ y:", y);
+  const isScrollStarted = y > 10;
+
   return (
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
-      <div className="relative md:fixed md:top-[60px] w-screen z-30 h-fit md:h-[80px] flex justify-center items-center content-center text-primary text-2xl font-bold p-6 pl-3 md:p-0">
+      <div className="fixed gap-10 w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-10 py-5">
+        {/* authorContainer */}
         <div
-          className="w-fit h-full mr-[1.2rem] md:hidden"
+          className="w-fit h-full block relative cursor-pointer"
           onClick={() => {
             router.back();
           }}
         >
-          <Image
-            src={backButtonImg}
-            alt="button"
-            layout="intrinsic"
-            width={14}
-            height={7}
-            className="m-3"
-          />
+          <HiArrowNarrowLeft color={theme.colors.primary} size={48} />
         </div>
-        <XWrapper className="justify-between">
-          {/* authorContainer */}
-          <div className="flex flex-row items-center justify-start md:justify-center h-full md:relative md:-left-6">
-            <div
-              className="w-fit h-full hidden md:block relative -left-16 cursor-pointer"
-              onClick={() => {
-                router.back();
-              }}
-            >
-              <Image
-                src={backButtonImg}
-                alt="button"
-                width={14}
-                height={7}
-                className="mt-6"
-              />
+        <div className="flex flex-1 flex-row items-center justify-between h-fit min-h-[52px] md:mb-0">
+          <div
+            className="w-full h-fit transition-all duration-300 flex flex-1 flex-row  ease-in-out items-center justify-between"
+            style={{
+              opacity: isScrollStarted ? 1 : 0,
+            }}
+          >
+            <div className="flex text-[20px] gap-[10px]">
+              <p className="font-bold">
+                {/* @ts-ignore */}
+                {pageProperties["학생이름"]}
+              </p>
+              <p className="font-bold ">
+                {/* @ts-ignore */}
+                {pageProperties["학생이름_영문"]}
+              </p>
             </div>
-            <p className="text-base md:text-xl md:mr-2 font-bold">
-              {/* @ts-ignore */}
-              {pageProperties["학생이름"]}
-            </p>
-            <p className="mx-4 text-base md:text-xl font-bold ml-2 md:ml-0 ">
-              {/* @ts-ignore */}
-              {pageProperties["학생이름_영문"]}
-            </p>
+            <p className="text-3xl font-bold">{pageProperties["작품이름"]}</p>
+            <div className="flex flex-col items-end font-bold gap-1 h-fit">
+              <p className="text-[20px] font-bold leading-6">
+                {"@" + pageProperties["인스타 아이디"]}
+              </p>
+              <p className="text-[20px] font-bold leading-6">
+                {pageProperties["Email"]}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-row items-center justify-start md:justify-center h-full mb-4 md:mb-0">
-            <p className="text-base md:text-xl font-bold">
-              {/* @ts-ignore */}
-              {pageProperties["작품이름"]}
-            </p>
-          </div>
-          <div className="flex flex-col justify-center items-start h-full text-base tracking-wide">
-            <p
-              className=" cursor-pointer"
-              onClick={() => {
-                // open instagram link in new tab
-                window.open(
-                  `https://www.instagram.com/${pageProperties["인스타 아이디"]}`,
-                  "_blank"
-                );
-              }}
-            >
-              {/* @ts-ignore */}
-              <FiInstagram className="inline-block mr-2" />
-              {"@" + pageProperties["인스타 아이디"]}
-            </p>
-            <p>
-              {/* @ts-ignore */}
-              {pageProperties["Email"]}
-            </p>
-          </div>
-        </XWrapper>
+        </div>
+        <div
+          className="flex flex-col justify-center items-start h-full text-base tracking-wide cursor-pointer"
+          onClick={() => {
+            // open instagram link in new tab
+            window.open(
+              `https://www.instagram.com/${pageProperties["인스타 아이디"]}`,
+              "_blank"
+            );
+          }}
+        >
+          {/* @ts-ignore */}
+          <FiInstagram className="inline-block mr-2" size={36} />
+        </div>
       </div>
 
       {/* content */}
-      <div className="w-full justify-center items-center flex ">
+      <div className="w-full justify-center items-center flex">
         <div
-          className="w-full aspect-video absolute top-0 left-0"
+          className="w-full aspect-video absolute top-[60px] md:top-[69px] left-0"
           style={{
             backgroundSize: "cover",
             backgroundPosition: coverPosition,
@@ -301,16 +338,45 @@ export default function WorkPage(props: PageProps) {
         </div>
         <XWrapper>
           <div className="w-full  p-6 md:p-0">
-            <div className="w-full h-0 md:h-20" />
+            <div className="w-full h-[440px]" />
+            <div className="w-full h-fit relative z-10 min-h-[72px]">
+              <div
+                className="w-full h-fit transition-all duration-300 ease-in-out "
+                style={{
+                  opacity: isScrollStarted ? 0 : 1,
+                }}
+              >
+                <p className="text-primary text-3xl font-bold mb-5">
+                  {pageProperties["작품이름"]}
+                </p>
+                <div className="flex flex-row justify-between items-center">
+                  <div className="flex flex-row items-start ">
+                    <p className="font-bold text-primary text-[20px]">
+                      {pageProperties["학생이름"]}{" "}
+                      {pageProperties["학생이름_영문"]}
+                    </p>
+                  </div>
+                  <div className="flex flex-row items-end gap-5">
+                    <p className="font-bold text-primary text-[20px]">
+                      {"@" + pageProperties["인스타 아이디"]}
+                    </p>
+
+                    <p className="font-bold text-primary text-[20px]">
+                      {pageProperties["Email"]}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <NotionPage {...newProps} />
           </div>
         </XWrapper>
       </div>
 
-      <XWrapper className="flex md:flex-col justify-center items-center h-full">
+      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px]">
         <div className="w-full h-20" />
         <div className="w-full  justify-center items-center flex">
-          {pageProperties["다른 작품 링크"]?.startsWith(
+          {pageProperties["다른 작품"]?.startsWith(
             "https://snudesignweek.com/"
           ) && (
             <Link
@@ -325,12 +391,25 @@ export default function WorkPage(props: PageProps) {
             >
               <p className="text-[15px] pt-1 px-[1rem] pb-[0.1rem] h-full flex justfy-center items-center content-center align-bottom ">
                 이 학생의 다른 작품 보기
-                <BsArrowRight className="inline-block ml-2 mb-[0.1rem]" />
+                <HiArrowNarrowLeft className="inline-block ml-2 mb-[0.1rem]" />
               </p>
             </Link>
           )}
         </div>
         <div className="w-full h-[120px]" />
+        <div className="w-full flex flex-row justify-between items-center text-primary">
+          <Link href={`/works/${prevId}`}>
+            <HiArrowNarrowLeft color={theme.colors.primary} size={48} />
+            <p>Previous</p>
+          </Link>
+          <Link
+            href={`/works/${nextId}`}
+            className="flex flex-col  items-center "
+          >
+            <HiArrowNarrowRight color={theme.colors.primary} size={48} />
+            <p>Next</p>
+          </Link>
+        </div>
       </XWrapper>
     </>
   );

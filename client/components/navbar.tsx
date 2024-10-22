@@ -12,8 +12,7 @@ import mobileNavButtonWhite from "assets/mobile-nav-button-white.png";
 
 export default function Navbar(): ReactElement {
   const router = useRouter();
-  const windowSize = useWindowSize();
-  const isMobileView = windowSize.width < 768;
+  const { isMobileView } = useWindowSize();
   const pathList = ["home", "about", "works", "people", "program", "partners"];
   const basePath = "/";
   const isHome = router.pathname === basePath;

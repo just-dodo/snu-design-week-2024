@@ -46,7 +46,7 @@ export default function CoursePage(props: PageProps) {
     return () => {
       setCourseName("");
     };
-  }, []);
+  }, [setCourseName]);
 
   // get a item from collection that item.value.parent_id is equal to the dbId
   const pageData = Object.values(collection).find((item: any) => {

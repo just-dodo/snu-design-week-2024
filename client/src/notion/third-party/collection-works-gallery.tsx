@@ -56,16 +56,16 @@ function Board({ collectionView, collectionData, collection, padding }) {
   const boardResults = (collectionData as any).board_columns?.results;
 
   // get all values its key starts with "results"
-  const _allBlockIds = Object.keys(collectionData as any).filter((key) =>
-    key.startsWith("results")
-  ).map((key) => (collectionData as any)[key].blockIds);
+  const _allBlockIds = Object.keys(collectionData as any)
+    .filter((key) => key.startsWith("results"))
+    .map((key) => (collectionData as any)[key].blockIds);
 
   // remove duplicate
   const allBlockIds = _allBlockIds
     .flat()
     .filter((value, index, self) => self.indexOf(value) === index);
 
-  const CollectionCards = () => {
+  const CollectionCards = React.useMemo(() => {
     if (!boardResults) return null;
 
     let blockIds;
@@ -120,9 +120,13 @@ function Board({ collectionView, collectionData, collection, padding }) {
             "작품이름_영문"
           );
 
-          const searchAbleString = `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
+          const searchAbleString =
+            `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
 
-          if (searchText && !searchAbleString.includes(searchText.toLowerCase())) {
+          if (
+            searchText &&
+            !searchAbleString.includes(searchText.toLowerCase())
+          ) {
             return null;
           }
 
@@ -142,13 +146,16 @@ function Board({ collectionView, collectionData, collection, padding }) {
         })}
       </div>
     );
-  };
+  }, [
+    boardResults,
+    allBlockIds,
+    groupProperty,
+    recordMap,
+    searchText,
+    courseName,
+  ]);
 
-  return (
-    <div className="flex-1 flex w-full">
-      <CollectionCards />
-    </div>
-  );
+  return <div className="flex-1 flex w-full">{CollectionCards}</div>;
 }
 
 function getPropertyValue(

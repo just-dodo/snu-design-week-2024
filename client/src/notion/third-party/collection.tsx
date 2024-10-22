@@ -110,7 +110,7 @@ const CollectionViewBlock: React.FC<{
     },
     [collectionState, setCollectionState]
   );
- 
+
   let { width: windowWidth } = useWindowSize();
   if (isServer) {
     windowWidth = 1024;

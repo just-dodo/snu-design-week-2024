@@ -20,6 +20,9 @@ import { Carousel } from "react-responsive-carousel";
 import Image from "next/image";
 import { HiOutlineChevronLeft } from "@react-icons/all-files/hi/HiOutlineChevronLeft";
 import { HiOutlineChevronRight } from "@react-icons/all-files/hi/HiOutlineChevronRight";
+import { Left } from "icons/Left";
+import { Right } from "icons/Right";
+import useWindowSize from "utils/useWindowSize";
 
 export const CollectionViewGallery: React.FC<CollectionViewProps> = ({
   collection,
@@ -114,17 +117,16 @@ function Gallery({ blockIds, collectionView, collection }: GalleryProps) {
 
   const arrowSize = "2rem";
 
+  const { isMobileView } = useWindowSize();
+
   interface ArrowProps {
     type: "PREV" | "NEXT";
   }
 
   function Arrow({ type }: ArrowProps) {
+    if (isMobileView) return null;
     const pointer =
-      type === "PREV" ? (
-        <HiOutlineChevronLeft size={arrowSize} color={"#6495ED "} />
-      ) : (
-        <HiOutlineChevronRight size={arrowSize} color={"#6495ED "} />
-      );
+      type === "PREV" ? <Left color="#E22613" /> : <Right color="#E22613" />;
 
     const isFirst = selectedItemIndex === 0;
     const isLast = selectedItemIndex === coverContentsArray.length - 1;
@@ -144,13 +146,13 @@ function Gallery({ blockIds, collectionView, collection }: GalleryProps) {
       }
     };
 
-    const prevClassName = "-left-5 md:-left-10";
-    const nextClassName = "-right-7 md:-right-10";
+    const prevClassName = "-left-5 md:-left-[100px]";
+    const nextClassName = "-right-7 md:-right-[100px]";
     const addClaseName = type === "PREV" ? prevClassName : nextClassName;
     return (
       <div
         className={
-          `flex flex-col justify-center  cursor-pointer w-10 absolute h-full z-10 ` +
+          `flex flex-col justify-center  cursor-pointer w-[100px] absolute h-full z-10 ` +
           addClaseName
         }
         onClick={onClick}
@@ -163,13 +165,16 @@ function Gallery({ blockIds, collectionView, collection }: GalleryProps) {
   return (
     <div className="notion-gallery flex flex-row w-full text-primary relative justify-center items-center contents-center notion-margin-hard">
       <Arrow type="PREV" />
-      <div className="notion-gallery-view w-11/12 max-h-[320px] md:min-w-full md:max-h-[600px] md:h-[600px]   ">
+      <div className="notion-gallery-view max-h-[320px] w-screen md:w-11/12  md:min-w-full md:max-h-[600px] md:h-[600px]   ">
         <Carousel
           showThumbs={false}
           showStatus={false}
           showArrows={false}
           showIndicators={false}
           selectedItem={selectedItemIndex}
+          onChange={(index) => setSelectedItemIndex(index)}
+          centerMode
+          centerSlidePercentage={isMobileView ? 80 : 100}
         >
           {coverContentsArray.map((coverContent, index) => (
             <div className=" max-h-[320px] md:max-h-[600px] md:h-[600px]  w-full">
@@ -183,11 +188,13 @@ function Gallery({ blockIds, collectionView, collection }: GalleryProps) {
             </div>
           ))}
         </Carousel>
-        <div className="h-10 w-full" />
+        <div className="h-6 w-full" />
         <div className="w-full flex justify-center ">
           {coverContentsArray.map((coverContent, index) => {
             const isSelected = selectedItemIndex === index;
-            const bgColor = isSelected ? "bg-[#6495ED]" : "bg-gray-300";
+            const bgColor = isSelected
+              ? "bg-[#00BD84]"
+              : "bg-[#00BD84] opacity-30";
             return (
               <div
                 className={

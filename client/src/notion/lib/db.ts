@@ -1,6 +1,6 @@
 import Keyv from '@keyvhq/core'
 import KeyvRedis from '@keyvhq/redis'
-
+import { kv } from "@vercel/kv";
 import { isRedisEnabled, redisNamespace, redisUrl } from './config'
 
 let db: Keyv
