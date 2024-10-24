@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 import useCourseStore from "store/courseStore";
 import useSearchStore from "store/searchStore";
 
-export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
+export const CollectionOtherworks: React.FC<CollectionViewProps> = ({
   collection,
   collectionView,
   collectionData,

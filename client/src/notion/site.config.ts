@@ -2,20 +2,19 @@ import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '9ef7308ccb9a497faa98df8561eab643',
-
+  rootNotionPageId: '1192cfba780a800aa41ac0c805099623',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   // @ts-ignore
   rootNotionSpaceId: null,
 
   // basic site info (required)
-  name: 'SNU Design Week 2022',
-  domain: 'snudesignweek.com',
+  name: 'SNU Design Week 2024',
+  domain: '2024.snudesignweek.com',
   author: 'SNU Design Week',
 
   // open graph metadata (optional)
-  description: 'SNU Design Week 2022',
+  description: 'SNU Design Week 2024',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
