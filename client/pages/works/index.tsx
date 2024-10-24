@@ -77,7 +77,11 @@ export default function CoursePage(props: PageProps) {
   return (
     <>
       <div className="w-screen h-fit flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px]">
-        <XWrapper className="flex justify-between">
+        <div>
+          <p>{courseTitle?.toUpperCase()}</p>
+        </div>
+
+        <XWrapper className="hidden md:flex justify-between">
           {courseList.map((value, index) => {
             const isSelected = courseTitle === value.title;
             const opacityClassName = isSelected ? "" : "opacity-20";
@@ -100,7 +104,7 @@ export default function CoursePage(props: PageProps) {
             );
           })}
         </XWrapper>
-        <XWrapper className="flex flex-col md:flex-col justify-between gap-6">
+        <XWrapper className="flex flex-col md:flex-col justify-between gap-6 px-6 md:px-0 ">
           <div>
             <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
               <div className="flex flex-col relative ">
@@ -123,7 +127,7 @@ export default function CoursePage(props: PageProps) {
             <div className="flex flex-col justify-start items-start h-full flex-1">
               <p className=" ">{courseData?.description}</p>
             </div>
-            <div className="flex flex-col justify-start items-start h-full flex-1 ">
+            <div className="hidden md:flex flex-col justify-start items-start h-full flex-1 ">
               <p className=" ">{courseData?.description_eng}</p>
             </div>
           </div>

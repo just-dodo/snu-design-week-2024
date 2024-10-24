@@ -20,13 +20,13 @@
   line-height: 1.65;
 }
 
-[class^="notion-"]{
-  color: #E22613 !important;
-  background: none  !important;
-  font-weight: 500;
+[class^="notion-"] {
+  color: #e22613 !important;
+  background: none !important;
+  font-weight: "regular";
   font-size: 15px;
   line-height: 26px;
-} 
+}
 
 .notion-h {
   align-self: center;
@@ -34,33 +34,32 @@
 }
 
 .notion-h-title {
-  color: #E22613 !important;
+  color: #e22613 !important;
   font-weight: 700;
   font-size: 20px;
-
 }
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
-.notion-asset-wrapper-image {
-  margin-top: 20px !important;
-  margin-bottom: 20px  !important;
+  .notion-asset-wrapper-image {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
   }
 
-.notion-blank {
-  height : 20px !important;
-}
+  .notion-blank {
+    height: 20px !important;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
-.notion-asset-wrapper-image {
-  margin-top: 40px !important;
-  margin-bottom: 40px  !important;
-}
+  .notion-asset-wrapper-image {
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+  }
 
-.notion-blank {
-  height : 40px !important;
-}
+  .notion-blank {
+    height: 40px !important;
+  }
 }
 /* .notion-column {
   display: flex !important;
@@ -70,7 +69,7 @@
 } */
 
 .notion-gallery-view {
-  color: #6495ED !important;
+  color: #6495ed !important;
 }
 
 .index-page {
@@ -91,7 +90,7 @@
   margin-bottom: 1em;
 }
 
-.notion-asset-wrapper-video>div,
+.notion-asset-wrapper-video > div,
 .notion-asset-wrapper-video video {
   width: 100% !important;
 }
@@ -163,7 +162,6 @@
 
 /* only target safari */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-
   _::-webkit-full-page-media,
   _:future,
   :root,
@@ -260,7 +258,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-
   .notion-page-cover-wrapper,
   .notion-page-cover-wrapper span,
   .notion-page-cover-wrapper img {
@@ -321,54 +318,66 @@
 
   background-color: none;
 
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #fff697 10.5%,
-      #fdf59d 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #fff697 10.5%,
+    #fdf59d 85.29%,
+    var(--bg-color)
+  );
 }
 
 .notion-purple_background,
 .notion-pink_background {
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #f5b8d1 10.5%,
-      #f9bcd3 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #f5b8d1 10.5%,
+    #f9bcd3 85.29%,
+    var(--bg-color)
+  );
 }
 
 .notion-blue_background,
 .notion-gray_background {
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #adedfc 10.5%,
-      #adebfd 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #adedfc 10.5%,
+    #adebfd 85.29%,
+    var(--bg-color)
+  );
 }
 
 .notion-red_background,
 .notion-orange_background {
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #f5c4ff 10.5%,
-      #e7a8fc 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #f5c4ff 10.5%,
+    #e7a8fc 85.29%,
+    var(--bg-color)
+  );
 }
 
 .notion-teal_background {
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #d4eabc 10.5%,
-      #d2eabc 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #d4eabc 10.5%,
+    #d2eabc 85.29%,
+    var(--bg-color)
+  );
 }
 
 .notion-brown_background {
-  background-image: linear-gradient(119deg,
-      var(--bg-color),
-      #96b8ec 10.5%,
-      #a6c3f0 85.29%,
-      var(--bg-color));
+  background-image: linear-gradient(
+    119deg,
+    var(--bg-color),
+    #96b8ec 10.5%,
+    #a6c3f0 85.29%,
+    var(--bg-color)
+  );
 }
 
 .dark-mode .notion-red_background,
@@ -435,7 +444,6 @@
   display: none !important;
 }
 
-
 .control-dots {
   display: flex;
   flex-direction: row;
@@ -445,7 +453,6 @@
   bottom: -60px !important;
   /* background-color: green; */
 }
-
 
 .notion-object-cover {
   width: 100% !important;

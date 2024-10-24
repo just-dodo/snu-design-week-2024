@@ -44,7 +44,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
 
   return (
     <div
-      className={` flex flex-col w-full h-full align-center-top ${bgColor} overflow-x-fixed`}
+      className={`flex flex-col w-full h-full align-center-top ${bgColor} overflow-x-hidden`}
     >
       <Navbar />
       <main

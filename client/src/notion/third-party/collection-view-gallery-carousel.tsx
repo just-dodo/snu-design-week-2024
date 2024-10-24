@@ -173,11 +173,11 @@ function Gallery({ blockIds, collectionView, collection }: GalleryProps) {
           showIndicators={false}
           selectedItem={selectedItemIndex}
           onChange={(index) => setSelectedItemIndex(index)}
-          centerMode
-          centerSlidePercentage={isMobileView ? 80 : 100}
+          // centerMode
+          // centerSlidePercentage={isMobileView ? 80 : 100}
         >
           {coverContentsArray.map((coverContent, index) => (
-            <div className=" max-h-[320px] md:max-h-[600px] md:h-[600px]  w-full">
+            <div className=" max-h-[320px] md:max-h-[600px] md:h-[600px] w-full">
               <img
                 className="object-contain  max-h-[320px] md:max-h-[600px] md:h-[600px] w-full"
                 src={coverContent.src}

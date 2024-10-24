@@ -26,6 +26,7 @@ import { useWindowScroll } from "react-use";
 import { ArrowRight } from "icons/ArrowRight";
 import { ArrowLeft } from "icons/ArrowLeft";
 import Image from "next/image";
+import _useWindowSize from "utils/useWindowSize";
 
 export const getStaticProps = async (context: {
   params: { courseName: any; workId: any };
@@ -341,7 +342,7 @@ export default function WorkPage(
 
     return randomIndexes.map((value) => getInfoById(groupBlockIds[value]));
   }, [groupBlockIds, pageId]);
-  console.log("🚀 ~ randomOtherWork ~ randomOtherWork:", randomOtherWork);
+  const { isMobileView } = _useWindowSize();
 
   const randomWorkCards = randomOtherWork.map((data) => {
     if (!data) return;
@@ -366,39 +367,45 @@ export default function WorkPage(
     );
   });
 
+  const backdropBlur =
+    isMobileView && isScrollStarted ? "backdrop-blur" : "backdrop-blur-none";
+
   return (
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
-      <div className="fixed gap-10 w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-10 py-5">
+      <div
+        className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300  ${backdropBlur}`}
+      >
         {/* authorContainer */}
         <div
-          className="w-fit h-full block relative cursor-pointer"
+          className="w-fit h-full hidden md:block relative cursor-pointer"
           onClick={() => {
             router.back();
           }}
         >
           <HiArrowNarrowLeft color={theme.colors.primary} size={48} />
         </div>
-        <div className="flex flex-1 flex-row items-center justify-between h-fit min-h-[52px] md:mb-0">
+        <div className="flex flex-1 flex-row items-center justify-between h-fit md:min-h-[52px] md:mb-0 ">
           <div
-            className="w-full h-fit transition-all duration-300 flex flex-1 flex-row  ease-in-out items-center justify-between"
+            className="flex  h-fit transition-all duration-300 flex-row  ease-in-out items-center justify-between "
             style={{
               opacity: isScrollStarted ? 1 : 0,
             }}
           >
-            <div className="flex text-[20px] gap-[10px]">
-              <p className="font-bold">
-                {/* @ts-ignore */}
+            <div className="flex text-[14px] md:text-[20px] gap-[10px] w-[157px] md:w-fit">
+              <p className="font-semibold md:font-bold">
                 {pageProperties["학생이름"]}
               </p>
-              <p className="font-bold ">
-                {/* @ts-ignore */}
+              <p className="font-semibold md:font-bold">
                 {pageProperties["학생이름_영문"]}
               </p>
             </div>
-            <p className="text-3xl font-bold">{pageProperties["작품이름"]}</p>
-            <div className="flex flex-col items-end font-bold gap-1 h-fit">
+            <p className="flex-1 text-[14px] md:text-3xl font-bold truncate max-w-[157px]">
+              {pageProperties["작품이름"]} {pageProperties["작품이름"]}{" "}
+              {pageProperties["작품이름"]} {pageProperties["작품이름"]}
+            </p>
+            <div className="hidden md:flex flex-col items-end font-bold gap-1 h-fit">
               <p className="text-[20px] font-bold leading-6">
                 {"@" + pageProperties["인스타 아이디"]}
               </p>
@@ -409,7 +416,7 @@ export default function WorkPage(
           </div>
         </div>
         <div
-          className="flex flex-col justify-center items-start h-full text-base tracking-wide cursor-pointer"
+          className="flex flex-col justify-center items-center h-full tcursor-pointer w-fit ml-3 md:ml-0  transition-all duration-300 "
           onClick={() => {
             // open instagram link in new tab
             window.open(
@@ -417,9 +424,15 @@ export default function WorkPage(
               "_blank"
             );
           }}
+          style={{
+            opacity: isMobileView && !isScrollStarted ? 0 : 1,
+          }}
         >
           {/* @ts-ignore */}
-          <FiInstagram className="inline-block mr-2" size={36} />
+          <FiInstagram
+            className="inline-block mr-2"
+            size={isMobileView ? 24 : 36}
+          />
         </div>
       </div>
 
@@ -440,7 +453,7 @@ export default function WorkPage(
         </div>
         <XWrapper>
           <div className="w-full  p-6 md:p-0">
-            <div className="w-full h-[440px]" />
+            <div className="w-full h-[210px] md:h-[440px]" />
             <div className="w-full h-fit relative z-10 min-h-[72px]">
               <div
                 className="w-full h-fit transition-all duration-300 ease-in-out "
@@ -448,17 +461,19 @@ export default function WorkPage(
                   opacity: isScrollStarted ? 0 : 1,
                 }}
               >
-                <p className="text-primary text-3xl font-bold mb-5">
+                <p className="text-primary text-[20px] md:text-3xl font-bold md:mb-5">
                   {pageProperties["작품이름"]}
                 </p>
                 <div className="flex flex-row justify-between items-center">
                   <div className="flex flex-row items-start ">
-                    <p className="font-bold text-primary text-[20px]">
-                      {pageProperties["학생이름"]}{" "}
+                    <p className="font-medium md:font-bold text-primary text-[14px] md:text-[20px] whitespace-pre">
+                      {pageProperties["학생이름"]}
+                      {isMobileView ? "  |  " : " "}
                       {pageProperties["학생이름_영문"]}
                     </p>
                   </div>
-                  <div className="flex flex-row items-end gap-5">
+
+                  <div className="hidden md:flex flex-row items-end gap-5">
                     <p className="font-bold text-primary text-[20px]">
                       {"@" + pageProperties["인스타 아이디"]}
                     </p>
@@ -474,22 +489,28 @@ export default function WorkPage(
           </div>
         </XWrapper>
       </div>
-
-      <XWrapper className="flex flex-row justify-center items-center h-full py-20 ">
+      <div className="flex md:hidden w-full h-fit justify-center items-centerƒ">
+        <div className="h-[2px] w-[110px] bg-[#00BD84]" />
+      </div>
+      <XWrapper className="flex justify-center items-center h-full py-20 px-6 md:px-0">
         <div className="w-full h-fit transition-all duration-300 ease-in-out ">
-          <p className="text-primary text-3xl font-bold mb-5">
+          <p className="text-primary text-3xl font-semibold md:font-bold mb-5">
             {pageProperties["작품이름"]}
           </p>
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-row items-start">
+          <div className="flex flex-row justify-between items-center mt-10 md:mt-0">
+            <div className="w-full md:w-fit flex flex-row  justify-between md:justify-start items-start">
               <div className="w-[205px]">
-                <p className="font-bold text-primary text-[20px]">EMAIL</p>
+                <p className="font-semibold md:font-bold text-primary text-[15px] md:text-[20px]">
+                  EMAIL
+                </p>
                 <p className="font-regular text-primary text-[15px]">
                   {pageProperties["Email"]}
                 </p>
               </div>
               <div>
-                <p className="font-bold text-primary text-[20px]">INSTAGRAM</p>
+                <p className="font-semibold md:font-bold text-primary text-[15px] md:text-[20px]">
+                  INSTAGRAM
+                </p>
                 <p className="font-regular text-primary text-[15px]">
                   {"@" + pageProperties["인스타 아이디"]}
                 </p>
@@ -498,24 +519,29 @@ export default function WorkPage(
           </div>
         </div>
         {otherWorkBlock ? (
-          <Link
-            className="w-[292px] h-[150px] overflow-hidden min-w-[292px] min-h-[150px] rounded-2xl hover:opacity-80"
-            href={"/works/" + otherId}
-            style={{
-              backgroundImage: `url(${otherCover})`,
-              backgroundSize: "cover",
-              backgroundPosition: otherCoverPosition,
-            }}
-          >
-            <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-end p-4">
-              <p>다른 작품</p>
-              <p>OTHER WORK</p>
-            </div>
-          </Link>
+          <>
+            <p className="text-primary text-[15px] font-semibold md:hidden mt-10 self-start">
+              OTHER WORK
+            </p>
+            <Link
+              className="w-full aspect-[16/9] md:w-[292px] md:h-[150px] overflow-hidden min-w-[292px] min-h-[150px] md:rounded-2xl hover:opacity-80 "
+              href={"/works/" + otherId}
+              style={{
+                backgroundImage: `url(${otherCover})`,
+                backgroundSize: "cover",
+                backgroundPosition: otherCoverPosition,
+              }}
+            >
+              <div className="hidden md:block bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-end p-4">
+                <p>다른 작품</p>
+                <p>OTHER WORK</p>
+              </div>
+            </Link>
+          </>
         ) : null}
       </XWrapper>
-      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-20">
-        <div>
+      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-20 px-6 md:px-0">
+        <div className="hidden md:block">
           <div className="mb-[30px]">
             <h1 className="text-primary text-3xl leading-[130%] font-bold">
               다른 작품 보기
