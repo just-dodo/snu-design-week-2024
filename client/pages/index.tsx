@@ -9,6 +9,7 @@ import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import { useRatio } from "utils/useRatio";
 import SearchAndInstagram from "components/search-and-instagram";
+import MainDescription from "components/main-description";
 import Image from "next/image";
 import partnersLogo from "assets/landing-partners-logo.png";
 import Link from "next/link";
@@ -23,6 +24,7 @@ const Landing: NextPage = () => {
       {!isMobileView ? (
         <>
           <SearchAndInstagram />
+          <MainDescription />
           <div className="absolute bottom-0 w-full mb-[40px]">
             <Marquee gradient={false} speed={50}>
               <Image
@@ -34,14 +36,15 @@ const Landing: NextPage = () => {
             </Marquee>
           </div>
           <div
-            className={`absolute bottom-[104px] left-[50%] transform -translate-x-1/2 w-[1680px] h-[584px]`}
+            className={`absolute bottom-[120px] left-[50%] transform -translate-x-1/2 w-[calc(100%-240px)]`}
           >
             <Image
               src="/img/main-page-animation.webp"
               alt="main-page-animation"
-              width={1680}
-              height={584}
+              width={1364 * ratio.width}
+              height={466 * ratio.width}
               unoptimized={true}
+              priority={true}
             ></Image>
           </div>
         </>
