@@ -10,7 +10,7 @@ export default function SearchAndInstagram() {
   };
 
   return (
-    <div className='flex flex-row px-[20px] py-[20px] gap-[20px] absolute right-[20px] top-[30px]'>
+    <div className='flex flex-row px-[20px] py-[20px] gap-[20px] z-10'>
       <div>
         <div className='relative z-10 hover:cursor-pointer' onClick={handleSearchClick}>
           <SearchIcon color={`${isSearchOpen ? '#E22613': '#FFEFD3'}`}/>
