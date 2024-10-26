@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import { AnimationDirection } from "lottie-web";
 import { NextPage } from "next";
-import webMotionAnimation from "assets/web_motion3.json";
-import mobileMotionAnimation from "assets/mobile_motion3.json";
 import Marquee from "react-fast-marquee";
 import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
