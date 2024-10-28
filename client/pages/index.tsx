@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import { AnimationDirection } from "lottie-web";
 import { NextPage } from "next";
-import webMotionAnimation from "assets/web_motion3.json";
-import mobileMotionAnimation from "assets/mobile_motion3.json";
 import Marquee from "react-fast-marquee";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import { useRatio } from "utils/useRatio";
@@ -19,7 +15,7 @@ const Landing: NextPage = () => {
   const ratio = useRatio();
 
   return (
-    <div className="bg-primary w-full h-full relative">
+    <div className="bg-primary flex flex-col w-full h-full relative pt-[32.5px]">
       {!isMobileView ? (
         <>
           <SearchAndInstagram />
