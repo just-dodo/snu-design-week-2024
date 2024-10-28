@@ -16,7 +16,7 @@ const Landing: NextPage = () => {
   const ratio = useRatio();
 
   return (
-    <div className="bg-primary w-full h-full relative">
+    <div className="bg-primary flex flex-col w-full h-full relative pt-[32.5px]">
       {!isMobileView ? (
         <>
           <SearchAndInstagram />
