@@ -21,7 +21,7 @@ export const getStaticProps = async (context: {
 }) => {
   // const { workId } = context.params;
   try {
-    const url ="https://dodo4114.notion.site/0e38a28c977547daa5b26eae60278852"
+    const url ="https://dodo4114.notion.site/1192cfba780a80ca9156dc1ad58fa2fe"
     // parse pageId from url
     const pageId = parsePageId(url);
 

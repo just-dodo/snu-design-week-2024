@@ -5,7 +5,6 @@ import { NextPage } from "next";
 import webMotionAnimation from "assets/web_motion3.json";
 import mobileMotionAnimation from "assets/mobile_motion3.json";
 import Marquee from "react-fast-marquee";
-import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import { useRatio } from "utils/useRatio";
 import SearchAndInstagram from "components/search-and-instagram";

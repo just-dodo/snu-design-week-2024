@@ -198,7 +198,7 @@ const CollectionViewBlock: React.FC<{
             />
           )}
         </div>
-        {!isProjectPage && (
+        {isProjectPage && (
           <div className="notion-collection-header">
             {/*TODO: only show if no full DB*/}
             {title && (

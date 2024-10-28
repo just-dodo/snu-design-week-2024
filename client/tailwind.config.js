@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const fontSize = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -10,7 +11,20 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        inner: "inset 0 0 0 2px",
+      },
+      fontSize: {
+        "3xl": "32px",
+      },
+      lineHeight: {
+        "3xl": "38.2px",
+      },
+      letterSpacing: {
+        "3xl": "-0.01em",
+      },
+    },
     colors: {
       primary: "#E22613",
       secondary: "#FFEFD3",
@@ -32,15 +46,9 @@ module.exports = {
       regular: 300,
       light: 200,
     },
-    fontSize: {
-      "3xl": "32px",
-    },
-    lineHeight: {
-      "3xl": "38.2px",
-    },
-    letterSpacing: {
-      "3xl": "-0.01em",
-    },
+    screens : {
+      'md' : '1194px'
+    }
   },
   variants: {
     extend: {},
