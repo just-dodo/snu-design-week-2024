@@ -12,6 +12,10 @@ import { useRouter } from "next/router";
 import CONFIGS from "configs";
 import { useState } from "react";
 import useCourseStore from "store/courseStore";
+import PCTitle from "components/pc-title";
+import _useWindowSize from "utils/useWindowSize";
+import Image from "next/image";
+
 const DATABASE_ID = CONFIGS.databaseId;
 
 export const getStaticProps = async () => {
@@ -73,15 +77,53 @@ export default function CoursePage(props: PageProps) {
     pageProperties[item] = getPageProperty<string>(item, pageBlock, recordMap);
   });
 
+  const { isMobileView } = _useWindowSize();
   //  <div className="flex-1 w-screen bg-white align-center-top">
+
+  const [isClassListOpen, setIsClassListOpen] = useState(false);
+
+  const isClassListShown = isMobileView && isClassListOpen;
+
   return (
     <>
-      <div className="w-screen h-fit flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px]">
-        <div>
-          <p>{courseTitle?.toUpperCase()}</p>
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 md:pt-52">
+        {!isMobileView && <PCTitle imgsrc="/img/pc-title-work.svg" />}
+        <div
+          className="flex flex-row gap-[10px] md:hidden w-fit self-center border-b-2 border-b-[#00BD84] cursor-pointer"
+          onClick={() => setIsClassListOpen(!isClassListOpen)}
+        >
+          <p className="text-[30px] font-semibold leading-[30px] text-center max-w-[200px]">
+            {courseTitle?.toUpperCase()}
+          </p>
+          <Image src={'/img/dropDown.svg'} alt="title" />
         </div>
 
-        <XWrapper className="hidden md:flex justify-between">
+        <div
+          className={`flex flex-col items-center transition-all duration-300 ${
+            isClassListShown
+              ? "flex opacity-100 gap-[30px] h-fit my-[50px]"
+              : "flex opacity-0 gap-0 h-0"
+          }`}
+        >
+          {courseList.map((value, index) => {
+            return (
+              <p
+                key={`class-${index}`}
+                className={`text-[24px] font-semibold leading-[30px] cursor-pointer ${
+                  isClassListShown ? "top-0" : "-top-10"
+                }`}
+                onClick={() => {
+                  setCourseName(value.path);
+                  setIsClassListOpen(false);
+                }}
+              >
+                {value.title}
+              </p>
+            );
+          })}
+        </div>
+
+        <XWrapper className="hidden md:flex justify-between ">
           {courseList.map((value, index) => {
             const isSelected = courseTitle === value.title;
             const opacityClassName = isSelected ? "" : "opacity-20";
@@ -104,37 +146,44 @@ export default function CoursePage(props: PageProps) {
             );
           })}
         </XWrapper>
-        <XWrapper className="flex flex-col md:flex-col justify-between gap-6 px-6 md:px-0 ">
-          <div>
-            <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
-              <div className="flex flex-col relative ">
-                <h1 className="font-bold text-3xl leading-3xl ">
-                  {courseData?.korean_text}
-                </h1>
-                <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
-                  {courseData?.english_text}
-                </h1>
-                <h2 className="text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
-                  지도교수 | {courseData?.advisor}
-                </h2>
-                <h2 className="text-[16px]] leading-6 -tracking-[0.2px]">
-                  Advisor | {courseData?.advisor_eng}
-                </h2>
+
+        <div
+          className={`flex flex-col justify-center items-center transition-all duration-300 ${
+            !isClassListShown ? "opacity-100 h-fit" : "opacity-0 h-0"
+          }`}
+        >
+          <XWrapper className="flex flex-col md:flex-col justify-between gap-6 px-6 md:px-0 my-[50px] ">
+            <div>
+              <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
+                <div className="flex flex-col relative ">
+                  <h1 className="font-bold text-3xl leading-3xl ">
+                    {courseData?.korean_text}
+                  </h1>
+                  <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
+                    {courseData?.english_text}
+                  </h1>
+                  <h2 className="text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
+                    지도교수 | {courseData?.advisor}
+                  </h2>
+                  <h2 className="text-[16px]] leading-6 -tracking-[0.2px]">
+                    Advisor | {courseData?.advisor_eng}
+                  </h2>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex flex-row justify-between gap-8 text-[15px] leading-[160%]">
-            <div className="flex flex-col justify-start items-start h-full flex-1">
-              <p className=" ">{courseData?.description}</p>
+            <div className="flex flex-row justify-between gap-8 text-[15px] leading-[160%]">
+              <div className="flex flex-col justify-start items-start h-full flex-1">
+                <p className=" ">{courseData?.description}</p>
+              </div>
+              <div className="hidden md:flex flex-col justify-start items-start h-full flex-1 ">
+                <p className=" ">{courseData?.description_eng}</p>
+              </div>
             </div>
-            <div className="hidden md:flex flex-col justify-start items-start h-full flex-1 ">
-              <p className=" ">{courseData?.description_eng}</p>
-            </div>
-          </div>
-        </XWrapper>
-        <XWrapper>
-          <NotionPage {...props} />
-        </XWrapper>
+          </XWrapper>
+          <XWrapper>
+            <NotionPage {...props} />
+          </XWrapper>
+        </div>
       </div>
     </>
   );

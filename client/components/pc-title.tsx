@@ -8,7 +8,7 @@ interface Props {
 
 export default function PCTitle({ imgsrc, width=252, height=95 }: Props) {
   return (
-    <div className="w-auto h-auto relative">
+    <div className="w-auto h-auto relative hidden md:block">
       <Image src={imgsrc} alt="title" width={width} height={height}/>
     </div>
   );

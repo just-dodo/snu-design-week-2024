@@ -3,25 +3,6 @@ const withPlugins = require("next-compose-plugins");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  async redirects() {
-    return [
-      // {
-      //   source: "/archive/:year(2018|2019)/:path*",
-      //   destination: `https://archive.snudesignweek.com/archive/:year/:path*`,
-      //   permanent: true,
-      // },
-      // {
-      //   source: "/:year(2020|2021)/:path*",
-      //   destination: `https://archive.snudesignweek.com/:year/:path*`,
-      //   permanent: true,
-      // },
-      // {
-      //   source: "/:year(2023)/:path*",
-      //   destination: `https://2023.snudesignweek.com/:path*`,
-      //   permanent: true,
-      // },
-    ];
-  },
   experimental: {
     urlImports: [
       "https://framer.com/m/",
