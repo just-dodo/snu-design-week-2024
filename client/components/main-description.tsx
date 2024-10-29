@@ -5,7 +5,7 @@ export default function MainDescription() {
     location: "49, COLLEGE OF FINE ARTS,\nSEOUL NAT’L UNIVERSITY",
   }
   return (
-    <div className="absolute flex flex-col gap-[30px] top-[162px] left-[50%] transform -translate-x-1/2 justify-center items-center w-full">
+    <div className="absolute flex flex-col gap-[30px] top-[162px] left-[50%] transform -translate-x-1/2 justify-center items-center w-full z-20">
       <div className="flex flex-col gap-[8px] items-center">
         <div className="text-[#FFEFD3] font-pretendard text-[35px] font-bold leading-normal tracking-[-0.35px]">
           애벌레 행동
