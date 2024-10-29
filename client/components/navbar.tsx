@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
+import MobileMenuOverlay from "./mobile-menu-overlay";
+import Menu from "icons/Menu";
 //
 
 export default function Navbar(): ReactElement {
   const router = useRouter();
   const { isMobileView } = useWindowSize();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathList = ["home", "about", "works", "people", "program", "partners"];
   const basePath = "/";
   const isHome = router.pathname === basePath;
@@ -65,9 +68,8 @@ export default function Navbar(): ReactElement {
     return (
       <>
         <nav
-          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
-            router.pathname != "/" ? "border-b-primary border-b" : null
-          }`}
+          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${router.pathname != "/" ? "border-b-primary border-b" : null
+            }`}
         >
           <Link href="/">
             <p className="text-secondary font-bold text-[35px]">
@@ -84,10 +86,27 @@ export default function Navbar(): ReactElement {
         </nav>
       </>
     );
+  } if (!isHome) {
+    return (
+      <>
+        <MobileMenuOverlay isVisible={isMobileMenuOpen} setIsVisible={setIsMobileMenuOpen} />
+        <nav className="flex flex-row justify-between px-[24px] h-[49px] bg-primary w-full items-center">
+          <div>
+            SNUD2024
+          </div>
+          <div>
+            {router.pathname.split("/")[1]}
+          </div>
+          <div onClick={() => setIsMobileMenuOpen(true)}>
+            <Menu />
+          </div>
+        </nav>
+      </>
+    );
   } else {
     return (
       <>
       </>
-    );
+    )
   }
 }
