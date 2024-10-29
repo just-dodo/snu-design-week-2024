@@ -85,65 +85,75 @@ function Board({ collectionView, collectionData, collection, padding }) {
       }
     }
 
-    return (
-      <div className="w-full px-6 md:p-0  grid grid-cols-1 md:grid-cols-2 gap-3  justify-between">
-        {blockIds?.map((blockId: string) => {
-          const block = recordMap.block[blockId]?.value as PageBlock;
+    const blocks = blockIds
+      ?.map((blockId: string) => {
+        const block = recordMap.block[blockId]?.value as PageBlock;
 
-          if (!block) {
-            console.log("block is null");
-            return null;
-          }
+        if (!block) {
+          console.log("block is null");
+          return null;
+        }
 
-          const studentName = getPropertyValue(
-            block,
-            collectionView.format?.board_properties,
-            collection,
-            "학생이름"
-          );
-          const studentName_eng = getPropertyValue(
-            block,
-            collectionView.format?.board_properties,
-            collection,
-            "학생이름_영문"
-          );
-          const workName = getPropertyValue(
-            block,
-            collectionView.format?.board_properties,
-            collection,
-            "작품이름"
-          );
-          const workName_eng = getPropertyValue(
-            block,
-            collectionView.format?.board_properties,
-            collection,
-            "작품이름_영문"
-          );
+        const studentName = getPropertyValue(
+          block,
+          collectionView.format?.board_properties,
+          collection,
+          "학생이름"
+        );
+        const studentName_eng = getPropertyValue(
+          block,
+          collectionView.format?.board_properties,
+          collection,
+          "학생이름_영문"
+        );
+        const workName = getPropertyValue(
+          block,
+          collectionView.format?.board_properties,
+          collection,
+          "작품이름"
+        );
+        const workName_eng = getPropertyValue(
+          block,
+          collectionView.format?.board_properties,
+          collection,
+          "작품이름_영문"
+        );
 
-          const searchAbleString =
-            `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
+        const searchAbleString =
+          `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
 
-          if (
-            searchText &&
-            !searchAbleString.includes(searchText.toLowerCase())
-          ) {
-            return null;
-          }
+        if (
+          searchText &&
+          !searchAbleString.includes(searchText.toLowerCase())
+        ) {
+          return null;
+        }
 
-          return (
-            <WorkCard
-              className=" "
-              collection={collection}
-              block={block}
-              cover={board_cover}
-              coverSize={board_cover_size}
-              coverAspect={board_cover_aspect}
-              properties={collectionView.format?.board_properties}
-              key={blockId}
-              groupName={groupName ? groupName : ""}
-            />
-          );
-        })}
+        return (
+          <WorkCard
+            className=" "
+            collection={collection}
+            block={block}
+            cover={board_cover}
+            coverSize={board_cover_size}
+            coverAspect={board_cover_aspect}
+            properties={collectionView.format?.board_properties}
+            key={blockId}
+            groupName={groupName ? groupName : ""}
+          />
+        );
+      })
+      .filter((block) => !!block);
+
+    return blocks.length > 0 ? (
+      <div className="w-full px-6 md:p-0 pb-10 grid grid-cols-1 md:grid-cols-2 gap-3  justify-between">
+        {blocks}
+      </div>
+    ) : (
+      <div className="w-full h-full flex justify-center items-center">
+        <p className="text-primary text-xl font-bold text-center">
+          검색 결과가 없습니다.
+        </p>
       </div>
     );
   }, [
