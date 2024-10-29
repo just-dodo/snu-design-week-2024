@@ -14,7 +14,6 @@ import { useState } from "react";
 import useCourseStore from "store/courseStore";
 import PCTitle from "components/pc-title";
 import _useWindowSize from "utils/useWindowSize";
-import dropDown from "./_components/dropdown.svg";
 import Image from "next/image";
 
 const DATABASE_ID = CONFIGS.databaseId;
@@ -96,7 +95,7 @@ export default function CoursePage(props: PageProps) {
           <p className="text-[30px] font-semibold leading-[30px] text-center max-w-[200px]">
             {courseTitle?.toUpperCase()}
           </p>
-          <Image src={dropDown} alt="title" />
+          <Image src={'/img/dropDown.svg'} alt="title" />
         </div>
 
         <div
