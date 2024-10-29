@@ -10,7 +10,7 @@ const Program: NextPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("OPENING DAY");
 
   return (
-    <div className="mt-[130px] mb-[100px] w-[900px] flex flex-col justify-center items-center gap-[20px]">
+    <div className="pt-[244px] mb-[100px] w-[900px] flex flex-col items-center gap-[20px] min-h-screen">
       <PCTitle imgsrc="/img/pc-title-program.svg" width={294} height={93}/>
       <div className="flex flex-row justify-between w-full items-center mt-[5px] mb-[12px] mx-[20px]">
         <div onClick={() => setSelectedCategory("OPENING DAY")} className={`flex flex-col items-center w-auto cursor-pointer ${selectedCategory === "OPENING DAY" ? null : 'opacity-50'}`}>

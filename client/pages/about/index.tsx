@@ -9,7 +9,7 @@ export default function AboutPage() {
   const [selectedCategory, setSelectedCategory] = useState("Exhibition Overview");
 
   return (
-    <div className="mt-[130px] mb-[100px] w-[900px] flex flex-col justify-center items-center gap-[20px]">
+    <div className="mb-[100px] w-[900px] flex flex-col items-center gap-[20px] pt-[244px] min-h-screen">
       <PCTitle imgsrc="/img/pc-title-about.svg" />
       <div className="flex flex-row justify-between w-full items-center mt-[5px] mb-[12px] mx-[20px]">
         <div onClick={() => setSelectedCategory("Exhibition Overview")} className={`flex flex-col items-center w-auto cursor-pointer ${selectedCategory === "Exhibition Overview" ? null : 'opacity-50'}`}>

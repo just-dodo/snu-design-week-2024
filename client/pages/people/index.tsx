@@ -135,7 +135,7 @@ const People: NextPage = () => {
   const peopleList = selectedCategory === "visualDesign" ? visualDesignPeopleList : industrialDesignPeopleList;
 
   return (
-    <div className="mt-[130px] w-[900px] flex flex-col justify-center items-center gap-[20px]">
+    <div className="pt-[244px] mb-[100px] w-[900px] flex flex-col items-center gap-[20px] min-h-screen">
       <PCTitle imgsrc="/img/pc-title-people.svg" />
       <div className="flex flex-row gap-[100px] items-center mt-[5px] mb-[12px]">
         <div onClick={() => setSelectedCategory("visualDesign")} className={`flex flex-col items-center w-auto cursor-pointer ${selectedCategory === "visualDesign" ? null : 'opacity-50'}`}>
