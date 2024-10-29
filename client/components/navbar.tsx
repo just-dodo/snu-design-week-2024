@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
-import Image from "next/image";
-import mobileNavButtonBlue from "assets/mobile-nav-button-blue.png";
-import mobileNavButtonWhite from "assets/mobile-nav-button-white.png";
 //
 
 export default function Navbar(): ReactElement {
@@ -47,22 +44,8 @@ export default function Navbar(): ReactElement {
       return (
         <>
           {isMobileView ? (
-            <Link
-              href={path != "home" ? basePath + path : basePath}
-              key={"nav-component-" + path}
-              className="z-50 w-full"
-              onClick={() => {
-                setIsMobileMenuShown(false);
-              }}
-            >
-              <div
-                className={`align-center-left px-3 w-full md:my-0 md:w-60 h-11 cut-topright ${activeNavColor}`}
-              >
-                <p className="text-xl text-primary  ">
-                  {path.toUpperCase().replace("-", " ")}
-                </p>
-              </div>
-            </Link>
+            <>
+            </>
           ) : (
             <Link
               href={path != "home" ? basePath + path : basePath}
@@ -77,10 +60,6 @@ export default function Navbar(): ReactElement {
         </>
       );
     });
-
-  const [isMobileMenuShown, setIsMobileMenuShown] = useState(false);
-  /// set MobileNavColor to white when home, else to primary
-  const mobileNavBackgroundColor = "bg-primary";
 
   if (!isMobileView) {
     return (
@@ -108,64 +87,6 @@ export default function Navbar(): ReactElement {
   } else {
     return (
       <>
-        <nav
-          className={`fixed top-0 ${mobileNavBackgroundColor} md:bg-primary h-[60px] min-h-[60px] w-screen flex flex-row flex-0 z-40 justify-between items-center ${
-            router.pathname != "/" ? "border-b-primary border-b" : null
-          }`}
-        >
-          {navList.map((nav, index) => {
-            if (
-              nav.props.children.props.children.props.className.includes(
-                "bg-secondary"
-              ) ||
-              isUnknownPath
-            ) {
-              return (
-                <div
-                  key={"mobile-nav-component-" + index}
-                  className={`w-60 h-full flex items-end`}
-                >
-                  {nav.props.children.props.children.props.children.props
-                    .children != "HOME" && !isUnknownPath
-                    ? nav
-                    : null}
-                </div>
-              );
-            }
-          })}
-          <Image
-            src={isHome ? mobileNavButtonBlue : mobileNavButtonWhite}
-            alt="mobile-header-button"
-            width={28}
-            height={28}
-            style={{ marginRight: "1rem", zIndex: 50 }}
-            onClick={() => setIsMobileMenuShown(!isMobileMenuShown)}
-          />
-        </nav>
-        {isMobileMenuShown ? (
-          <div
-            className="fixed top-0 right-0 w-screen h-screen bg-[rgba(0,0,0,0.1)] z-40"
-            onClick={() => setIsMobileMenuShown(!isMobileMenuShown)}
-          >
-            <div
-              className={`absolute top-0 right-0 w-3/5 h-screen bg-primary z-50`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="mt-[60px]">
-                {navList.map((nav, index) => {
-                  return (
-                    <div
-                      key={"mobile-nav-button-" + index}
-                      className={`w-full h-full mb-5`}
-                    >
-                      {nav}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        ) : null}
       </>
     );
   }
