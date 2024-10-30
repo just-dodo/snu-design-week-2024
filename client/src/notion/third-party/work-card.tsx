@@ -188,31 +188,44 @@ export const WorkCard: React.FC<
   const workName_eng = getPropertyValue("작품이름_영문");
 
   const innerCard = (
-    <div
-      className="w-full h-[248px] relative overflow-hidden mx-0 
+    <div className="flex flex-col w-full h-fit">
+      <div
+        className="w-full h-[248px] relative overflow-hidden mx-0 
     !outline-primary rounded-2xl !outline-2 !outline  "
-    >
-      {(coverContent || cover?.type !== "none") && (
-        <>
-          <div className="absolute top-0 w-full h-[248px] z-0">
-            {coverContent}
-          </div>
-          <div className="absolute top-0 w-full h-[248px] z-10 bg-black opacity-40"></div>
-        </>
-      )}
+      >
+        {(coverContent || cover?.type !== "none") && (
+          <>
+            <div className="absolute top-0 w-full h-[248px] z-0">
+              {coverContent}
+            </div>
+            <div className="absolute top-0 w-full h-[248px] z-10 bg-black opacity-0 md:opacity-40"></div>
+          </>
+        )}
 
-      <div className="relative flex flex-col justify-between h-full w-full z-50 px-[15px] py-[15px]">
-        <div className="relative bg-secondary !outline-primary rounded-full !outline-2 !outline z-50 w-[27px] min-h-[27px] h-[27px]"></div>
+        <div className="relative flex  flex-col justify-between h-full w-full z-50 px-[15px] py-[15px]">
+          <div className="relative bg-secondary !outline-primary rounded-full !outline-2 !outline z-50 w-[27px] min-h-[27px] h-[27px]"></div>
 
-        <div className="relative flex flex-row justify-between w-full z-50 text-secondary text-[16px]">
-          <div className={"flex flex-col items-start "}>
-            <div className="font-bold">{studentName}</div>
-            <div className="font-regular">{studentName_eng}</div>
+          <div className="relative hidden md:flex flex-row justify-between w-full z-50 text-secondary text-[16px]">
+            <div className={"flex flex-col items-start "}>
+              <div className="font-bold">{studentName}</div>
+              <div className="font-regular">{studentName_eng}</div>
+            </div>
+            <div className={"flex flex-col items-end "}>
+              <div className="font-bold">{workName}</div>
+              <div className="font-regular">{workName_eng}</div>
+            </div>
           </div>
-          <div className={"flex flex-col items-end "}>
-            <div className="font-bold">{workName}</div>
-            <div className="font-regular">{workName_eng}</div>
-          </div>
+        </div>
+      </div>
+
+      <div className="relative flex md:hidden flex-col justify-between w-full z-50 text-primary text-[16px] gap-[10px] px-1 py-[10px]">
+        <div className={"flex flex-col items-start gap-[5px] "}>
+          <div className="font-semibold">{workName}</div>
+          <div className="font-medium text-xs">{workName_eng}</div>
+        </div>
+        <div className={"flex flex-row gap-[6px] items-center "}>
+          <div className="font-semibold">{studentName}</div>
+          <div className="font-medium text-xs">{studentName_eng}</div>
         </div>
       </div>
     </div>

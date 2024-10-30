@@ -367,15 +367,14 @@ export default function WorkPage(
     );
   });
 
-  const backdropBlur =
-    isMobileView && isScrollStarted ? "backdrop-blur" : "backdrop-blur-none";
+  const backdropBlur = isScrollStarted ? "backdrop-blur" : "backdrop-blur-none";
 
   return (
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
       <div
-        className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300  ${backdropBlur}`}
+        className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300 md:mt-[69px] ${backdropBlur} md:gap-10`}
       >
         {/* authorContainer */}
         <div
@@ -388,12 +387,12 @@ export default function WorkPage(
         </div>
         <div className="flex flex-1 flex-row items-center justify-between h-fit md:min-h-[52px] md:mb-0 ">
           <div
-            className="flex  h-fit transition-all duration-300 flex-row  ease-in-out items-center justify-between "
+            className="flex h-fit w-full transition-all duration-300 flex-row ease-in-out items-center justify-evenly "
             style={{
               opacity: isScrollStarted ? 1 : 0,
             }}
           >
-            <div className="flex text-[14px] md:text-[20px] gap-[10px] w-[157px] md:w-fit">
+            <div className="flex text-[14px] md:text-[20px] gap-[10px] mr-3 max-w-[157px] md:w-fit">
               <p className="font-semibold md:font-bold">
                 {pageProperties["학생이름"]}
               </p>
@@ -401,9 +400,8 @@ export default function WorkPage(
                 {pageProperties["학생이름_영문"]}
               </p>
             </div>
-            <p className="flex-1 text-[14px] md:text-3xl font-bold truncate max-w-[157px]">
-              {pageProperties["작품이름"]} {pageProperties["작품이름"]}{" "}
-              {pageProperties["작품이름"]} {pageProperties["작품이름"]}
+            <p className="flex-1 md:flex-0 text-right md:text-center text-[14px] md:text-3xl font-bold truncate">
+              {pageProperties["작품이름"]}
             </p>
             <div className="hidden md:flex flex-col items-end font-bold gap-1 h-fit">
               <p className="text-[20px] font-bold leading-6">

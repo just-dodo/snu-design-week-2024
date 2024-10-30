@@ -1,0 +1,32 @@
+[
+  {
+    "name": "모네",
+    "englishName": "Mone",
+    "type": "visual",
+    "works": [
+      {
+        "id": "1252cfba780a809c81fed1a934c4af96",
+        "class": "brand-design"
+      },
+      {
+        "id": "1272cfba780a80fc8283e355a113a7da",
+        "class": "living-design"
+      }
+    ]
+  },
+  {
+    "name": "모네2",
+    "englishName": "Mone2",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "1272cfba780a805f965bde3326edce81",
+        "class": "brand-design"
+      },
+      {
+        "id": "1272cfba780a80bbbdc2d7b84d5b94d8",
+        "class": "living-design"
+      }
+    ]
+  }
+]

@@ -14,6 +14,7 @@ import { useState } from "react";
 import useCourseStore from "store/courseStore";
 import useSearchStore from "store/searchStore";
 import { SearchIcon } from "icons/Search";
+import PCTitle from "components/pc-title";
 const DATABASE_ID = CONFIGS.databaseId;
 
 export const getStaticProps = async () => {
@@ -73,8 +74,10 @@ export default function CoursePage(props: PageProps) {
 
   return (
     <>
-      <div className="w-screen h-fit flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px]">
-        <XWrapper className="flex justify-between relative">
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px] md:pt-[244px] pb-10">
+        <PCTitle imgsrc="/img/pc-title-search.svg" className="mb-5" />
+
+        <XWrapper className="flex justify-between relative !h-fit">
           <input
             type="text"
             value={searchText}
@@ -87,7 +90,7 @@ export default function CoursePage(props: PageProps) {
           />
         </XWrapper>
 
-        <XWrapper>
+        <XWrapper className=" mb-10">
           <NotionPage {...props} />
         </XWrapper>
       </div>
