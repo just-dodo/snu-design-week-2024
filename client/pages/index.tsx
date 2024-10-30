@@ -59,18 +59,21 @@ const Landing: NextPage = () => {
               priority={true}
             />
           </div>
-          <div className="absolute right-[24px] top-[24px] z-30" onClick={() => setIsMobileMenuOpen(true)}>
-            <Menu />
-          </div>
+
           {!isMobileMenuOpen &&
-            <div className="flex flex-col mt-[50px] gap-[11px] ml-[23px] z-10">
-              <div className="text-secondary text-[30px] font-[700] whitespace-pre-line tracking-[-0.3px]">
-                {`SNU DESIGN WEEK\n2024\n애벌레 행동`}
+            <>
+              <div className="absolute right-[24px] top-[24px] z-30" onClick={() => setIsMobileMenuOpen(true)}>
+                <Menu />
               </div>
-              <div className="text-secondary text-[12px] font-[500] leading-[18px] whitespace-pre-line tracking-[-0.12px]">
-                {`2024.11.30.THU - 2024.12.05.TUE 10AM - 6PM\n1, GWANAK-RO, GWANAK-GU, SEOUL\n49, COLLEGE OF FINE ARTS, SEOUL NAT’L UNIVERSITY`}
+              <div className="flex flex-col mt-[50px] gap-[11px] ml-[23px] z-10">
+                <div className="text-secondary text-[30px] font-[700] whitespace-pre-line tracking-[-0.3px]">
+                  {`SNU DESIGN WEEK\n2024\n애벌레 행동`}
+                </div>
+                <div className="text-secondary text-[12px] font-[500] leading-[18px] whitespace-pre-line tracking-[-0.12px]">
+                  {`2024.11.30.THU - 2024.12.05.TUE 10AM - 6PM\n1, GWANAK-RO, GWANAK-GU, SEOUL\n49, COLLEGE OF FINE ARTS, SEOUL NAT’L UNIVERSITY`}
+                </div>
               </div>
-            </div>}
+            </>}
         </>
       )}
     </div>
