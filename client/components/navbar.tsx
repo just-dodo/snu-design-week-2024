@@ -90,12 +90,17 @@ export default function Navbar(): ReactElement {
     return (
       <>
         <MobileMenuOverlay isVisible={isMobileMenuOpen} setIsVisible={setIsMobileMenuOpen} />
-        <nav className="flex flex-row justify-between px-[24px] h-[49px] bg-primary w-full items-center">
-          <div>
-            SNUD2024
+        <nav className="flex flex-row justify-between px-[24px] h-[60px] bg-primary w-full items-center py-[15px]">
+          <div className="">
+            <div className="text-secondary text-[19px] font-[700] leading-[17.1px] tracking-[-0.3px]">
+              SNUD
+            </div>
+            <div className="text-secondary text-[19px] font-[700] leading-[17.1px] tracking-[0.9px]">
+              2024
+            </div>
           </div>
-          <div>
-            {router.pathname.split("/")[1]}
+          <div className="text-secondary text-[24px] font-[700] tracking-[-0.24px]">
+            {router.pathname.split("/")[1].toUpperCase()}
           </div>
           <div onClick={() => setIsMobileMenuOpen(true)}>
             <Menu />
