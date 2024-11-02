@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
 
+type Dot = {
+  x: number;
+  y: number;
+  id: string;
+  timestamp: number;
+};
+
 const MouseTrail = () => {
-  const [dots, setDots] = useState([]);
-  const [lastDot, setLastDot] = useState(null);
+  const [dots, setDots] = useState<Dot[]>([]);
+  const [lastDot, setLastDot] = useState<Dot | null>(null);
 
   // Calculate distance between two points
-  const getDistance = (p1, p2) => {
+  const getDistance = (p1: Dot, p2: Dot) => {
     if (!p1 || !p2) return 0;
     return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
   };
@@ -16,37 +23,50 @@ const MouseTrail = () => {
       const newDot = {
         x: e.clientX,
         y: e.clientY,
-        id: Date.now(),
+        id: `${Date.now()}`,
+        timestamp: Date.now(),
       };
 
-      const interpolatedDots: { x: number; y: number; id: number }[] = [];
       // Only add new dot if distance from last dot is >= 12px
-      if (!lastDot || getDistance(newDot, lastDot) >= 12) {
-        if (lastDot) {
-          const distance = getDistance(newDot, lastDot);
-          const steps = Math.floor(distance / 12);
-          for (let i = 1; i <= steps; i++) {
-            interpolatedDots.push({
-              x: lastDot.x + ((newDot.x - lastDot.x) / distance) * 12 * i,
-              y: lastDot.y + ((newDot.y - lastDot.y) / distance) * 12 * i,
-              id: Date.now() + "_" + i,
-            });
-          }
+      if (!!lastDot) {
+        const interpolatedDots: Dot[] = [];
+        const distance = getDistance(newDot, lastDot);
+        const steps = Math.floor(distance / 12);
+        for (let i = 1; i <= steps; i++) {
+          interpolatedDots.push({
+            x: lastDot.x + ((newDot.x - lastDot.x) / distance) * 12 * i,
+            y: lastDot.y + ((newDot.y - lastDot.y) / distance) * 12 * i,
+            id: `${Date.now()}_${i}`,
+            timestamp: Date.now(),
+          });
         }
         setDots((prevDots) => [...prevDots, ...interpolatedDots]);
-        setLastDot(interpolatedDots[interpolatedDots.length - 1]);
+        if (steps > 0) {
+          setLastDot(interpolatedDots[steps - 1]);
+        }
 
         // Remove every dot after 2 seconds
         for (let i = 0; i < interpolatedDots.length; i++) {
           setTimeout(() => {
             setDots((prevDots) =>
-              prevDots.filter((dot) => dot.id !== interpolatedDots[i].id)
+              prevDots.filter(
+                (dot) =>
+                  dot.id !== interpolatedDots[i].id &&
+                  Date.now() - dot.timestamp < 2500
+              )
             );
-          }, 2000 + i * 10);
+          }, 2000 + i * 1);
         }
-        // setTimeout(() => {
-        //   setDots((prevDots) => prevDots.filter((dot) => dot.id !== newDot.id));
-        // }, 2000 + interpolatedDots.length * 10);
+      } else {
+        setDots((prevDots) => [...prevDots, newDot]);
+        setLastDot(newDot);
+        setTimeout(() => {
+          setDots((prevDots) =>
+            prevDots.filter(
+              (dot) => dot.id !== newDot.id && Date.now() - dot.timestamp < 2500
+            )
+          );
+        }, 2000);
       }
     },
     [lastDot]
@@ -62,13 +82,13 @@ const MouseTrail = () => {
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none z-50"
+      className="trailContainer fixed inset-0 pointer-events-none z-[1000]"
       style={{ isolation: "isolate" }}
     >
       {dots.map((dot) => (
         <div
           key={dot.id}
-          className="absolute w-[14.3px] h-[14.3px] rounded-full bg-[#00BD84]"
+          className="absolute w-[14.3px] h-[14.3px] rounded-full bg-[#00BD84] "
           style={{
             left: dot.x,
             top: dot.y,
