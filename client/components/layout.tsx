@@ -15,7 +15,6 @@ export default function Layout({ children }: LayoutProps): ReactElement {
   const topRef = React.useRef<HTMLDivElement>(null);
   function scrollTop() {
     if (topRef.current) {
-      console.log("scrollTop");
       topRef.current.scrollIntoView();
       // window.scrollTo({
       //   top: topRef.current.offsetTop ,

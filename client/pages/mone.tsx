@@ -184,7 +184,6 @@ export default function WorkPage(props: PageProps) {
 
   function scrollTop() {
     if (topRef.current) {
-      console.log("scrollTop");
       topRef.current.scrollIntoView();
       // window.scrollTo({
       //   top: topRef.current.offsetTop ,
