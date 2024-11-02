@@ -19,10 +19,11 @@ const MouseTrail = () => {
 
   // Handle mouse movement
   const handleMouseMove = useCallback(
-    (e: MouseEvent) => {
+    (e: MouseEvent | TouchEvent) => {
+      const isMouseEvent = e instanceof MouseEvent;
       const newDot = {
-        x: e.clientX,
-        y: e.clientY,
+        x: isMouseEvent ? e.clientX : (e as TouchEvent).touches[0].clientX,
+        y: isMouseEvent ? e.clientY : (e as TouchEvent).touches[0].clientY,
         id: `${Date.now()}`,
         timestamp: Date.now(),
       };
@@ -75,8 +76,10 @@ const MouseTrail = () => {
   useEffect(() => {
     // Add event listener to window instead of a specific div
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleMouseMove);
     };
   }, [handleMouseMove]);
 
