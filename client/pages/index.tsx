@@ -18,7 +18,7 @@ const Landing: NextPage = () => {
   const ratio = useRatio();
 
   return (
-    <div className="bg-primary flex flex-col h-screen w-full relative">
+    <div className="bg-primary flex flex-col h-screen w-full relative overflow-hidden">
       {!isMobileView ? (
         <div className="pt-[92.5px]">
           <SearchAndInstagram />
@@ -34,15 +34,18 @@ const Landing: NextPage = () => {
             </Marquee>
           </div>
           <div
-            className={`absolute z-10 left-[50%] transform -translate-x-1/2 w-full`}
+            className={`flex absolute left-[50%] transform -translate-x-1/2 w-full h-[976px] top-[92px] justify-center`}
           >
             <Image
               src="/img/pc-main-animation.webp"
               alt="main-page-animation"
-              width={1920 * ratio.width}
-              height={1080 * ratio.width}
+              width={ratio.width * 1600 > 1920 ? 1920 : ratio.width * 1600}
+              height={976}
+              layout="fixed"
+              objectFit="cover"
               unoptimized={true}
               priority={true}
+              style={{ height: "100%" }}
             ></Image>
           </div>
         </div>
