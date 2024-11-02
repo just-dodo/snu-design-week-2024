@@ -24,6 +24,7 @@ import "@/styles/global.css";
 import "@/styles/notion.css";
 // global style overrides for prism theme (optional)
 import "@/styles/prism-theme.css";
+import MouseTrail from 'components/mouse-trail'
 
 
 
@@ -53,6 +54,7 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
       <Component {...pageProps} />
       <Analytics />
       <GlobalStyle />
+      <MouseTrail />
     </StyledThemeProvider>,
   )
 }
