@@ -1,6 +1,6 @@
 export default function TalkConcert() {
   return (
-    <div className="w-full flex flex-row gap-[40px]">
+    <div className="px-[16px] py-[20px] w-full flex flex-row gap-[40px]">
       <div className="w-[430px] text-[15px] text-primary font-[400] leading-[24px] text-justify">
         Talk Concert
       </div>
