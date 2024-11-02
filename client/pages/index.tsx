@@ -14,7 +14,6 @@ import _useWindowSize from "utils/useWindowSize";
 const Landing: NextPage = () => {
   const { isMobileView, windowSize } = _useWindowSize();
 
-  console.log(windowSize);
   const ratio = useRatio();
 
   return (

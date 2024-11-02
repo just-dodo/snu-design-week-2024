@@ -222,7 +222,6 @@ export default function WorkPage(
 
   function scrollTop() {
     if (topRef.current) {
-      console.log("scrollTop");
       topRef.current.scrollIntoView();
       // window.scrollTo({
       //   top: topRef.current.offsetTop ,
