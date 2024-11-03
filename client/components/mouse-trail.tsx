@@ -10,8 +10,6 @@ type Dot = {
 const TRAIL_DURATION_MAX = 2500;
 const TRAIL_DURATION_MIN = 2000;
 const TRAIL_STEP_SIZE = 11;
-const TRAIL_DIAMETER = `14.3px`;
-const TRAIL_COLOR = "#00BD84";
 
 const MouseTrail = () => {
   const [dots, setDots] = useState<Dot[]>([]);
