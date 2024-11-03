@@ -7,6 +7,12 @@ type Dot = {
   timestamp: number;
 };
 
+const TRAIL_DURATION_MAX = 2500;
+const TRAIL_DURATION_MIN = 2000;
+const TRAIL_STEP_SIZE = 11;
+const TRAIL_DIAMETER = `14.3px`;
+const TRAIL_COLOR = "#00BD84";
+
 const MouseTrail = () => {
   const [dots, setDots] = useState<Dot[]>([]);
   const [lastDot, setLastDot] = useState<Dot | null>(null);
@@ -32,11 +38,15 @@ const MouseTrail = () => {
       if (!!lastDot) {
         const interpolatedDots: Dot[] = [];
         const distance = getDistance(newDot, lastDot);
-        const steps = Math.floor(distance / 12);
+        const steps = Math.floor(distance / TRAIL_STEP_SIZE);
         for (let i = 1; i <= steps; i++) {
           interpolatedDots.push({
-            x: lastDot.x + ((newDot.x - lastDot.x) / distance) * 12 * i,
-            y: lastDot.y + ((newDot.y - lastDot.y) / distance) * 12 * i,
+            x:
+              lastDot.x +
+              ((newDot.x - lastDot.x) / distance) * TRAIL_STEP_SIZE * i,
+            y:
+              lastDot.y +
+              ((newDot.y - lastDot.y) / distance) * TRAIL_STEP_SIZE * i,
             id: `${Date.now()}_${i}`,
             timestamp: Date.now(),
           });
@@ -53,10 +63,10 @@ const MouseTrail = () => {
               prevDots.filter(
                 (dot) =>
                   dot.id !== interpolatedDots[i].id &&
-                  Date.now() - dot.timestamp < 2500
+                  Date.now() - dot.timestamp < TRAIL_DURATION_MAX
               )
             );
-          }, 2000 + i * 1);
+          }, TRAIL_DURATION_MIN + i * 1);
         }
       } else {
         setDots((prevDots) => [...prevDots, newDot]);
@@ -64,10 +74,12 @@ const MouseTrail = () => {
         setTimeout(() => {
           setDots((prevDots) =>
             prevDots.filter(
-              (dot) => dot.id !== newDot.id && Date.now() - dot.timestamp < 2500
+              (dot) =>
+                dot.id !== newDot.id &&
+                Date.now() - dot.timestamp < TRAIL_DURATION_MAX
             )
           );
-        }, 2000);
+        }, TRAIL_DURATION_MIN);
       }
     },
     [lastDot]
@@ -91,7 +103,7 @@ const MouseTrail = () => {
       {dots.map((dot) => (
         <div
           key={dot.id}
-          className="absolute w-[14.3px] h-[14.3px] rounded-full bg-[#00BD84] "
+          className={`absolute w-[14.3px] h-[14.3px] rounded-full bg-[#00BD84]`}
           style={{
             left: dot.x,
             top: dot.y,
