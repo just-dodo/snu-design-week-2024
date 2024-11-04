@@ -28,8 +28,8 @@ const Landing: NextPage = () => {
               <Image
                 src={partnersLogo}
                 alt="partners-logo"
-                width={ratio.width * 1287}
-                height={ratio.height * 40}
+                width={ratio.width * 1476}
+                height={ratio.height * 50}
               />
             </Marquee>
           </div>
