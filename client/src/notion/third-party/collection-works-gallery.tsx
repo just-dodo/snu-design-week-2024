@@ -146,8 +146,10 @@ function Board({ collectionView, collectionData, collection, padding }) {
       .filter((block) => !!block);
 
     return blocks.length > 0 ? (
-      <div className="w-full px-6 md:p-0 pb-10 grid grid-cols-1 md:grid-cols-2 gap-3  justify-between">
-        {blocks}
+      <div className="w-full flex justify-center items-center">
+        <div className="w-fit px-6 md:p-0 pb-10 grid grid-cols-1 sm:grid-cols-2 gap-3 justify-center self-center">
+          {blocks}
+        </div>
       </div>
     ) : (
       <div className="w-full h-full flex justify-center items-center">
