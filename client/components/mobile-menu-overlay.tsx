@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Image from "next/image";
 import _useWindowSize from "utils/useWindowSize";
 import { useRatio } from "utils/useRatio";
@@ -13,6 +14,19 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
   const router = useRouter();
   const { windowSize } = _useWindowSize();
   const ratio = useRatio();
+
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isVisible]);
+
   if (!isVisible) return null;
 
   return (
