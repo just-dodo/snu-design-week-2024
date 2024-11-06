@@ -16,7 +16,7 @@ export const useRatio = () => {
     if (typeof window !== "undefined") {
       const handleResize = () => {
         setRatio({
-          width: window.innerWidth > 768 ? window.innerWidth / webPivotWidth : window.innerWidth / mobilePivotWidth,
+          width: window.innerWidth > 1194 ? window.innerWidth / webPivotWidth : window.innerWidth / mobilePivotWidth,
           height: window.innerWidth > 768 ? window.innerHeight / webPivotHeight : window.innerHeight / mobilePivotHeight,
         });
       };

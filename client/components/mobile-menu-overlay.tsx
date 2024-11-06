@@ -32,7 +32,7 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
   return (
     <>
       {router.pathname !== '/' && (
-        <div className="absolute w-full h-full overflow-hidden z-10">
+        <div className="fixed w-full h-full overflow-hidden z-10">
           <Image
             src="/img/mobile-main-animation.webp"
             alt="main-page-animation"
