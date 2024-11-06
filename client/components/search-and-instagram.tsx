@@ -2,6 +2,7 @@ import { SearchIcon } from '../icons/Search';
 import { InstagramIcon } from '../icons/Instagram';
 import { useState } from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
 
 export default function SearchAndInstagram() {
   
@@ -36,9 +37,9 @@ export default function SearchAndInstagram() {
           value={input}
         />
       </form>
-      <div className='hover:cursor-pointer z-10'>
+      <Link href="https://www.instagram.com/snudesignweek/" className='hover:cursor-pointer z-10'>
         <InstagramIcon />
-      </div>
+      </Link>
     </div>
   )
 };

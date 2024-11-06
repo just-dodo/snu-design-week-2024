@@ -62,7 +62,9 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
               <Link href="/search" onClick={() => setIsVisible(false)}>
                 <SearchIcon color='#FFEFD3' />
               </Link>
-              <InstagramIcon />
+              <Link href="https://www.instagram.com/snudesignweek/">
+                <InstagramIcon />
+              </Link>
             </div>
           </div>
         </div>
