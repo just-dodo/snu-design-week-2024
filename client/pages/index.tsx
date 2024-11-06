@@ -34,18 +34,15 @@ const Landing: NextPage = () => {
             </Marquee>
           </div>
           <div
-            className={`flex absolute left-[50%] transform -translate-x-1/2 w-full h-[976px] top-[92px] justify-center`}
+            className={`flex absolute left-[50%] transform -translate-x-1/2 w-full top-[92px] justify-center`}
           >
             <Image
               src="/img/pc-main-animation.webp"
               alt="main-page-animation"
-              width={ratio.width * 1600 > 1920 ? 1920 : ratio.width * 1600}
-              height={976}
-              layout="fixed"
-              objectFit="cover"
+              width={ratio.width * 1920 > 1920 ? 1920 : ratio.width * 1920}
+              height={ratio.width * 1080}
               unoptimized={true}
               priority={true}
-              style={{ height: "100%" }}
             ></Image>
           </div>
         </div>
