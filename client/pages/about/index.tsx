@@ -16,7 +16,7 @@ export default function AboutPage() {
   const categoryWrapperDesign = !isMobileView ? `flex flex-row justify-between w-full items-center mt-[5px] mb-[12px] mx-[20px]` : `flex flex-col w-auto gap-[6px] justify-start items-start`;
 
   return (
-    <div className="md:pt-[92px] w-full flex flex-col items-center">
+    <div className="md:pt-[92px] md:mb-[88px] w-full flex flex-col items-center">
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>

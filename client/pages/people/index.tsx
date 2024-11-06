@@ -27,7 +27,7 @@ const People: NextPage = () => {
   const { peopleData } = usePeopleData();
 
   return (
-    <div className='md:pt-[92px] w-full flex flex-col items-center'>
+    <div className='md:pt-[92px] md:mb-[88px] w-full flex flex-col items-center'>
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>

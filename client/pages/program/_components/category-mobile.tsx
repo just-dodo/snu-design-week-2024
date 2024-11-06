@@ -11,7 +11,7 @@ export default function Category({ kor, eng, date, selectedCategory, setSelected
   const isSelected = selectedCategory === eng;
   return (
     <div className="w-full rounded-[16px] border-[1.5px] border-primary transition-all duration-500 ease-in-out overflow-hidden">
-      <div onClick={() => setSelectedCategory(eng)} className={`flex flex-row w-full justify-between px-[16px] py-[16px] ${isSelected ? 'bg-primary rounded-t-[16px]' : null}`}>
+      <div onClick={() => setSelectedCategory(eng)} className={`flex flex-row w-full justify-between px-[16px] py-[16px] ${isSelected ? 'bg-primary rounded-t-[15px]' : null}`}>
         <div>
           <div className={`text-[18px] font-[700] text-primary ${isSelected ? 'text-secondary' : 'text-primary'}`}>{kor}</div>
           <div className={`text-[16px] font-[400] text-primary ${isSelected ? 'text-secondary' : 'text-primary'}`}>{eng}</div>

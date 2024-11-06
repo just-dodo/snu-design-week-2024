@@ -19,7 +19,7 @@ const PartnersPage: NextPage = () => {
     'SNU DESIGN WEEK 2024는\n다음과 같은 파트너사 / 동문의 협력 및 후원을 통해 진행됩니다.');
 
   return (
-    <div className='md:pt-[92px] w-full flex flex-col items-center'>
+    <div className='md:pt-[92px] md:mb-[88px] w-full flex flex-col items-center'>
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
