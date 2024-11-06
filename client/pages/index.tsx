@@ -23,7 +23,7 @@ const Landing: NextPage = () => {
         <div className="pt-[92.5px]">
           <SearchAndInstagram />
           <MainDescription />
-          <div className="absolute bottom-0 w-full mb-[40px] z-20">
+          <div className="absolute bottom-0 w-full mb-[20px] z-20">
             <Marquee gradient={false} speed={50}>
               <Image
                 src={partnersLogo}
