@@ -45,7 +45,7 @@ export default function SearchAndInstagram() {
         </div>
         <input
           placeholder="Find your projects!"
-          className={`absolute z-10 ${!isHome ? 'border-2 border-primary' : null} outline-none pl-[24px] top-[-4px] right-[-6px] text-[24px] bg-[#FFEFD3] p-[10px] text-[#E22613] rounded-full transition-all duration-500 ease-in-out placeholder:text-[20px] placeholder:text-placeholder ${isSearchOpen ? 'w-[380px] opacity-100' : 'w-0 opacity-0'
+          className={`absolute z-10 ${!isHome ? 'border-2 border-primary' : null} outline-none pl-[20px] top-[-7px] right-[-6px] text-[24px] bg-[#FFEFD3] p-[14px] text-[#E22613] rounded-full transition-all duration-500 ease-in-out placeholder:text-[20px] placeholder:text-placeholder ${isSearchOpen ? 'w-[380px] opacity-100' : 'w-0 opacity-0'
             }`}
           onChange={handleChange}
           value={input}
