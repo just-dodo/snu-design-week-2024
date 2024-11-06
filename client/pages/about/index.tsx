@@ -16,11 +16,11 @@ export default function AboutPage() {
   const categoryWrapperDesign = !isMobileView ? `flex flex-row justify-between w-full items-center mt-[5px] mb-[12px] mx-[20px]` : `flex flex-col w-auto gap-[6px] justify-start items-start`;
 
   return (
-    <div className="md:pt-[92px] md:mb-[88px] w-full flex flex-col items-center">
+    <div className="md:pt-[92px] md:mb-[88px] mb-[50px] w-full flex flex-col items-center">
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
-      <div className="mb-[100px] md:w-[900px] w-full flex flex-col md:items-center items-start gap-[20px] md:pt-[88px] pt-[35px] min-h-screen md:px-0 px-[24px]">
+      <div className="md:w-[900px] w-full flex flex-col md:items-center items-start gap-[20px] md:pt-[88px] pt-[35px] min-h-screen md:px-0 px-[24px]">
         <PCTitle imgsrc="/img/pc-title-about.svg" />
         <div className={categoryWrapperDesign}>
           <Category kor="전시 개요" eng="Exhibition Overview" isMobileView={isMobileView} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />

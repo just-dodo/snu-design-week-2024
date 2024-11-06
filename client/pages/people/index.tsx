@@ -27,11 +27,11 @@ const People: NextPage = () => {
   const { peopleData } = usePeopleData();
 
   return (
-    <div className='md:pt-[92px] md:mb-[88px] w-full flex flex-col items-center'>
+    <div className='md:pt-[92px] md:mb-[88px] mb-[50px] w-full flex flex-col items-center'>
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
-      <div className="md:pt-[88px] pt-[35px] mb-[100px] md:w-[900px] flex flex-col items-center gap-[20px] min-h-screen">
+      <div className="md:pt-[88px] pt-[35px] md:w-[900px] flex flex-col items-center gap-[20px] min-h-screen">
         <PCTitle imgsrc="/img/pc-title-people.svg" />
         <div className="flex flex-row md:gap-[100px] gap-[63.5px] items-center mt-[5px] mb-[12px]">
           <div

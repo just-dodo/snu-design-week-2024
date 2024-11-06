@@ -16,7 +16,7 @@ const Program: NextPage = () => {
 
   if (isMobileView) {
     return (
-      <div className="mb-[100px] w-full flex flex-col items-center gap-[12px] pt-[35px] min-h-screen px-[24px]">
+      <div className="mb-[50px] w-full flex flex-col items-center gap-[12px] pt-[35px] min-h-screen px-[24px]">
         <Category kor="오프닝 데이" eng="OPENING DAY" date="11.28" selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}>
           <OpeningDay />
         </Category>
