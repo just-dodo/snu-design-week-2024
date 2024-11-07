@@ -95,7 +95,7 @@ export default function CoursePage(props: PageProps) {
           <p className="text-[30px] font-semibold leading-[30px] text-center max-w-[200px]">
             {courseTitle?.toUpperCase()}
           </p>
-          <Image src={"/img/dropDown.svg"} alt="title" width={15} height={10} />
+          <Image src={"/img/dropDown.svg"} alt="title" width={15} height={10} className={`transition-all duration-300 ${isClassListOpen ? "rotate-180" : ""}`}/>
         </div>
 
         <div
