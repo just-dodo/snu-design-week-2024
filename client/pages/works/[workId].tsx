@@ -382,7 +382,7 @@ export default function WorkPage(
             router.back();
           }}
         >
-          <HiArrowNarrowLeft color={theme.colors.primary} size={48} />
+          <ArrowLeft color={theme.colors.primary} size={48} />
         </div>
         <div className="flex flex-1 flex-row items-center justify-between h-fit md:min-h-[52px] md:mb-0 ">
           <div
@@ -547,7 +547,9 @@ export default function WorkPage(
               OTHER WORKS
             </h1>
           </div>
-          <div className="grid grid-cols-3 gap-4 mb-[10px] md:mb-5">{randomWorkCards}</div>
+          <div className="grid grid-cols-3 gap-4 mb-[10px] md:mb-5">
+            {randomWorkCards}
+          </div>
         </div>
         <div className="w-full flex flex-row justify-between items-center text-primary">
           <Link href={`/works/${prevId}`}>
