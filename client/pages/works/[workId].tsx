@@ -547,7 +547,7 @@ export default function WorkPage(
               OTHER WORKS
             </h1>
           </div>
-          <div className="grid grid-cols-3 gap-4 mb-5">{randomWorkCards}</div>
+          <div className="grid grid-cols-3 gap-4 mb-[10px] md:mb-5">{randomWorkCards}</div>
         </div>
         <div className="w-full flex flex-row justify-between items-center text-primary">
           <Link href={`/works/${prevId}`}>
