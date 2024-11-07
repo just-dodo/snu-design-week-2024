@@ -449,7 +449,7 @@ export default function WorkPage(
           <div className="w-full h-full bg-gradient-to-b from-transparent to-secondary"></div>
         </div>
         <XWrapper>
-          <div className="w-full  p-6 md:p-0">
+          <div className="w-full p-6 md:p-0">
             <div className="w-full h-[210px] md:h-[440px]" />
             <div className="w-full h-fit relative z-10 min-h-[72px]">
               <div
