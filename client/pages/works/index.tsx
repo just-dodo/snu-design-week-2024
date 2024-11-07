@@ -95,7 +95,7 @@ export default function CoursePage(props: PageProps) {
           <p className="text-[30px] font-semibold leading-[30px] text-center max-w-[200px]">
             {courseTitle?.toUpperCase()}
           </p>
-          <Image src={"/img/dropDown.svg"} alt="title" width={15} height={10} />
+          <Image src={"/img/dropDown.svg"} alt="title" width={15} height={10} className={`transition-all duration-300 ${isClassListOpen ? "rotate-180" : ""}`}/>
         </div>
 
         <div
@@ -156,16 +156,16 @@ export default function CoursePage(props: PageProps) {
             <div>
               <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
                 <div className="flex flex-col relative ">
-                  <h1 className="font-bold text-3xl leading-3xl ">
+                  <h1 className="font-bold text-[24px] leading-[24px] md:text-3xl md:leading-3xl ">
                     {courseData?.korean_text}
                   </h1>
-                  <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
+                  <h1 className="mt-[4px] font-bold text-3xl leading-3xl hidden md:block  ">
                     {courseData?.english_text}
                   </h1>
-                  <h2 className="text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
+                  <h2 className="text-[14px] md:text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
                     지도교수 | {courseData?.advisor}
                   </h2>
-                  <h2 className="text-[16px]] leading-6 -tracking-[0.2px]">
+                  <h2 className="text-[14px] md:text-[16px] leading-6 -tracking-[0.2px]">
                     Advisor | {courseData?.advisor_eng}
                   </h2>
                 </div>
