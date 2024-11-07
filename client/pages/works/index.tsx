@@ -159,7 +159,7 @@ export default function CoursePage(props: PageProps) {
                   <h1 className="font-bold text-3xl leading-3xl ">
                     {courseData?.korean_text}
                   </h1>
-                  <h1 className="mt-[4px] font-bold text-3xl leading-3xl  ">
+                  <h1 className="mt-[4px] font-bold text-3xl leading-3xl hidden md:block  ">
                     {courseData?.english_text}
                   </h1>
                   <h2 className="text-[20px] font-bold leading-6 -tracking-[0.2px] mt-5">
