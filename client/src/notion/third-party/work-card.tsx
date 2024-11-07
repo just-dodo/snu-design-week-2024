@@ -190,7 +190,7 @@ export const WorkCard: React.FC<
   const innerCard = (
     <div className="flex flex-col w-full h-fit">
       <div
-        className="w-[350px] md:w-[447px] h-[248px] relative overflow-hidden mx-0 
+        className="w-[350px] md:w-[442px] h-[248px] relative overflow-hidden mx-0 
     !outline-primary rounded-2xl !outline-2 !outline  "
       >
         {(coverContent || cover?.type !== "none") && (
