@@ -47,8 +47,7 @@ export default function Navbar(): ReactElement {
       return (
         <>
           {isMobileView ? (
-            <>
-            </>
+            <></>
           ) : (
             <Link
               href={path != "home" ? basePath + path : basePath}
@@ -68,8 +67,9 @@ export default function Navbar(): ReactElement {
     return (
       <>
         <nav
-          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${router.pathname != "/" ? "border-b-primary border-b" : null
-            }`}
+          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
+            router.pathname != "/" ? "border-b-primary border-b" : null
+          }`}
         >
           <Link href="/">
             <p className="text-secondary font-bold text-[35px]">
@@ -86,11 +86,15 @@ export default function Navbar(): ReactElement {
         </nav>
       </>
     );
-  } if (!isHome) {
+  }
+  if (!isHome) {
     return (
       <>
-        <MobileMenuOverlay isVisible={isMobileMenuOpen} setIsVisible={setIsMobileMenuOpen} />
-        <nav className="flex flex-row justify-between px-[24px] h-[60px] bg-primary w-full items-center py-[15px]">
+        <MobileMenuOverlay
+          isVisible={isMobileMenuOpen}
+          setIsVisible={setIsMobileMenuOpen}
+        />
+        <nav className="fixed z-30 flex flex-row justify-between px-[24px] h-[60px] bg-primary w-full items-center py-[15px]">
           <Link href="/" className="">
             <div className="text-secondary text-[19px] font-[700] leading-[17.1px] tracking-[-0.3px]">
               SNUD
@@ -109,9 +113,6 @@ export default function Navbar(): ReactElement {
       </>
     );
   } else {
-    return (
-      <>
-      </>
-    )
+    return <></>;
   }
 }

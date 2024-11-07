@@ -152,7 +152,7 @@ export default function CoursePage(props: PageProps) {
             !isClassListShown ? "opacity-100 h-fit" : "opacity-0 h-0"
           }`}
         >
-          <XWrapper className="flex flex-col md:flex-col justify-between gap-6 px-6 md:px-0 my-[50px] ">
+          <XWrapper className="flex flex-col md:flex-col justify-between gap-6 my-[50px] ">
             <div>
               <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
                 <div className="flex flex-col relative ">
