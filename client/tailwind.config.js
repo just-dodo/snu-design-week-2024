@@ -29,7 +29,6 @@ module.exports = {
       primary: "#E22613",
       secondary: "#FFEFD3",
       myblack: "#4b4b4b",
-      placeholder: 'rgba(226, 38, 19, 0.5)',
       ...colors,
     },
     fontFamily: {
