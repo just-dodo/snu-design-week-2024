@@ -62,16 +62,10 @@ const Landing: NextPage = () => {
 
           {!isMobileMenuOpen &&
             <>
-              <div
-                style={{
-                  background: 'linear-gradient(180deg, #E22613 21.5%, rgba(226, 38, 19, 0.0) 80.5%)',
-                }}
-                className="absolute top-0 w-full h-[200px]">
-              </div>
-              <div className="absolute right-[24px] top-[24px] z-30" onClick={() => setIsMobileMenuOpen(true)}>
+              <div className="absolute right-[24px] top-0 z-30" onClick={() => setIsMobileMenuOpen(true)}>
                 <Menu />
               </div>
-              <div className="flex flex-col mt-[70px] gap-[11px] ml-[23px] z-10">
+              <div className="flex flex-col mt-[70px] gap-[11px] ml-[23px] z-30">
                 <div className="text-secondary text-[30px] font-[700] whitespace-pre-line leading-[37px] tracking-[-0.3px]">
                   {`SNU DESIGN WEEK\n2024\n애벌레 행동`}
                 </div>
