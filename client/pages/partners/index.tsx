@@ -28,12 +28,12 @@ const PartnersPage: NextPage = () => {
         <div className='text-primary md:text-center text-left font-[400] text-[15px] leading-[160%] md:tracking-[-0.165px] whitespace-pre-line'>
           {partnersDetail}
         </div>
-        <div className={`flex flex-row w-full justify-center items-center md:pt-10 md:pb-20 pb-[20px]`}>
+        <div className={`flex flex-row w-full justify-center items-center md:pb-[30px] pb-[20px]`}>
           <Image
-            src={partnersLogoWeb}
+            src="/img/pc-partners.svg"
             alt="partners page partners logos"
-            width={isMobileView ? ratio.width * 345 : ratio.width * 631}
-            height={isMobileView ? ratio.width * 67 : ratio.width * 131}
+            width={902}
+            height={110}
           />
         </div>
         <div className='flex flex-col md:gap-[40px] gap-[24px]'>
