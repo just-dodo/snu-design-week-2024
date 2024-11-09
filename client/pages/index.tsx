@@ -7,8 +7,8 @@ import MainDescription from "components/main-description";
 import Image from "next/image";
 import partnersLogo from "assets/landing-partners-logo.png";
 import _useWindowSize from "utils/useWindowSize";
-import Menu from "icons/Menu";
 import MobileMenuOverlay from "components/mobile-menu-overlay";
+import { MenuMobile } from "icons/MenuMobile";
 
 const Landing: NextPage = () => {
   const { isMobileView, windowSize } = _useWindowSize();
@@ -63,7 +63,7 @@ const Landing: NextPage = () => {
           {!isMobileMenuOpen &&
             <>
               <div className="absolute right-[24px] top-0 z-30" onClick={() => setIsMobileMenuOpen(true)}>
-                <Menu />
+                <MenuMobile />
               </div>
               <div className="flex flex-col mt-[70px] gap-[11px] ml-[23px] z-30">
                 <div className="text-secondary text-[30px] font-[700] whitespace-pre-line leading-[37px] tracking-[-0.3px]">

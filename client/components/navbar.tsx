@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import useWindowSize from "utils/useWindowSize";
 import { useAnimationDataStore, AnimationData } from "utils/animationStore";
 import MobileMenuOverlay from "./mobile-menu-overlay";
-import Menu from "icons/Menu";
+import { MenuMobile } from "icons/MenuMobile";
 //
 
 export default function Navbar(): ReactElement {
@@ -107,7 +107,7 @@ export default function Navbar(): ReactElement {
             {router.pathname.split("/")[1].toUpperCase()}
           </div>
           <div onClick={() => setIsMobileMenuOpen(true)}>
-            <Menu />
+            <MenuMobile />
           </div>
         </nav>
       </>
