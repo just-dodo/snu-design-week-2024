@@ -20,7 +20,7 @@ export default function AboutPage() {
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
-      <div className="md:w-[900px] w-full flex flex-col md:items-center items-start gap-[20px] md:pt-[88px] pt-[35px] min-h-screen md:px-0 px-[24px]">
+      <div className="md:w-[900px] w-full flex flex-col md:items-center items-start gap-[20px] md:pt-[88px] pt-[35px] md:px-0 px-[24px]">
         <PCTitle imgsrc="/img/pc-title-about.svg" />
         <div className={categoryWrapperDesign}>
           <Category kor="전시 개요" eng="Exhibition Overview" isMobileView={isMobileView} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />

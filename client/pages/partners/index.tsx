@@ -23,7 +23,7 @@ const PartnersPage: NextPage = () => {
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
-      <div className='md:pt-[88px] pt-[35px] md:w-[900px] w-full md:px-0 px-[24px] flex flex-col md:items-center gap-[30px] min-h-screen'>
+      <div className='md:pt-[88px] pt-[35px] md:w-[900px] w-full md:px-0 px-[24px] flex flex-col md:items-center gap-[30px]'>
         <PCTitle imgsrc="/img/pc-title-partners.svg" />
         <div className='text-primary md:text-center text-left font-[400] text-[15px] leading-[160%] md:tracking-[-0.165px] whitespace-pre-line'>
           {partnersDetail}
