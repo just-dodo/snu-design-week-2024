@@ -94,10 +94,10 @@ export default function Navbar(): ReactElement {
           isVisible={isMobileMenuOpen}
           setIsVisible={setIsMobileMenuOpen}
         />
-        <nav className="fixed z-30 flex flex-row justify-between px-[24px] h-[60px] bg-primary w-full items-center py-[15px]">
+        <nav className="fixed pt-[47px] z-30 flex flex-row justify-between px-[24px] h-[102x] bg-primary w-full items-center py-[15px]">
           <Link href="/" className="">
             <div className="text-secondary text-[19px] font-[700] leading-[17.1px] tracking-[-0.3px]">
-              SNUD
+              SNUD  
             </div>
             <div className="text-secondary text-[19px] font-[700] leading-[17.1px] tracking-[0.9px]">
               2024
