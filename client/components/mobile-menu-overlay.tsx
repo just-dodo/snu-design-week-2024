@@ -44,7 +44,7 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
         </div>
       )}
       <div className="fixed left-0 top-0 w-full h-full z-50 backdrop-blur-[5px]">
-        <div className="absolute right-[24px] top-[24px] z-30" onClick={() => setIsVisible(false)}>
+        <div className="absolute right-[24px] top-[49px] z-30" onClick={() => setIsVisible(false)}>
           <CloseMenu />
         </div>
         <div className="absolute w-full h-full left-0 top-0">
