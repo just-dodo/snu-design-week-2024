@@ -13,7 +13,6 @@ import SearchAndInstagram from 'components/search-and-instagram'
 
 const PartnersPage: NextPage = () => {
   const { isMobileView } = _useWindowSize();
-  const ratio = useRatio();
 
   const partnersDetail = (isMobileView ? 'SNU DESIGN WEEK 2024는\n다음과 같은 파트너사 / 동문의\n협력 및 후원을 통해 진행됩니다.' :
     'SNU DESIGN WEEK 2024는\n다음과 같은 파트너사 / 동문의 협력 및 후원을 통해 진행됩니다.');
@@ -23,7 +22,7 @@ const PartnersPage: NextPage = () => {
       <div className="absolute right-0">
         <SearchAndInstagram />
       </div>
-      <div className='md:pt-[88px] pt-[35px] md:w-[900px] w-full md:px-0 px-[24px] flex flex-col md:items-center gap-[30px]'>
+      <div className='md:pt-[88px] pt-[35px] md:w-[900px] w-full md:px-0 px-[20px] flex flex-col md:items-center gap-[30px]'>
         <PCTitle imgsrc="/img/pc-title-partners.svg" />
         <div className='text-primary md:text-center text-left font-[400] text-[15px] leading-[160%] md:tracking-[-0.165px] whitespace-pre-line'>
           {partnersDetail}
@@ -37,7 +36,7 @@ const PartnersPage: NextPage = () => {
           />
         </div>
         <div className='flex flex-col md:gap-[40px] gap-[24px]'>
-          <div className='text-primary text-[32px] font-[700] leading-normal tracking-[-0.32px]'>
+          <div className='text-primary md:text-[32px] text-[20px] font-[700] leading-normal tracking-[-0.32px]'>
             Partners
           </div>
           <div className='grid grid-cols-1 md:grid-cols-3 md:gap-[20px] gap-[12px]'>
