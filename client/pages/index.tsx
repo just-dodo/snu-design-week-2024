@@ -26,7 +26,7 @@ const Landing: NextPage = () => {
           <div className="absolute bottom-0 w-full mb-[20px] z-20">
             <Marquee gradient={false} speed={50}>
               <Image
-                src={partnersLogo}
+                src='/img/pc-main-partners.svg'
                 alt="partners-logo"
                 width={ratio.width * 1476}
                 height={ratio.height * 50}
