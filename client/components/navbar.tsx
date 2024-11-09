@@ -67,7 +67,7 @@ export default function Navbar(): ReactElement {
     return (
       <>
         <nav
-          className={`fixed z-50 bg-primary min-h-[40px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
+          className={`fixed z-50 bg-primary h-[92px] w-screen flex flex-row flex-0 justify-between items-center px-[40px] py-[20px] ${
             router.pathname != "/" ? "border-b-primary border-b" : null
           }`}
         >
