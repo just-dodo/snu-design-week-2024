@@ -31,19 +31,7 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
 
   return (
     <>
-      {router.pathname !== '/' && (
-        <div className="fixed w-full h-full overflow-hidden z-30">
-          <Image
-            src="/img/mobile-main-animation.webp"
-            alt="main-page-animation"
-            width={393 * ratio.width}
-            height={windowSize.height}
-            unoptimized={true}
-            priority={true}
-          />
-        </div>
-      )}
-      <div className="fixed left-0 top-0 w-full h-full z-50 backdrop-blur-[5px]">
+      <div className="fixed left-0 top-0 w-full h-full z-50 bg-primary">
         <div className="absolute right-[24px] top-[49px] z-30" onClick={() => setIsVisible(false)}>
           <CloseMenu />
         </div>
