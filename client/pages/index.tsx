@@ -20,7 +20,7 @@ const Landing: NextPage = () => {
   return (
     <div className="bg-primary flex flex-col h-screen w-full relative overflow-hidden">
       {!isMobileView ? (
-        <div className="pt-[92.5px]">
+        <div className="pt-[92px]">
           <SearchAndInstagram />
           <MainDescription />
           <div className="absolute bottom-0 w-full mb-[20px] z-20">
