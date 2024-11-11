@@ -15,6 +15,7 @@ import useCourseStore from "store/courseStore";
 import PCTitle from "components/pc-title";
 import _useWindowSize from "utils/useWindowSize";
 import Image from "next/image";
+import SearchAndInstagram from "components/search-and-instagram";
 
 const DATABASE_ID = CONFIGS.databaseId;
 
@@ -86,7 +87,11 @@ export default function CoursePage(props: PageProps) {
 
   return (
     <>
-      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-[20px] pt-[50px] md:pt-[244px]">
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-[20px] pt-[92px]">
+        <div className="hidden md:flex w-full h-[88px] justify-end items-center ">
+          <SearchAndInstagram />
+        </div>
+
         <PCTitle imgsrc="/img/pc-title-work.svg" className="mb-5" />
         <div
           className="flex flex-row gap-[10px] md:hidden w-fit self-center border-b-2 border-b-[#00BD84] cursor-pointer"
@@ -95,7 +100,15 @@ export default function CoursePage(props: PageProps) {
           <p className="text-[30px] font-semibold leading-[30px] text-center max-w-[200px]">
             {courseTitle?.toUpperCase()}
           </p>
-          <Image src={"/img/dropDown.svg"} alt="title" width={15} height={10} className={`transition-all duration-300 ${isClassListOpen ? "rotate-180" : ""}`}/>
+          <Image
+            src={"/img/dropDown.svg"}
+            alt="title"
+            width={15}
+            height={10}
+            className={`transition-all duration-300 ${
+              isClassListOpen ? "rotate-180" : ""
+            }`}
+          />
         </div>
 
         <div
