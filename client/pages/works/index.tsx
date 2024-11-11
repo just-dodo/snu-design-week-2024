@@ -86,7 +86,7 @@ export default function CoursePage(props: PageProps) {
 
   return (
     <>
-      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-5 md:pt-[244px]">
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-[20px] pt-[50px] md:pt-[244px]">
         <PCTitle imgsrc="/img/pc-title-work.svg" className="mb-5" />
         <div
           className="flex flex-row gap-[10px] md:hidden w-fit self-center border-b-2 border-b-[#00BD84] cursor-pointer"
@@ -117,7 +117,7 @@ export default function CoursePage(props: PageProps) {
                   setIsClassListOpen(false);
                 }}
               >
-                {value.title}
+                {value.title.toUpperCase()}
               </p>
             );
           })}

@@ -147,7 +147,7 @@ function Board({ collectionView, collectionData, collection, padding }) {
 
     return blocks.length > 0 ? (
       <div className="w-full flex justify-center items-center">
-        <div className="w-fit pb-10 grid grid-cols-1 sm:grid-cols-2 gap-[15px] justify-center self-center">
+        <div className="w-fit pb-10 grid grid-cols-1 sm:grid-cols-2 gap-3 justify-center self-center">
           {blocks}
         </div>
       </div>

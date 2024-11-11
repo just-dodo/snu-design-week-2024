@@ -436,7 +436,7 @@ export default function WorkPage(
       {/* content */}
       <div className="w-full justify-center items-center flex">
         <div
-          className="w-full aspect-video absolute top-[60px] md:top-[69px] left-0"
+          className="w-full aspect-video absolute top-0 md:top-[69px] left-0"
           style={{
             backgroundSize: "cover",
             backgroundPosition: coverPosition,
@@ -449,8 +449,8 @@ export default function WorkPage(
           <div className="w-full h-full bg-gradient-to-b from-transparent to-secondary"></div>
         </div>
         <XWrapper>
-          <div className="w-full p-6 md:p-0">
-            <div className="w-full h-[210px] md:h-[440px]" />
+          <div className="w-full  p-6 md:p-0">
+            <div className="w-full h-[150px] md:h-[440px]" />
             <div className="w-full h-fit relative z-10 min-h-[72px]">
               <div
                 className="w-full h-fit transition-all duration-300 ease-in-out "
@@ -489,7 +489,7 @@ export default function WorkPage(
       <div className="flex md:hidden w-full h-fit justify-center items-centerƒ">
         <div className="h-[2px] w-[110px] bg-[#00BD84]" />
       </div>
-      <XWrapper className="flex justify-center items-center h-full py-20 px-6 md:px-0">
+      <XWrapper className="flex justify-center items-center h-full md:py-20 px-6 md:px-0">
         <div className="w-full h-fit transition-all duration-300 ease-in-out ">
           <p className="text-primary text-3xl font-semibold md:font-bold mb-5">
             {pageProperties["작품이름"]}
@@ -521,7 +521,7 @@ export default function WorkPage(
               OTHER WORK
             </p>
             <Link
-              className="w-full aspect-[16/9] md:w-[292px] md:h-[150px] overflow-hidden min-w-[292px] min-h-[150px] md:rounded-2xl hover:opacity-80 "
+              className="w-full aspect-[16/9] md:w-[292px] md:h-[150px] overflow-hidden min-w-[292px] min-h-[150px] rounded-2xl hover:opacity-80 "
               href={"/works/" + otherId}
               style={{
                 backgroundImage: `url(${otherCover})`,
@@ -529,15 +529,17 @@ export default function WorkPage(
                 backgroundPosition: otherCoverPosition,
               }}
             >
-              <div className="hidden md:block bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-end p-4">
-                <p>다른 작품</p>
-                <p>OTHER WORK</p>
+              <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start md:items-end p-4">
+                <p className="text-[20px] font-bold">다른 작품</p>
+                <p className="text-[16px] font-regular">OTHER WORK</p>
               </div>
             </Link>
           </>
-        ) : null}
+        ) : (
+          <></>
+        )}
       </XWrapper>
-      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-20 px-6 md:px-0">
+      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-[10px] md:py-20 px-6 md:px-0">
         <div className="hidden md:block">
           <div className="mb-[30px]">
             <h1 className="text-primary text-3xl leading-[130%] font-bold">
