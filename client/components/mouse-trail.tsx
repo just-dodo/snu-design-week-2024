@@ -7,10 +7,10 @@ type Dot = {
   timestamp: number;
 };
 
-const TRAIL_DURATION_MAX = 2500;
-const TRAIL_DURATION_MIN = 2000;
-const TRAIL_STEP_SIZE = 11;
-
+const TRAIL_DURATION_MAX = 600;
+const TRAIL_DURATION_MIN = 500;
+const TRAIL_STEP_SIZE = 9;
+const TRAIL_MAX_DOTS = 90;
 const MouseTrail = () => {
   const [dots, setDots] = useState<Dot[]>([]);
   const [lastDot, setLastDot] = useState<Dot | null>(null);
@@ -49,7 +49,7 @@ const MouseTrail = () => {
             timestamp: Date.now(),
           });
         }
-        setDots((prevDots) => [...prevDots, ...interpolatedDots]);
+        setDots((prevDots) => [...prevDots, ...interpolatedDots].reverse().slice(0, TRAIL_MAX_DOTS).reverse());
         if (steps > 0) {
           setLastDot(interpolatedDots[steps - 1]);
         }
@@ -62,12 +62,12 @@ const MouseTrail = () => {
                 (dot) =>
                   dot.id !== interpolatedDots[i].id &&
                   Date.now() - dot.timestamp < TRAIL_DURATION_MAX
-              )
+              ).reverse().slice(0, TRAIL_MAX_DOTS).reverse()
             );
           }, TRAIL_DURATION_MIN + i * 1);
         }
       } else {
-        setDots((prevDots) => [...prevDots, newDot]);
+        setDots((prevDots) => [...prevDots, newDot].reverse().slice(0, TRAIL_MAX_DOTS).reverse());
         setLastDot(newDot);
         setTimeout(() => {
           setDots((prevDots) =>
@@ -75,7 +75,7 @@ const MouseTrail = () => {
               (dot) =>
                 dot.id !== newDot.id &&
                 Date.now() - dot.timestamp < TRAIL_DURATION_MAX
-            )
+            ).reverse().slice(0, TRAIL_MAX_DOTS).reverse()
           );
         }, TRAIL_DURATION_MIN);
       }
