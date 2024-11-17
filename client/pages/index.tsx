@@ -28,8 +28,8 @@ const Landing: NextPage = () => {
               <Image
                 src='/img/pc-main-partners.svg'
                 alt="partners-logo"
-                width={ratio.width * 1476}
-                height={ratio.height * 50}
+                width={windowSize.width}
+                height={windowSize.width * 50 / 1537}
               />
             </Marquee>
           </div>
@@ -51,7 +51,7 @@ const Landing: NextPage = () => {
           <MobileMenuOverlay isVisible={isMobileMenuOpen} setIsVisible={setIsMobileMenuOpen} />
           <div className="absolute w-full h-full overflow-hidden">
             <Image
-              src="/img/mobile-main-animation.webp"
+              src="/img/mobile-main-animation.gif"
               alt="main-page-animation"
               width={393 * ratio.width}
               height={windowSize.height}
