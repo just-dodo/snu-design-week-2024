@@ -49,6 +49,7 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
     <StyledThemeProvider>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta id="status-bar" name="theme-color" content="#E22613" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
       {/* @ts-ignore */}
