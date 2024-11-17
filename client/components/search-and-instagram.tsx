@@ -11,8 +11,6 @@ import _useWindowSize from 'utils/useWindowSize';
 export default function SearchAndInstagram() {
 
   const { isMobileView } = _useWindowSize();
-
-  if (isMobileView) return null;
   
   const router = useRouter();
   const isHome = router.pathname === '/';
@@ -33,6 +31,8 @@ export default function SearchAndInstagram() {
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen);
   };
+
+  if (isMobileView) return null;
 
   const primaryColor = isHome ? '#FFEFD3' : '#E22613';
   const secondaryColor = isHome ? '#E22613' : '#FFEFD3';

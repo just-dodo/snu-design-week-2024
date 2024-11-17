@@ -1,19 +1,13 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Image from "next/image";
 import _useWindowSize from "utils/useWindowSize";
-import { useRatio } from "utils/useRatio";
 import Link from "next/link";
 import CloseMenuMobile from "icons/CloseMenuMobile";
 import SearchMobile from "icons/SearchMobile";
 import InstagramMobile from "icons/InstagramMobile";
 
-
 export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisible: boolean, setIsVisible: Function }) {
   const linkList = ["home", "about", "works", "program", "people", "partners"];
-  const router = useRouter();
   const { windowSize } = _useWindowSize();
-  const ratio = useRatio();
 
   useEffect(() => {
     if (isVisible) {
@@ -32,7 +26,7 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
   return (
     <>
       <div className="fixed left-0 top-0 w-full h-full z-50 bg-primary">
-        <div className="absolute right-[24px] top-[49px] z-30" onClick={() => setIsVisible(false)}>
+        <div className="absolute right-[24px] top-[17px] z-30" onClick={() => setIsVisible(false)}>
           <CloseMenuMobile />
         </div>
         <div className="absolute w-full h-full left-0 top-0">

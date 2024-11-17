@@ -2,9 +2,6 @@
 
 import { NextPage } from 'next'
 import partnerCardList from 'wordings/partner-card'
-import { useRatio } from 'utils/useRatio'
-import partnersLogoWeb from 'assets/partners-web-partners-logo.png'
-import partnersLogoMobile from 'assets/partners-mobile-partners-logo.png'
 import Image from 'next/image'
 import _useWindowSize from 'utils/useWindowSize'
 import PartnerCard from './_components/partner-card'

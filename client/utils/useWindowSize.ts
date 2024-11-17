@@ -1,10 +1,29 @@
 import { useEffect, useState } from "react";
-import { useWindowSize } from "react-use";
 
 const _useWindowSize = () => {
-  const windowSize = useWindowSize();
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   const isMobileView = windowSize.width < 1194;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+
+      window.addEventListener("resize", handleResize);
+      handleResize();
+      return () => window.removeEventListener("resize", handleResize);
+    } else {
+      return;
+    }
+  }, []);
 
   return { windowSize, isMobileView };
 };

@@ -20,7 +20,7 @@ const Landing: NextPage = () => {
   return (
     <div className="bg-primary flex flex-col h-screen w-full relative overflow-hidden">
       {!isMobileView ? (
-        <div className="pt-[92px]">
+        <div className="pt-[92px] h-full">
           <SearchAndInstagram />
           <MainDescription />
           <div className="absolute bottom-0 w-full mb-[20px] z-20">
@@ -34,16 +34,16 @@ const Landing: NextPage = () => {
             </Marquee>
           </div>
           <div
-            className={`flex absolute left-[50%] transform -translate-x-1/2 w-full top-[92px] justify-center`}
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%-92px)] h-[976px] w-full`}
           >
             <Image
               src="/img/pc-main-animation.webp"
               alt="main-page-animation"
-              width={ratio.width * 1920 > 1920 ? 1920 : ratio.width * 1920}
-              height={ratio.width * 1080}
+              layout="fill"
               unoptimized={true}
-              priority={true}
-            ></Image>
+              objectFit="cover"
+              objectPosition="center"
+            />
           </div>
         </div>
       ) : (

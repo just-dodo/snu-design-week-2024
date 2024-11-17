@@ -58,7 +58,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
       <Navbar />
       <main
         ref={topRef}
-        className={`flex flex-1 flex-col w-full align-center-top items-center contents-center ${bgColor} relative ${isHome ? 'pt-[47px] max-h-screen' : 'pt-[102px]'} md:pt-0`}
+        className={`flex flex-1 flex-col w-full align-center-top items-center contents-center ${bgColor} relative ${isHome ? 'pt-[15px] max-h-screen' : 'pt-[70px]'} md:pt-0`}
       >
         {children}
       </main>
