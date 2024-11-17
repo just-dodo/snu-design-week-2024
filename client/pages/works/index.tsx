@@ -88,7 +88,7 @@ export default function CoursePage(props: PageProps) {
   return (
     <>
       <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-[20px] pt-[92px]">
-        <div className="hidden md:flex w-full h-[88px] justify-end items-center ">
+        <div className="hidden md:flex w-full h-[88px] justify-end items-center">
           <SearchAndInstagram />
         </div>
 
