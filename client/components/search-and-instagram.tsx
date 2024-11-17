@@ -23,13 +23,18 @@ export default function SearchAndInstagram() {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     Router.push(`/search?search=${input}`);
   }
 
-  const handleSearchClick = () => {
-    setIsSearchOpen(!isSearchOpen);
+  const handleSearchClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (isSearchOpen) {
+      handleSubmit(e);
+      setInput('');
+    } else {
+      setIsSearchOpen(!isSearchOpen);
+    }
   };
 
   if (isMobileView) return null;
