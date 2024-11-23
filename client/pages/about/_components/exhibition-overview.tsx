@@ -1,4 +1,4 @@
-import { EXHIBITIONOVERVIEW } from "../constants"
+import { EXHIBITIONOVERVIEW } from "constants/about"
 import _useWindowSize from 'utils/useWindowSize';
 import Image from "next/image";
 
