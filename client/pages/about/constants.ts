@@ -1,0 +1,10 @@
+export const EXHIBITIONOVERVIEW = {
+  kor: [
+    "졸업 전시를 맞아 우리는 조금 더 시야가 트인 곳에 서서 비로소 지나온 궤적을 돌아봅니다. 느릿느릿하고 답답하게 보였을지도 모릅니다. 하지만 같은 것 하나 없는 이 구불구불한 자국들은 각자의 다짐과 개성이 느껴지는, 목적지를 향한 매력적인 여정이었습니다. 애벌레가 나뭇잎을 파먹듯 우리가 지나온 이 구불구불한 길들을 각자의 '애벌레 행동'으로 정의하고 잠시 서로의 구불구불한 자국들을 겹쳐봅니다. 여기서 끝이 아닌, 앞으로도 자신만의 궤적을 그리며 꾸준히 나아가기 위한 숨 고르기가 되길 바라며 우리의 '애벌레 행동'을 전시합니다.",
+    "2018년부터 서울대학교 디자인과는 <SNU DESIGN WEEK 서울대학교 디자인과 졸업주간>이라는 이름으로 졸업 전시를 워크숍, 토크 콘서트와 함께 다채로운 행사로 꾸려나가고 있습니다. 올해로 7회째를 맞이하는 이번 <SNU DESIGN WEEK 2024>에서는 시각디자인과 산업디자인을 전공으로 하는 46명의 디자이너들이 작업으로 그간의 안부를 전하고 세상과 마주치려 합니다. 저마다의 다양한 삶 속에서 디자인에 대해 고민한 결과를 선보이는, 디자이너와 관객이 함께 소통하는 축제. <SNU DESIGN WEEK 2024>에 여러분들을 초대합니다.",
+  ],
+  eng: [
+    "As we prepare for our graduation exhibition, we find ourselves standing in a more open space, finally able to look back on the paths we’ve traveled. Those paths may have seemed slow and frustrating at times, but their winding patterns are entirely unique. They embody our individual resolve and character, forming captivating journeys toward our goals. Just as a caterpillar leaves marks as it nibbles on a leaf, we define these winding paths as our own “caterpillar actions” and take a moment to overlay and appreciate one another’s trails. This is not an end, but a pause to catch our breath as we continue to carve out our own unique paths forward. Through this exhibition, we present our “caterpillar actions.",
+    "Since 2018, the Department of Design at Seoul National University has hosted SNU DESIGN WEEK, a graduation exhibition enriched with workshops, talk concerts, and a variety of events. Marking its 7th year, SNU DESIGN WEEK 2024 features 46 designers majoring in Visual Design and Industrial Design. Through their work, they share reflections on their journey and engage with the world around them. This event is a celebration where designers and audiences come together, showcasing the results of deep contemplation on design within the context of diverse lives. We warmly invite you to join us at SNU DESIGN WEEK 2024!",
+  ],
+}
