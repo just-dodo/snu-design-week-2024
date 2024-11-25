@@ -386,12 +386,12 @@ export default function WorkPage(
         </div>
         <div className="flex flex-1 flex-row items-center justify-between h-fit md:min-h-[52px] md:mb-0 ">
           <div
-            className="flex h-fit w-full transition-all duration-300 flex-row ease-in-out items-center justify-evenly "
+            className="flex h-fit w-full transition-all duration-300 flex-row ease-in-out items-center justify-between "
             style={{
               opacity: isScrollStarted ? 1 : 0,
             }}
           >
-            <div className="flex text-[14px] md:text-[20px] gap-[10px] mr-3 max-w-[157px] md:w-fit">
+            <div className="flex flex-1 text-[14px] md:text-[20px] gap-[10px] mr-3 min-w-[86px]">
               <p className="font-semibold md:font-bold">
                 {pageProperties["학생이름"]}
               </p>
@@ -399,10 +399,10 @@ export default function WorkPage(
                 {pageProperties["학생이름_영문"]}
               </p>
             </div>
-            <p className="flex-1 md:flex-0 text-right md:text-center text-[14px] md:text-3xl font-bold truncate">
+            <p className="flex-1 text-right md:text-center text-[14px] md:text-3xl font-bold truncate">
               {pageProperties["작품이름"]}
             </p>
-            <div className="hidden md:flex flex-col items-end font-bold gap-1 h-fit">
+            <div className="hidden md:flex flex-1 flex-col items-end font-bold gap-1 h-fit">
               <p className="text-[20px] font-bold leading-6">
                 {"@" + pageProperties["인스타 아이디"]}
               </p>
@@ -486,15 +486,15 @@ export default function WorkPage(
           </div>
         </XWrapper>
       </div>
-      <div className="flex md:hidden w-full h-fit justify-center items-centerƒ">
+      <div className="flex md:hidden w-full h-fit justify-center items-center mb-[50px] ">
         <div className="h-[2px] w-[110px] bg-[#00BD84]" />
       </div>
       <XWrapper className="flex justify-center items-center h-full md:py-20 px-6 md:px-0">
         <div className="w-full h-fit transition-all duration-300 ease-in-out ">
-          <p className="text-primary text-3xl font-semibold md:font-bold mb-5">
+          <p className="text-primary text-[24px] md:text-3xl font-semibold md:font-bold ">
             {pageProperties["작품이름"]}
           </p>
-          <div className="flex flex-row justify-between items-center mt-10 md:mt-0">
+          <div className="flex flex-row justify-between items-center mt-8 ">
             <div className="w-full md:w-fit flex flex-row  justify-between md:justify-start items-start">
               <div className="w-[205px]">
                 <p className="font-semibold md:font-bold text-primary text-[15px] md:text-[20px]">
@@ -517,7 +517,7 @@ export default function WorkPage(
         </div>
         {otherWorkBlock ? (
           <>
-            <p className="text-primary text-[15px] font-semibold md:hidden mt-10 self-start">
+            <p className="text-primary text-[15px] font-semibold md:hidden mt-10 self-start mb-4 md:mb-0">
               OTHER WORK
             </p>
             <Link

@@ -74,7 +74,7 @@ export default function CoursePage(props: PageProps) {
 
   return (
     <>
-      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px] md:pt-[244px] pb-10">
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-6 gap-[50px] md:pt-[180px] py-[50px] ">
         <PCTitle imgsrc="/img/pc-title-search.svg" className="mb-5" />
 
         <XWrapper className="flex justify-between relative !h-fit">

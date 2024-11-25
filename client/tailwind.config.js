@@ -40,11 +40,11 @@ module.exports = {
       light: ["Pretendard Light", "sans-serif"],
     },
     fontWeight: {
-      bold: 600,
-      semibold: 500,
-      medium: 400,
-      regular: 300,
-      light: 200,
+      bold: 700,
+      semibold: 600,
+      medium: 500,
+      regular: 400,
+      light: 300,
     },
     screens: {
       sm: "810px",
