@@ -373,7 +373,7 @@ export default function WorkPage(
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
       <div
-        className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300 md:mt-[69px] ${backdropBlur} md:gap-10`}
+        className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300 md:mt-[92px] ${backdropBlur} md:gap-10`}
       >
         {/* authorContainer */}
         <div
@@ -539,7 +539,7 @@ export default function WorkPage(
           <></>
         )}
       </XWrapper>
-      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[600px] py-[10px] md:py-20 px-6 md:px-0">
+      <XWrapper className="flex md:flex-col justify-center items-center h-full mb-[50px] md:mb-[600px] py-[10px] md:py-20 px-6 md:px-0">
         <div className="hidden md:block">
           <div className="mb-[30px]">
             <h1 className="text-primary text-3xl leading-[130%] font-bold">

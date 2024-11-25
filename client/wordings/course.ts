@@ -1,7 +1,7 @@
 const courseList = [
   {
     title: "Brand",
-    korean_text: "브랜드디자인프로젝트",
+    korean_text: "브랜드 디자인 프로젝트",
     english_text: "Brand Design Project",
     path: "brand-design",
     advisor: "배민기",

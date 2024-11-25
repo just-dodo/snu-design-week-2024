@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import useWindowSize from "utils/useWindowSize";
 
 type Dot = {
   x: number;
@@ -49,7 +50,12 @@ const MouseTrail = () => {
             timestamp: Date.now(),
           });
         }
-        setDots((prevDots) => [...prevDots, ...interpolatedDots].reverse().slice(0, TRAIL_MAX_DOTS).reverse());
+        setDots((prevDots) =>
+          [...prevDots, ...interpolatedDots]
+            .reverse()
+            .slice(0, TRAIL_MAX_DOTS)
+            .reverse()
+        );
         if (steps > 0) {
           setLastDot(interpolatedDots[steps - 1]);
         }
@@ -58,24 +64,34 @@ const MouseTrail = () => {
         for (let i = 0; i < interpolatedDots.length; i++) {
           setTimeout(() => {
             setDots((prevDots) =>
-              prevDots.filter(
-                (dot) =>
-                  dot.id !== interpolatedDots[i].id &&
-                  Date.now() - dot.timestamp < TRAIL_DURATION_MAX
-              ).reverse().slice(0, TRAIL_MAX_DOTS).reverse()
+              prevDots
+                .filter(
+                  (dot) =>
+                    dot.id !== interpolatedDots[i].id &&
+                    Date.now() - dot.timestamp < TRAIL_DURATION_MAX
+                )
+                .reverse()
+                .slice(0, TRAIL_MAX_DOTS)
+                .reverse()
             );
           }, TRAIL_DURATION_MIN + i * 1);
         }
       } else {
-        setDots((prevDots) => [...prevDots, newDot].reverse().slice(0, TRAIL_MAX_DOTS).reverse());
+        setDots((prevDots) =>
+          [...prevDots, newDot].reverse().slice(0, TRAIL_MAX_DOTS).reverse()
+        );
         setLastDot(newDot);
         setTimeout(() => {
           setDots((prevDots) =>
-            prevDots.filter(
-              (dot) =>
-                dot.id !== newDot.id &&
-                Date.now() - dot.timestamp < TRAIL_DURATION_MAX
-            ).reverse().slice(0, TRAIL_MAX_DOTS).reverse()
+            prevDots
+              .filter(
+                (dot) =>
+                  dot.id !== newDot.id &&
+                  Date.now() - dot.timestamp < TRAIL_DURATION_MAX
+              )
+              .reverse()
+              .slice(0, TRAIL_MAX_DOTS)
+              .reverse()
           );
         }, TRAIL_DURATION_MIN);
       }
@@ -83,8 +99,13 @@ const MouseTrail = () => {
     [lastDot]
   );
 
+  const { isMobileView } = useWindowSize();
+
   useEffect(() => {
     // Add event listener to window instead of a specific div
+    if (isMobileView) {
+      return;
+    }
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleMouseMove);
     return () => {

@@ -13,6 +13,7 @@ import { Property } from "./property";
 import { useRouter } from "next/router";
 import useCourseStore from "store/courseStore";
 import useSearchStore from "store/searchStore";
+import courseList from "wordings/course";
 
 export const CollectionWorksGallery: React.FC<CollectionViewProps> = ({
   collection,
@@ -118,9 +119,22 @@ function Board({ collectionView, collectionData, collection, padding }) {
           collection,
           "작품이름_영문"
         );
+        const courseName = getPropertyValue(
+          block,
+          collectionView.format?.board_properties,
+          collection,
+          "수업"
+        );
+
+        const course = courseList.find((course) => course.path === courseName);
+        const courseKoreanText = course?.korean_text;
+        const courseEnglishText = course?.english_text;
+
+
+
 
         const searchAbleString =
-          `${studentName} ${studentName_eng} ${workName} ${workName_eng}`.toLowerCase();
+          `${studentName} ${studentName_eng} ${workName} ${workName_eng} ${courseKoreanText} ${courseEnglishText}`.toLowerCase();
 
         if (
           searchText &&
