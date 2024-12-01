@@ -17,7 +17,7 @@ export default function Category({ kor, eng, isMobileView, selectedCategory, set
     )
   }
   return (
-    <div onClick={() => setSelectedCategory(eng)} className={`flex flex-col items-center w-auto cursor-pointer ${isSelected ? null : 'opacity-50'}`}>
+    <div onClick={() => setSelectedCategory(eng)} className={`flex flex-col items-center w-auto cursor-pointer px-[20px] ${isSelected ? null : 'opacity-50'}`}>
       <div className="text-[20px] font-[700] text-primary">{kor}</div>
       <div className="text-[16px] font-[400] text-primary whitespace-pre-line text-center">{eng}</div>
     </div>
