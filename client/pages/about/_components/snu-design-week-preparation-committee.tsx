@@ -1,6 +1,6 @@
 import { SNUPREPCOMMITTEE } from "constants/about"
 import _useWindowSize from "utils/useWindowSize"
-import SNUPrepCommitteeTeamCard from "./snu-prep-committee-team-card"
+import SNUPrepCommitteeTeamCard from "../../../components/snu-prep-committee-team-card"
 
 export default function SNUDesignWeekPreparationCommittee() {
   const { isMobileView } = _useWindowSize()
