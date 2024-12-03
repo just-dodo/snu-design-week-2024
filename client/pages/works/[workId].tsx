@@ -285,7 +285,7 @@ export default function WorkPage(
       return p.name === propertyName;
     });
     if (property) {
-      return properties?.[property][0][0];
+      return properties?.[property]?.[0]?.[0];
     }
     return null;
   }
