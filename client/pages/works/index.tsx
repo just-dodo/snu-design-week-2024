@@ -87,7 +87,7 @@ export default function CoursePage(props: PageProps) {
 
   return (
     <>
-      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold p-[20px] pt-[92px]">
+      <div className="w-screen h-full flex-col flex justify-center items-center content-center text-primary text-2xl font-bold py-[20px] pt-[92px]">
         <div className="hidden md:flex w-full h-[88px] justify-end items-center">
           <SearchAndInstagram />
         </div>
@@ -165,7 +165,7 @@ export default function CoursePage(props: PageProps) {
             !isClassListShown ? "opacity-100 h-fit" : "opacity-0 h-0"
           }`}
         >
-          <XWrapper className="flex flex-col md:flex-col justify-between gap-6 my-[50px] ">
+          <XWrapper className="flex flex-col md:flex-col px-[20px] justify-between gap-6 my-[50px] ">
             <div>
               <div className="flex flex-col relative md:flex-row justify-start items-start h-full flex-1 text-base tracking-wide">
                 <div className="flex flex-col relative ">
