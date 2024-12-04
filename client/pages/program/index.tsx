@@ -33,7 +33,7 @@ const Program: NextPage = () => {
       <div className="pt-[88px] mb-[100px] w-[900px] flex flex-col items-center gap-[20px]">
         <PCTitle imgsrc="/img/pc-title-program.svg" width={294} height={93} />
         <div className="flex flex-row md:gap-[100px] gap-[63.5px] items-center mt-[5px] mb-[12px]">
-          <div onClick={() => setSelectedCategory("SNUD:Youtube")} className={`flex flex-col items-center w-auto cursor-pointer ${selectedCategory === "SNUD Youtube" ? null : 'opacity-50'}`}>
+          <div onClick={() => setSelectedCategory("SNUD Youtube")} className={`flex flex-col items-center w-auto cursor-pointer ${selectedCategory === "SNUD Youtube" ? null : 'opacity-50'}`}>
             <div className="text-[20px] font-[700] text-primary">SNUD Youtube</div>
             <div className="text-[16px] font-[400] text-primary">유튜브</div>
           </div>
