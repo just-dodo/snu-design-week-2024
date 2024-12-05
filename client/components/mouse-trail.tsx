@@ -112,7 +112,7 @@ const MouseTrail = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleMouseMove);
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, isMobileView]);
 
   return (
     <div
