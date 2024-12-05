@@ -32,11 +32,11 @@ export default function MobileMenuOverlay({ isVisible, setIsVisible }: { isVisib
         <div className="absolute w-full h-full left-0 top-0">
           <div className="flex flex-col justify-center items-center w-full h-full gap-[30px] z-30">
             {linkList.map((link, index) => (
-              <div key={index}>
+              <div key={index} className="h-fit">
                 <Link href={`/${link === 'home' ? '' : link}`} onClick={() => setIsVisible(false)}>
-                  <div className="text-secondary text-[31px] font-[700]">
+                  <p className="text-secondary text-[31px] font-[700] leading-8">
                     {link.toUpperCase()}
-                  </div>
+                  </p>
                 </Link>
               </div>
             ))}
