@@ -386,7 +386,7 @@ export default function WorkPage(
         </div>
         <div className="flex flex-1 flex-row items-center justify-between h-fit md:min-h-[52px] md:mb-0 ">
           <div
-            className="flex h-fit w-full transition-all duration-300 flex-row ease-in-out items-center justify-between "
+            className="flex h-fit w-full transition-all duration-300 flex-row ease-in-out items-center justify-between"
             style={{
               opacity: isScrollStarted ? 1 : 0,
             }}
@@ -399,7 +399,7 @@ export default function WorkPage(
                 {pageProperties["학생이름_영문"]}
               </p>
             </div>
-            <p className="flex-1 text-right md:text-center text-[14px] md:text-3xl font-bold truncate">
+            <p className="flex-1 text-right md:text-center text-[14px] md:text-3xl font-bold truncate md:leading-9">
               {pageProperties["작품이름"]}
             </p>
             <div className="hidden md:flex flex-1 flex-col items-end font-bold gap-1 h-fit">
