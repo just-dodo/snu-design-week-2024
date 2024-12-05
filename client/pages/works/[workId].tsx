@@ -374,6 +374,11 @@ export default function WorkPage(
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
 
+      <Head>
+        <title>
+          {pageProperties?.["학생이름"] + " - " + pageProperties?.["작품이름"]}{" "}
+        </title>
+      </Head>
       <div
         className={`fixed w-screen z-30 h-fit flex justify-between items-center content-center text-primary text-2xl font-bold px-5 py-3  md:px-10 md:py-5  transition-all duration-300 md:mt-[92px] ${backdropBlur} md:gap-10`}
       >
