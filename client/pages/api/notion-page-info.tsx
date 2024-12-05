@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { NextApiRequest, NextApiResponse } from "next";
 
 import got from "got";
@@ -48,7 +49,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const isBlogPost =
     block.type === "page" && block.parent_table === "collection";
-  const title = getBlockTitle(block, recordMap) || libConfig.name;
+  // const title = getBlockTitle(block, recordMap) || libConfig.name;
 
   const imageCoverPosition =
     (block as PageBlock).format?.page_cover_position ??
@@ -80,7 +81,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   ]);
 
   const author =
-    getPageProperty<string>("Author", block, recordMap) || libConfig.author;
+    getPageProperty<string>("학생이름", block, recordMap) || libConfig.author;
+  const title =
+    getPageProperty<string>("작품이름", block, recordMap) || libConfig.author;
 
   // const socialDescription =
   //   getPageProperty<string>('Description', block, recordMap) ||
@@ -108,7 +111,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const pageInfo: NotionPageInfo = {
     pageId,
-    title,
+    title: author + " - " + title,
     image: image || "",
     imageObjectPosition: imageObjectPosition || "",
     author,
