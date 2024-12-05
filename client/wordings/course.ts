@@ -2,7 +2,7 @@ const courseList = [
   {
     title: "Brand",
     korean_text: "브랜드디자인프로젝트",
-    english_text: "Brand Design Project",
+    english_text: "BrandDesignProject",
     path: "brand-design",
     advisor: "이장섭",
     advisor_eng: "Lee Jangsup",
@@ -14,7 +14,7 @@ const courseList = [
   {
     title: "Graphic",
     korean_text: "그래픽디자인프로젝트",
-    english_text: "Graphic Design Project",
+    english_text: "GraphicDesignProject",
     path: "graphic-design",
     advisor: "배민기",
     advisor_eng: "Bae Minkee",
@@ -26,7 +26,7 @@ const courseList = [
   {
     title: "UX/UI",
     korean_text: "UI/UX디자인프로젝트",
-    english_text: "UX/UI Design Project",
+    english_text: "UX/UIDesignProject",
     path: "ux-ui-design",
     advisor: "김신혜",
     advisor_eng: "Kim Shinhye",
@@ -38,7 +38,7 @@ const courseList = [
   {
     title: "Media",
     korean_text: "미디어디자인프로젝트",
-    english_text: "Media Design Project",
+    english_text: "MediaDesignProject",
     path: "media-design",
     advisor: "이준원",
     advisor_eng: "Lee Junwon",
@@ -50,7 +50,7 @@ const courseList = [
   {
     title: "Product Interaction",
     korean_text: "제품인터랙션디자인프로젝트",
-    english_text: "Product Interaction Design Project",
+    english_text: "ProductInteractionDesignProject",
     path: "product-interaction-design",
     advisor: "조상은",
     advisor_eng: "Jo Sangeun",
@@ -62,7 +62,7 @@ const courseList = [
   {
     title: "Living",
     korean_text: "리빙디자인프로젝트",
-    english_text: "Living Design Project",
+    english_text: "LivingDesignProject",
     path: "living-design",
     advisor: "장성연",
     advisor_eng: "Jang Sungyun",
@@ -74,7 +74,7 @@ const courseList = [
   {
     title: "Mobile",
     korean_text: "모빌리티디자인프로젝트",
-    english_text: "Mobile Design Project",
+    english_text: "MobileDesignProject",
     path: "mobile-design",
     advisor: "유병준",
     advisor_eng: "Yoo Byungjun",
@@ -86,7 +86,7 @@ const courseList = [
   {
     title: "Space",
     korean_text: "공간디자인프로젝트",
-    english_text: "Space Design Project",
+    english_text: "SpaceDesignProject",
     path: "space-design",
     advisor: "안성모",
     advisor_eng: "Ahn Sungmo",
