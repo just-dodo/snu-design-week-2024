@@ -18,7 +18,11 @@ const partnerCardList = [
     {
         image: '/img/monthlydesign.svg',
         text: '월간 디자인'
-    }
+    },
+    {
+        image: '/img/naver.svg',
+        text: '네이버'
+    },
 ]
 
 export default partnerCardList
