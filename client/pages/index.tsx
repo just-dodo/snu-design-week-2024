@@ -5,7 +5,6 @@ import { useRatio } from "utils/useRatio";
 import SearchAndInstagram from "components/search-and-instagram";
 import MainDescription from "components/main-description";
 import Image from "next/image";
-import partnersLogo from "assets/landing-partners-logo.png";
 import _useWindowSize from "utils/useWindowSize";
 import MobileMenuOverlay from "components/mobile-menu-overlay";
 import { MenuMobile } from "icons/MenuMobile";
@@ -29,7 +28,7 @@ const Landing: NextPage = () => {
                 src='/img/pc-main-partners.svg'
                 alt="partners-logo"
                 width={windowSize.width}
-                height={windowSize.width * 50 / 1537}
+                height={windowSize.width * 50 / 1722}
               />
             </Marquee>
           </div>
