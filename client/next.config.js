@@ -24,6 +24,7 @@ const nextConfig = {
       "transitivebullsh.it",
       "file.notion.so",
       "s3-us-west-2.amazonaws.com",
+      "img.notionusercontent.com",
     ],
     formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,
