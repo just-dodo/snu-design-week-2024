@@ -36,7 +36,7 @@ const Landing: NextPage = () => {
             className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%-92px)] h-[976px] w-full`}
           >
             <Image
-              src="/img/pc-main-animation.webp"
+              src="/img/pc-main-animation.gif"
               alt="main-page-animation"
               layout="fill"
               unoptimized={true}
