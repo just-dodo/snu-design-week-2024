@@ -1,5 +1,7 @@
 import Link from "next/link";
 import _useWindowSize from "utils/useWindowSize";
+import courseList from "wordings/course";
+
 
 export type PeopleCardProps = {
   name: string;
@@ -17,6 +19,7 @@ interface Props {
 
 export default function PeopleCard({ people }: Props) {
   const { isMobileView } = _useWindowSize();
+
 
   return (
     <div className="flex flex-col items-center justify-between md:border-2 border-[1.5px] border-primary rounded-[16px] md:w-[154px] w-[165px] md:h-[203px] h-[161px] relative">
@@ -36,7 +39,7 @@ export default function PeopleCard({ people }: Props) {
             href={`/works/${work.id}`}
             className="md:w-[134px] w-[142px] md:h-[44px] h-[33px] bg-[#00BD84] rounded-[10px] text-secondary font-[500] md:text-[17px] text-[14px] text-center md:leading-[44px] leading-[33px]"
           >
-            {work.class}
+            {courseList.find((course) => course.path === work.class)?.title}
           </Link>
         ))}
       </div>

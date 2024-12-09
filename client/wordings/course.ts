@@ -72,9 +72,9 @@ const courseList = [
       "Students craft a novel way of living by exploring the essential objects and spaces that shape our daily environment. They propose a new direction in living design, emphasizing aesthetic beauty and the inherent qualities of materials.",
   },
   {
-    title: "Mobile",
+    title: "Mobility",
     korean_text: "모빌리티디자인프로젝트",
-    english_text: "MobileDesignProject",
+    english_text: "MobilityDesignProject",
     path: "mobile-design",
     advisor: "유병준",
     advisor_eng: "Yoo Byungjun",
