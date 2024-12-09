@@ -11,7 +11,7 @@ const nextConfig = {
       "https://jspm.dev/",
     ],
   },
-  staticPageGenerationTimeout: 300,
+  staticPageGenerationTimeout: 3000,
   images: {
     unoptimized: false,
     domains: [
