@@ -13,7 +13,7 @@ const nextConfig = {
   },
   staticPageGenerationTimeout: 3000,
   images: {
-    unoptimized: false,
+    unoptimized: true,
     domains: [
       "www.notion.so",
       "notion.so",
