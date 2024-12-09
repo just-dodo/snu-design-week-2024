@@ -7,11 +7,11 @@ import peopleData from "./_components/people.json";
 import _useWindowSize from "utils/useWindowSize";
 import SearchAndInstagram from "components/search-and-instagram";
 
-const visualDesignPeopleList: PeopleCardProps[] = peopleData.filter(
-  (person) => person.type === "visual"
+const visualDesignPeopleList: PeopleCardProps[] = peopleData?.filter(
+  (person) => person?.type === "visual"
 ) as PeopleCardProps[];
-const industrialDesignPeopleList: PeopleCardProps[] = peopleData.filter(
-  (person) => person.type === "industrial"
+const industrialDesignPeopleList: PeopleCardProps[] = peopleData?.filter(
+  (person) => person?.type === "industrial"
 ) as PeopleCardProps[];
 
 const People: NextPage = () => {
