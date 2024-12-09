@@ -22,7 +22,7 @@ const Landing: NextPage = () => {
         <div className="pt-[92px] h-full">
           <SearchAndInstagram />
           <MainDescription />
-          <div className="absolute bottom-0 w-full mb-[20px] z-20">
+          <div className="absolute bottom-0 w-full mb-[20px]">
             <Marquee gradient={false} speed={50}>
               <Image
                 src='/img/pc-main-partners.svg'
@@ -33,12 +33,13 @@ const Landing: NextPage = () => {
             </Marquee>
           </div>
           <div
-            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%-92px)] h-[976px] w-full`}
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[calc(50%-92px)] w-full`}
           >
             <Image
-              src="/img/pc-main-animation.webp"
+              src="/img/pc-main-animation.gif"
               alt="main-page-animation"
-              layout="fill"
+              width={windowSize.width}
+              height={windowSize.width * 800 / 2560}
               unoptimized={true}
               objectFit="cover"
               objectPosition="center"

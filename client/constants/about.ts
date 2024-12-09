@@ -13,10 +13,12 @@ export const VISUALIDENTITY = {
   kor: [
     "애벌레와 사과라는 평범한 기호를 디자인과 학생들이 4년간의 학부 생활을 하며 이를 해체해 나가고 그 과정에서 자신만의 고유한 형상으로 변하는 모습을 표현했습니다. 애벌레가 움직이며 사과에 구멍을 뚫고 흐트러뜨리는 것처럼 학생들이 자신의 움직임으로 나아가며 화면, 지면, 가벽 어디든 자신의 작업 공간을 변화시키는 모습을 볼 수 있기를 기대합니다.",
     "또한 4단계의 그래픽은 1학년부터 4학년까지 이어지는 학부 과정과 그 중심이 되는 4개 층으로 이루어진 디자인과 건물을 나타냅니다. 이번 전시는 졸업생들이 거쳐온 성장과 변화를 한 눈에 볼 수 있는 자리입니다. 각자의 길을 걸어온 학생들이 새로운 가능성을 발견하길 바라며 이번 전시에 함께 해주신 모든 분께 감사의 말씀 드립니다.",
+    "디자인 아이덴티티의 색채와 포스터 구성은 연말의 따뜻한 분위기를 연상시켰습니다. 사과가 확장되고 애벌레가 사과를 뚫고 지나가는 모습은 졸업 전시에 참여한 학생들이 걸어온 과정을 은유하며, 이 움직임이 하나로 모여 졸업 전시라는 완성된 결과물로 이어집니다. 사과와 애벌레 주변에 은은하게 반짝이는 모습을 더하고, 프레임마다 변화를 준 질감을 활용해 눈발이 흩날리는 듯한 모습을 연출했습니다. 학생들의 지나온 길과 노력이 하나의 작품으로 완성되는 과정을 담고자 했습니다."
   ],
   eng: [
     "Using the simple symbols of a caterpillar and an apple, design students have expressed their transformation over four years of undergraduate study. Just as a caterpillar moves through an apple, creating holes and disrupting its form, the students’ actions and progress reshape their surroundings—whether on screens, paper, or temporary walls. Through this exhibition, we hope you will witness how their movements have redefined their workspaces, leaving unique traces of their creative journey.",
     "The four stages of the graphic design symbolize the undergraduate journey from the first to the fourth year, as well as the four floors of the Design Department building that form its core. This exhibition provides a glimpse into the growth and transformation experienced by the graduating students. We hope that those who have walked their own paths will discover new possibilities ahead. Thank you to everyone who has joined us for this special occasion.",
+    "The visual identity's color palette and poster design evoke the warmth and festivity of the year-end season. The expanding apple and the caterpillar burrowing through it symbolize the students' journey through the graduation exhibition, culminating in their collective achievement. Subtle sparkling effects around the apple and caterpillar, combined with shifting textures in each frame, evoke the impression of gently falling snow. This visual approach illustrates the students’ journey, reflecting their growth as it culminates in a unified and finished project."
   ],
 }
 

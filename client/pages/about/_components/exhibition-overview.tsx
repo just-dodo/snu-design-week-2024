@@ -1,6 +1,5 @@
 import { EXHIBITIONOVERVIEW } from "constants/about"
 import _useWindowSize from 'utils/useWindowSize';
-import Image from "next/image";
 
 export default function ExhibitionOverview() {
 
@@ -16,12 +15,6 @@ export default function ExhibitionOverview() {
           <div className="font-[600] h-[24px]">
             애벌레 행동
           </div>
-          <Image
-            src="/img/about-exhibition-overview-apple-caterpillar.svg"
-            alt="apple-caterpillar"
-            width={340}
-            height={116}
-          />
         </div>
       }
       <div className="w-full grid md:grid-cols-2 md:gap-[40px] gap-[20px] text-justify">
