@@ -1,31 +1,655 @@
 [
   {
-    "name": "모네",
-    "englishName": "Mone",
-    "type": "visual",
+    "name": "김의진",
+    "englishName": "",
+    "type": "industrial",
     "works": [
       {
-        "id": "1252cfba780a809c81fed1a934c4af96",
-        "class": "brand-design"
+        "id": "14f2cfba780a80079e59f9480fee4ea9",
+        "class": "space-design"
       },
       {
-        "id": "1272cfba780a80fc8283e355a113a7da",
+        "id": "14f2cfba780a8017b841f276ef6bac21",
         "class": "living-design"
       }
     ]
   },
   {
-    "name": "모네2",
-    "englishName": "Mone2",
+    "name": "최예원",
+    "englishName": "",
     "type": "industrial",
     "works": [
       {
-        "id": "1272cfba780a805f965bde3326edce81",
+        "id": "14f2cfba780a802fb1cbf19094e7b11a",
+        "class": "product-interaction-design"
+      },
+      {
+        "id": "14f2cfba780a806d8af0c95ab9e027a6",
+        "class": "space-design"
+      }
+    ]
+  },
+  null,
+  null,
+  {
+    "name": "이현규",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a807383c8e9ceb2aefab6",
+        "class": "product-interaction-design"
+      },
+      {
+        "id": "14f2cfba780a8072be04c982b8a26a36",
+        "class": "space-design"
+      }
+    ]
+  },
+  {
+    "name": "이지현",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a807a93cfc5b8caf774e7",
+        "class": "space-design"
+      },
+      {
+        "id": "14f2cfba780a80f38c09ef50070e8695",
+        "class": "living-design"
+      }
+    ]
+  },
+  {
+    "name": "이세민",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a805a80bed1db85c8ecb2",
+        "class": "space-design"
+      },
+      {
+        "id": "14f2cfba780a8015bb2cf4c7e3221377",
+        "class": "living-design"
+      }
+    ]
+  },
+  {
+    "name": "이다겸",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80c7a390cfa278ee96db",
+        "class": "living-design"
+      },
+      {
+        "id": "14f2cfba780a805584acddca98d15af1",
+        "class": "space-design"
+      }
+    ]
+  },
+  {
+    "name": "오지은",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80c6b1a2f51ada93b54c",
+        "class": "mobile-design"
+      },
+      {
+        "id": "14f2cfba780a8085b267e05c73d86588",
+        "class": "product-interaction-design"
+      }
+    ]
+  },
+  {
+    "name": "엄혜영",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a807a8514f2d86364821a",
+        "class": "product-interaction-design"
+      },
+      {
+        "id": "14f2cfba780a80ca8401f6d35dd7e292",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "신예림",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80c5846dd9dc2d485a97",
+        "class": "living-design"
+      }
+    ]
+  },
+  {
+    "name": "송산하",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80a5ba45d4f2ff4dfdaa",
+        "class": "living-design"
+      },
+      {
+        "id": "14f2cfba780a805894d4dbd153396566",
+        "class": "space-design"
+      }
+    ]
+  },
+  {
+    "name": "송민아",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80d2b820fcbd51993f75",
+        "class": "mobile-design"
+      },
+      {
+        "id": "14f2cfba780a802e976ddaed4871201a",
+        "class": "product-interaction-design"
+      }
+    ]
+  },
+  {
+    "name": "봉준영",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80ac98daee1bed3c70c3",
+        "class": "product-interaction-design"
+      }
+    ]
+  },
+  {
+    "name": "박서진",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80d6b6abe39fdd5e23ab",
         "class": "brand-design"
       },
       {
-        "id": "1272cfba780a80bbbdc2d7b84d5b94d8",
+        "id": "14f2cfba780a80b5ae00cedd33675802",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "김하은",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a80df9c7cf82550af7969",
         "class": "living-design"
+      },
+      {
+        "id": "14f2cfba780a80aa9ca5f2ee8672500b",
+        "class": "product-interaction-design"
+      }
+    ]
+  },
+  {
+    "name": "김찬혁",
+    "englishName": "",
+    "type": "industrial",
+    "works": [
+      {
+        "id": "14f2cfba780a8040a72bf73110dc1a0f",
+        "class": "mobile-design"
+      },
+      {
+        "id": "14f2cfba780a802485a0eb94d2087b91",
+        "class": "product-interaction-design"
+      }
+    ]
+  },
+  {
+    "name": "곽은아",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8012ac65fdeb21d4ef93",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80b8ac93c6372e15f7eb",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "황수지",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80e5b4c1ef38b56ebfde",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a808baf5ce080760bdd15",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "최하림",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8094827ad335b5de2b1a",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a8062abb1d46680e741d1",
+        "class": "media-design"
+      }
+    ]
+  },
+  {
+    "name": "최유림",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a809385c0fd59bc4e8f01",
+        "class": "ux-ui-design"
+      },
+      {
+        "id": "14f2cfba780a809080b6ff77a13f07a8",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "진혜림",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80f6bfe9c233c3d60c19",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a805fba98d4547d13b2ef",
+        "class": "ux-ui-design"
+      }
+    ]
+  },
+  {
+    "name": "주윤호",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8036a615c13b4de4a560",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a80aea4e3cbf7ec1ba274",
+        "class": "media-design"
+      }
+    ]
+  },
+  {
+    "name": "좌현승",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80a8b249f8664726fdea",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a800482aafbcda25cd68d",
+        "class": "media-design"
+      }
+    ]
+  },
+  {
+    "name": "조윤지",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8088a264f2a08230444a",
+        "class": "ux-ui-design"
+      },
+      {
+        "id": "14f2cfba780a8072958fd658b9eb3d3e",
+        "class": "media-design"
+      }
+    ]
+  },
+  {
+    "name": "장동후",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a806b964ef3f408b68745",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80aa8adbc0496cd2929e",
+        "class": "visual-design"
+      }
+    ]
+  },
+  {
+    "name": "이하은",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a801fa310e68c9d3ddc63",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80709beffd8b68e80888",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "이지온",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8098b3aecc8b76e914f3",
+        "class": "ux-ui-design"
+      },
+      {
+        "id": "14f2cfba780a80f491a6eb495f91bdea",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "이주영",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8069ac47f10d7166c803",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80b69238c6e302da4b77",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "이유진",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a803c9401e4f759a876ec",
+        "class": "ux-ui-design"
+      },
+      {
+        "id": "14f2cfba780a8004b130d3ef10fa20de",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "이소희",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80dd8826d5d106c7dd03",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80fcba47da8729a74b70",
+        "class": "ux-ui-design"
+      }
+    ]
+  },
+  {
+    "name": "염수연",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80ea95eaead772307be0",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a804eabd6faac0b5e55e4",
+        "class": "ux-ui-design"
+      }
+    ]
+  },
+  {
+    "name": "양수연",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80299b48e90386bce3c3",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a802284fadd3ffda4ac94",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "안지민",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a8096ac8cc84a00049a95",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80d2851bedc846202e2e",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "안유진",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80f3bb2cd8b74fb4658e",
+        "class": "ux-ui-design"
+      },
+      {
+        "id": "14f2cfba780a80e68297f8c37295c2b6",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "신윤서",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a802a8f53c25ecc8f4258",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a8022a149c582f07f7c46",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "송유진",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80b5b775c75eddb01468",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80c9bb43fa7213542591",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "송나윤",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80ce8426fda49b39853d",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a808d9938ec6d04b18d69",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "서유현",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80df8b29fd83efa0417f",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80f696a7df6d4a0334e6",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "변선우",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80248aabfd1bbfe5e7d8",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a8081a946f8001a117828",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "박나영",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80d9a6b9f98b79112e33",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a8070be67c5a6e7eaec82",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "김지담",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a808ca409def30c3df845",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a80f29784f7e092379d22",
+        "class": "media-design"
+      }
+    ]
+  },
+  {
+    "name": "김은주",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80b4a886ed76fb4bceb6",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80eb9787feaa86dfd754",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "김시원",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a803d8b3dc7400f5ccaee",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a8056bb4ef2f6b579d6cd",
+        "class": "brand-design"
+      }
+    ]
+  },
+  {
+    "name": "김상엽",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80a7bcd0ca484a218750",
+        "class": "brand-design"
+      },
+      {
+        "id": "14f2cfba780a80f0b6d8dd2d284fdabb",
+        "class": "graphic-design"
+      }
+    ]
+  },
+  {
+    "name": "조성호",
+    "englishName": "",
+    "type": "visual",
+    "works": [
+      {
+        "id": "14f2cfba780a80569992d4f2326c6736",
+        "class": "graphic-design"
+      },
+      {
+        "id": "14f2cfba780a8043b4abf955a4ca4e75",
+        "class": "media-design"
       }
     ]
   }
