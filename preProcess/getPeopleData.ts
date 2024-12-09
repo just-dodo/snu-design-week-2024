@@ -8,29 +8,35 @@ function getPeopleData() {
   Papa.parse(file, {
     header: true,
     complete: (results: any) => {
-      console.log("🚀 ~ Papa.parse ~ results:", results.data);
+      const data = results.data?.map((person: any) => {
+        if (!person.works) return;
+        try {
+          const workList = person.works.split(",");
+          const workIds = workList.map(
+            (link: string) => link.split("-").reverse()[0]?.split("/").reverse()[0]?.split("?")[0]
+          );
+          
+          const classes = person.classes?.split(",");
 
-      const data = results.data.map((person: any) => {
-        const workIds = person.works
-          .split(",")
-          .map((link: string) => link.split("-")[1].split("?")[0]);
-        const classes = person.classes.split(",");
+          const works = workIds.map((id: string, index: number) => {
+            return {
+              id,
+              class: classes[index],
+            };
+          });
 
-        const works = workIds.map((id: string, index: number) => {
           return {
-            id,
-            class: classes[index],
+            name: person.name,
+            englishName: person.englishName,
+            type: person.type,
+            works,
           };
-        });
-
-        return {
-          name: person.name,
-          englishName: person.englishName,
-          type: person.type,
-          works,
-        };
+        } catch (e) {
+          console.log("🚀 ~ getPeopleData ~ e", e);
+          console.log(person);
+        }
       });
-      console.log("🚀 ~ getPeopleData ~ data:", JSON.stringify(data, null, 2));
+      // console.log("🚀 ~ getPeopleData ~ data:", JSON.stringify(data, null, 2));
 
       // save data to people.json
       fs.writeFileSync("./people.json", JSON.stringify(data, null, 2));
