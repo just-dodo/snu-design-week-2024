@@ -268,7 +268,8 @@ export default function WorkPage(
 
   const { theme } = resolveConfig(tailwindConfig);
 
-  const { y: scrollY } = useWindowScroll();
+  const { y: scrollY } = { y: 0, x: 0}
+  // useWindowScroll();
 
   function getOtherWorkId() {
     const propertyName = "다른 작품";
