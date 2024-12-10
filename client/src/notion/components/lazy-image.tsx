@@ -74,13 +74,15 @@ export const LazyImage: React.FC<{
       const aspectRatio = (height ? height : previewImage.originalHeight) / (width ? width : previewImage.originalWidth)
 
       if (components.Image) {
-        // TODO: could try using next/image onLoadComplete to replace LazyImageFull
-        // while retaining our blur implementation
         return (
           <components.Image
             src={src}
             alt={alt}
-            style={restStyle}
+            style={{
+              ...restStyle,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+            }}
             className={addClassname}
             width={width}
             height={height}
@@ -93,14 +95,17 @@ export const LazyImage: React.FC<{
       }
 
       return (
-        // @ts-ignore
         <LazyImageFull src={src} {...rest} experimentalDecode={true}>
           {({ imageState, ref }) => {
             const isLoaded = imageState === ImageState.LoadSuccess
             const wrapperStyle: React.CSSProperties = {
-              width: '100%'
+              width: '100%',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
             }
-            const imgStyle: React.CSSProperties = {}
+            const imgStyle: React.CSSProperties = {
+              willChange: 'opacity',
+            }
 
             if (height) {
               wrapperStyle.height = height
@@ -123,7 +128,11 @@ export const LazyImage: React.FC<{
                   src={previewImage.dataURIBase64}
                   alt={alt}
                   ref={ref}
-                  style={restStyle}
+                  style={{
+                    ...restStyle,
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                  }}
                   decoding="async"
                 />
 
@@ -135,6 +144,8 @@ export const LazyImage: React.FC<{
                   style={{
                     ...restStyle,
                     ...imgStyle,
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
                   }}
                   width={width}
                   height={height}
@@ -147,27 +158,17 @@ export const LazyImage: React.FC<{
         </LazyImageFull>
       )
     } else {
-      // TODO: GracefulImage doesn't seem to support refs, but we'd like to prevent
-      // invalid images from loading as error states
-
-      /*
-        NOTE: Using next/image without a pre-defined width/height is a huge pain in
-        the ass. If we have a preview image, then this works fine since we know the
-        dimensions ahead of time, but if we don't, then next/image won't display
-        anything.
-        
-        Since next/image is the most common use case for using custom images, and this 
-        is likely to trip people up, we're disabling non-preview custom images for now.
-  
-        If you have a use case that is affected by this, please open an issue on github.
-      */
       if (components.Image && forceCustomImages) {
         return (
           <components.Image
             src={src}
             alt={alt}
             className={addClassname}
-            style={restStyle}
+            style={{
+              ...restStyle,
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+            }}
             width={width || null}
             height={height || null}
             priority={priority}
@@ -180,7 +181,11 @@ export const LazyImage: React.FC<{
       return (
         <img
           className={addClassname}
-          style={restStyle}
+          style={{
+            ...restStyle,
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+          }}
           src={src}
           alt={alt}
           ref={attachZoomRef}
