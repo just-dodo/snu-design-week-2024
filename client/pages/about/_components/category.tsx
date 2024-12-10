@@ -11,7 +11,7 @@ export default function Category({ kor, eng, isMobileView, selectedCategory, set
   const isSelected = selectedCategory === eng;
   if (isMobileView) {
     return (
-      <div onClick={() => setSelectedCategory(eng)} className={`flex flex-col items-center w-auto cursor-pointer px-[10px] py-[4px] rounded-[10px] border-primary border-2 ${isSelected ? 'bg-primary' : 'bg-secondary'}`}>
+      <div onClick={() => setSelectedCategory(eng)} className={`flex flex-col items-center w-auto cursor-pointer px-[10px] py-[4px] rounded-[10px] border-primary border-[1.5px] ${isSelected ? 'bg-primary' : 'bg-secondary'}`}>
         <div className={`text-[18px] font-[600] ${isSelected ? 'text-secondary' : 'text-primary'}`}>{kor}</div>
       </div>
     )
