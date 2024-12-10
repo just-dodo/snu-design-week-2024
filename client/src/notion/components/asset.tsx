@@ -7,6 +7,7 @@ import { useNotionContext } from '../context'
 import { getYoutubeId } from '../utils'
 import { LazyImage } from './lazy-image'
 import { LiteYouTubeEmbed } from './lite-youtube-embed'
+import Image from 'next/image'
 
 const isServer = typeof window === 'undefined'
 
@@ -264,10 +265,10 @@ export const Asset: React.FC<{
     const alt = caption || 'notion image'
 
     content = (
-      <LazyImage
+      <Image
         src={src}
         alt={alt}
-        zoomable={zoomable}
+        // zoomable={zoomable}
         height={style.height as number}
         style={assetStyle}
       />
