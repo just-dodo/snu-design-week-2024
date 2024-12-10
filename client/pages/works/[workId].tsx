@@ -294,7 +294,7 @@ export default function WorkPage(
   }
 
   const isScrollStarted = React.useMemo(() => {
-    scrollY > 10;
+    return scrollY > 10;
   }, [scrollY]);
 
   const getBlockWithId = (id: string) => {
@@ -325,11 +325,12 @@ export default function WorkPage(
     };
   };
 
-  const { cover: otherCover, coverPosition: otherCoverPosition } =
-    getInfoById(otherId) || {
-      cover: "",
-      coverPosition: 0,
-    };
+  const { cover: otherCover, coverPosition: otherCoverPosition } = getInfoById(
+    otherId
+  ) || {
+    cover: "",
+    coverPosition: 0,
+  };
 
   const randomOtherWork = React.useMemo(() => {
     // get random 3 indeces from groupBlockIds
