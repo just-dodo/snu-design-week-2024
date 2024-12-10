@@ -276,7 +276,9 @@ export default function WorkPage(
       return p.property && p.name === propertyName;
     });
     if (property) {
-      return pageBlock?.properties?.[property?.property][0][1][0][1];
+      return pageBlock?.properties?.[property?.property]
+        ? pageBlock?.properties?.[property?.property][0]?.[1]?.[0]?.[1]
+        : null;
     }
     return null;
   }
@@ -324,7 +326,10 @@ export default function WorkPage(
   };
 
   const { cover: otherCover, coverPosition: otherCoverPosition } =
-    getInfoById(otherId);
+    getInfoById(otherId) || {
+      cover: "",
+      coverPosition: 0,
+    };
 
   const randomOtherWork = React.useMemo(() => {
     // get random 3 indeces from groupBlockIds
@@ -458,7 +463,7 @@ export default function WorkPage(
             backgroundImage: `url(${socialImage})`,
           }}
         >
-          <div className="w-full h-full from-50% bg-gradient-to-b from-transparent to-secondary"></div>
+          <div className="w-full h-full from-50% bg-gradient-to-b to-95% from-transparent to-secondary"></div>
         </div>
         <XWrapper>
           <div className="w-full p-6 md:p-0">
