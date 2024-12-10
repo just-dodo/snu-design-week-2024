@@ -224,9 +224,9 @@ export default function WorkPage(
   function scrollTop() {
     if (topRef.current) {
       topRef.current.scrollIntoView();
-      // window.scrollTo({
-      //   top: topRef.current.offsetTop ,
-      // });
+      window.scrollTo({
+        top: topRef.current.offsetTop,
+      });
     }
   }
   React.useEffect(() => {
@@ -268,7 +268,7 @@ export default function WorkPage(
 
   const { theme } = resolveConfig(tailwindConfig);
 
-  const { y } = useWindowScroll();
+  const { y: scrollY } = useWindowScroll();
 
   function getOtherWorkId() {
     const propertyName = "다른 작품";
@@ -291,7 +291,9 @@ export default function WorkPage(
     return null;
   }
 
-  const isScrollStarted = y > 10;
+  const isScrollStarted = React.useMemo(() => {
+    scrollY > 10;
+  }, [scrollY]);
 
   const getBlockWithId = (id: string) => {
     return entireRecordMap?.block[id]?.value;
@@ -356,7 +358,7 @@ export default function WorkPage(
         style={{
           backgroundImage: `url(${cover})`,
           backgroundSize: "cover",
-          backgroundPosition: coverPosition,
+          backgroundPosition: `0 ${coverPosition * 100}%`,
         }}
       >
         <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start p-4">
@@ -369,11 +371,12 @@ export default function WorkPage(
 
   const backdropBlur = isScrollStarted ? "backdrop-blur" : "backdrop-blur-none";
 
+  const instagramId = pageProperties["인스타 아이디"];
+
   return (
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
-
       <Head>
         <title>
           {pageProperties?.["학생이름"] + " - " + pageProperties?.["작품이름"]}{" "}
@@ -410,54 +413,56 @@ export default function WorkPage(
               {pageProperties["작품이름"]}
             </p>
             <div className="hidden md:flex flex-1 flex-col items-end font-bold gap-1 h-fit">
-              <p className="text-[20px] font-bold leading-6">
-                {"@" + pageProperties["인스타 아이디"]}
-              </p>
+              {instagramId && (
+                <p className="text-[20px] font-bold leading-6">
+                  {"@" + instagramId}
+                </p>
+              )}
               <p className="text-[20px] font-bold leading-6">
                 {pageProperties["Email"]}
               </p>
             </div>
           </div>
         </div>
-        <div
-          className="flex flex-col justify-center items-center h-full tcursor-pointer w-fit ml-3 md:ml-0  transition-all duration-300 "
-          onClick={() => {
-            // open instagram link in new tab
-            window.open(
-              `https://www.instagram.com/${pageProperties["인스타 아이디"]}`,
-              "_blank"
-            );
-          }}
-          style={{
-            opacity: isMobileView && !isScrollStarted ? 0 : 1,
-          }}
-        >
-          {/* @ts-ignore */}
-          <FiInstagram
-            className="inline-block mr-2"
-            size={isMobileView ? 24 : 36}
-          />
-        </div>
+        {instagramId && (
+          <div
+            className="flex flex-col justify-center items-center h-full tcursor-pointer w-fit ml-3 md:ml-0  transition-all duration-300 "
+            onClick={() => {
+              // open instagram link in new tab
+              window.open(`https://www.instagram.com/${instagramId}`, "_blank");
+            }}
+            style={{
+              opacity: isMobileView && !isScrollStarted ? 0 : 1,
+            }}
+          >
+            {/* @ts-ignore */}
+            <FiInstagram
+              className="inline-block mr-2"
+              size={isMobileView ? 24 : 36}
+            />
+          </div>
+        )}
       </div>
 
       {/* content */}
-      <div className="w-full justify-center items-center flex">
+      <div className="w-screen justify-center items-center flex">
         <div
-          className="w-full aspect-video absolute top-0 md:top-[69px] left-0"
+          className="w-full aspect-video absolute top-0 md:top-[69px] left-0 "
           style={{
             backgroundSize: "cover",
-            backgroundPosition: coverPosition,
+            backgroundPosition: `0 ${coverPosition ?? 0 * 100}%`,
+
             // no-repeat
             backgroundRepeat: "no-repeat",
             // gradient image from top to bottom
             backgroundImage: `url(${socialImage})`,
           }}
         >
-          <div className="w-full h-full bg-gradient-to-b from-transparent to-secondary"></div>
+          <div className="w-full h-full from-50% bg-gradient-to-b from-transparent to-secondary"></div>
         </div>
         <XWrapper>
-          <div className="w-full  p-6 md:p-0">
-            <div className="w-full h-[150px] md:h-[440px]" />
+          <div className="w-full p-6 md:p-0">
+            <div className="w-full h-[150px] md:h-[490px]" />
             <div className="w-full h-fit relative z-10 min-h-[72px]">
               <div
                 className="w-full h-fit transition-all duration-300 ease-in-out "
@@ -479,7 +484,7 @@ export default function WorkPage(
 
                   <div className="hidden md:flex flex-row items-end gap-5">
                     <p className="font-bold text-primary text-[20px]">
-                      {"@" + pageProperties["인스타 아이디"]}
+                      {"@" + instagramId}
                     </p>
 
                     <p className="font-bold text-primary text-[20px]">
@@ -511,14 +516,16 @@ export default function WorkPage(
                   {pageProperties["Email"]}
                 </p>
               </div>
-              <div>
-                <p className="font-semibold md:font-bold text-primary text-[15px] md:text-[20px]">
-                  INSTAGRAM
-                </p>
-                <p className="font-regular text-primary text-[15px]">
-                  {"@" + pageProperties["인스타 아이디"]}
-                </p>
-              </div>
+              {instagramId && (
+                <div>
+                  <p className="font-semibold md:font-bold text-primary text-[15px] md:text-[20px]">
+                    INSTAGRAM
+                  </p>
+                  <p className="font-regular text-primary text-[15px]">
+                    {"@" + instagramId}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -533,7 +540,7 @@ export default function WorkPage(
               style={{
                 backgroundImage: `url(${otherCover})`,
                 backgroundSize: "cover",
-                backgroundPosition: otherCoverPosition,
+                backgroundPosition: `0 ${otherCoverPosition * 100}%`,
               }}
             >
               <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start md:items-end p-4">

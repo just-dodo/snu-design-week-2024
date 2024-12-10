@@ -1,6 +1,6 @@
 export default function MainDescription() {
   const details = {
-    date: "2024.11.28. - 2024.12.05.\n10AM - 6PM",
+    date: "2024.11.28. - 2024.12.03.\n10AM - 6PM",
     address: "1, GWANAK-RO,\nGWANAK-GU, SEOUL",
     location: "49, COLLEGE OF FINE ARTS,\nSEOUL NAT’L UNIVERSITY",
   }
