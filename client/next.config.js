@@ -11,9 +11,9 @@ const nextConfig = {
       "https://jspm.dev/",
     ],
   },
-  staticPageGenerationTimeout: 3000,
+  staticPageGenerationTimeout: 300,
   images: {
-    unoptimized: true,
+    unoptimized: false,
     domains: [
       "www.notion.so",
       "notion.so",
