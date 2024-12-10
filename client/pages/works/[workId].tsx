@@ -358,7 +358,7 @@ export default function WorkPage(
         style={{
           backgroundImage: `url(${cover})`,
           backgroundSize: "cover",
-          backgroundPosition: coverPosition,
+          backgroundPosition: `0 ${coverPosition * 100}%`,
         }}
       >
         <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start p-4">
@@ -377,7 +377,6 @@ export default function WorkPage(
     <>
       {/* <div className={"w-full h-[60px] md:h-[80px]"} /> */}
       {/* top bar */}
-
       <Head>
         <title>
           {pageProperties?.["학생이름"] + " - " + pageProperties?.["작품이름"]}{" "}
@@ -446,23 +445,24 @@ export default function WorkPage(
       </div>
 
       {/* content */}
-      <div className="w-full justify-center items-center flex">
+      <div className="w-screen justify-center items-center flex">
         <div
-          className="w-full aspect-video absolute top-0 md:top-[69px] left-0"
+          className="w-full aspect-video absolute top-0 md:top-[69px] left-0 "
           style={{
             backgroundSize: "cover",
-            backgroundPosition: coverPosition,
+            backgroundPosition: `0 ${coverPosition ?? 0 * 100}%`,
+
             // no-repeat
             backgroundRepeat: "no-repeat",
             // gradient image from top to bottom
             backgroundImage: `url(${socialImage})`,
           }}
         >
-          <div className="w-full h-full bg-gradient-to-b from-transparent to-secondary"></div>
+          <div className="w-full h-full from-50% bg-gradient-to-b from-transparent to-secondary"></div>
         </div>
         <XWrapper>
-          <div className="w-full  p-6 md:p-0">
-            <div className="w-full h-[150px] md:h-[440px]" />
+          <div className="w-full p-6 md:p-0">
+            <div className="w-full h-[150px] md:h-[490px]" />
             <div className="w-full h-fit relative z-10 min-h-[72px]">
               <div
                 className="w-full h-fit transition-all duration-300 ease-in-out "
@@ -540,7 +540,7 @@ export default function WorkPage(
               style={{
                 backgroundImage: `url(${otherCover})`,
                 backgroundSize: "cover",
-                backgroundPosition: otherCoverPosition,
+                backgroundPosition: `0 ${otherCoverPosition * 100}%`,
               }}
             >
               <div className="bg-black/30 w-full h-full text-secondary flex flex-col justify-start items-start md:items-end p-4">
